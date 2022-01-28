@@ -114,19 +114,24 @@ export default {
 
 @media (max-width: 1024px) {
   .header {
+    padding: 10px 15px;
+    &__logo {
+      img {
+        width: 45px;
+      }
+    }
     &__menu {
       position: fixed;
       top: -100%;
       background-color: #0f1215;
       left: 0;
-
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-
+      padding-bottom: 200px;
       transition: all 0.5s;
       overflow: auto;
       ul {

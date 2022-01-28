@@ -41,6 +41,7 @@ aside {
 
 html,
 body {
+  background-color: #0f1215;
   font-family: Rubik;
   height: 100%;
   width: 100%;
