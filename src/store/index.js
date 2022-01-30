@@ -1,3 +1,9 @@
 import { createStore } from 'vuex'
 
-export default createStore({})
+import { games } from './modules/games'
+export default createStore({
+	modules: {
+		games: games
+	}
+
+})

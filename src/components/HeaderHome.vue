@@ -10,7 +10,7 @@
           >
             <span></span>
           </div>
-          <div class="header__logo">
+          <div @click="this.$router.push('/')" class="header__logo">
             <img src="@/assets/img/logo.png" alt="" />
           </div>
           <div v-bind:class="{ active: isActive }" class="header__menu">
@@ -58,7 +58,7 @@ export default {
 
   &__content {
     display: flex;
-    max-width: 1170px;
+    max-width: 1200px;
     margin: 0 auto;
     align-items: center;
     justify-content: space-between;
@@ -67,6 +67,8 @@ export default {
   &__logo {
     position: relative;
     z-index: 2;
+
+    cursor: pointer;
   }
 
   &__menu {
@@ -111,8 +113,14 @@ export default {
     font-weight: 700;
   }
 }
-
-@media (max-width: 1024px) {
+@media (max-width: 1430px) {
+  .header {
+    &__logo {
+      margin-left: 100px;
+    }
+  }
+}
+@media (max-width: 1060px) {
   .header {
     padding: 10px 15px;
     &__logo {
@@ -131,9 +139,10 @@ export default {
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      padding-bottom: 200px;
+      padding: 100px 0px;
       transition: all 0.5s;
       overflow: auto;
+      z-index: 1;
       ul {
         align-items: center;
         flex-direction: column;
@@ -143,7 +152,8 @@ export default {
       }
     }
     &__menu.active {
-      top: 100px;
+      top: 0;
+      z-index: 1;
     }
     &__user {
       display: flex;
