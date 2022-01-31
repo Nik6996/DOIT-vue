@@ -1,7 +1,7 @@
 import Home from '@/pages/Home'
 import Games from '@/pages/Games'
 import HomeContent from '@/components/HomeContent'
-
+import SignUp from '@/components/login/SignUp'
 
 
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -17,8 +17,13 @@ const routes = [{
 		{
 			path: '/games',
 			component: Games
-		}
-	]
+		},
+
+	],
+},
+{
+	path: '/sign-up',
+	component: SignUp
 }
 ]
 

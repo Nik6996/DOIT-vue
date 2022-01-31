@@ -23,7 +23,12 @@
             </ul>
             <div class="header__user">
               <button class="header__login">Login</button>
-              <button class="header__sign-up">Sign up</button>
+              <button
+                @click="this.$router.push('/sign-up')"
+                class="header__sign-up"
+              >
+                Sign up
+              </button>
             </div>
           </div>
         </div>
