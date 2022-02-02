@@ -1,7 +1,7 @@
 import Home from '@/pages/Home'
 import Games from '@/pages/Games'
 import HomeContent from '@/components/HomeContent'
-import SignUp from '@/components/login/SignUp'
+import SignUpMain from '@/components/login/SignUpMain'
 
 
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -23,7 +23,7 @@ const routes = [{
 },
 {
 	path: '/sign-up',
-	component: SignUp
+	component: SignUpMain
 }
 ]
 

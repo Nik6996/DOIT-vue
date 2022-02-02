@@ -12,15 +12,53 @@
       <div class="sign__content">
         <div class="sign__logo"><img src="@/assets/img/logo.png" alt="" /></div>
         <div class="sign__title">Sign up 1/2</div>
-        <div class="sign__email">
-          <span>Email</span>
-          <input placeholder="google@gmail.com" type="text" />
-        </div>
-        <div class="sign__password">
-          <span>Password</span>
-          <input type="text" />
-        </div>
-        <div class="sign__btn"><button>Next step</button></div>
+        <Form
+          @submit="onSubmit"
+          :validation-schema="formSchema"
+          :initial-values="initialFormValues"
+        >
+          <Field name="email" v-slot="{ field, errors }">
+            <div class="sign__email control control-input">
+              <span>Email</span>
+              <input
+                placeholder="google@gmail.com"
+                type="text"
+                v-bind="field"
+              />
+            </div>
+            <template v-if="errors.length">
+              <ul>
+                <li
+                  class="error-message"
+                  v-for="(message, index) in errors"
+                  :key="index"
+                >
+                  {{ message }}
+                </li>
+              </ul>
+            </template>
+          </Field>
+
+          <Field ref="" name="password" v-slot="{ field, errors }">
+            <div class="sign__password">
+              <span>Password</span>
+              <input type="password" v-bind="field" />
+            </div>
+            <template v-if="errors.length">
+              <ul>
+                <li
+                  class="error-message"
+                  v-for="(message, index) in errors"
+                  :key="index"
+                >
+                  {{ message }}
+                </li>
+              </ul>
+            </template>
+          </Field>
+
+          <div class="sign__btn"><button>Next step</button></div>
+        </Form>
 
         <div class="sign__text">or signup with</div>
         <div class="sign__sites">
@@ -38,7 +76,36 @@
 </template>
 
 <script>
-export default {};
+import { Field, Form, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
+
+export default {
+  data() {
+    return {
+      formSchema: yup.object({
+        email: yup.string().required().email(),
+        password: yup.string().required().min(6),
+      }),
+      initialFormValues: {
+        email: "",
+        password: "",
+      },
+      email: "",
+      password: "",
+    };
+  },
+
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+  methods: {
+    onSubmit(values) {
+      this.$emit("userData", values);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -127,7 +194,7 @@ export default {};
     button {
       background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
       border-radius: 2px;
-      width: 241px;
+      width: 100%;
       height: 44px;
       color: #f5f5f5;
       font-weight: 700;
@@ -169,5 +236,10 @@ export default {};
     color: #0a68f5;
     cursor: pointer;
   }
+}
+.error-message {
+  padding-top: 3px;
+  color: rgb(255, 0, 0);
+  font-size: 14px;
 }
 </style>
