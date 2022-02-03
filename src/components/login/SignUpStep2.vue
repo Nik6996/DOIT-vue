@@ -2,7 +2,7 @@
   <div>
     <div class="sign">
       <div class="sign__header">
-        <div @click="this.$router.push('/')" class="sign__return">
+        <div @click="returnPage()" class="sign__return">
           <img src="@/assets/icon/arrow_left.svg" alt="" />
         </div>
         <div @click="this.$router.push('/')" class="sign__close">
@@ -19,7 +19,6 @@
             <div class="sign__username">
               <span>Username</span>
               <input
-                v-model="name"
                 placeholder="BestPlayerInTheWorld2020"
                 type="text"
                 v-bind="field"
@@ -42,8 +41,8 @@
               <span>Country</span>
               <country-select
                 className="form-control"
-                v-model="country"
                 :country="country"
+                v-model="country"
                 :countryName="true"
                 :usei18n="false"
                 v-bind="field"
@@ -106,8 +105,8 @@
           <Field name="age" v-slot="{ field, errors }">
             <div class="sign__check">
               <input
-                v-bind="field"
                 v-model="toggle"
+                v-bind="field"
                 id="check"
                 type="checkbox"
               />
@@ -139,7 +138,11 @@
               age is a required field
             </div>
           </Field>
-
+          <div v-if="errorEmail" class="sign__error-email">
+            A user with this email is already registered
+            <span @click="returnPage()">Sign in?</span>
+            <span>Forgot password?</span>
+          </div>
           <div class="sign__create"><button>Create an account</button></div>
         </Form>
       </div>
@@ -151,6 +154,8 @@
 import { Calendar, DatePicker } from "v-calendar";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -160,12 +165,12 @@ export default {
         date: yup.string().required(),
         age: yup.boolean().required(),
       }),
+      toggle: "",
       country: "",
-      name: "",
       isActive: false,
       date: new Date(),
-      toggle: "",
       error: false,
+      errorEmail: "",
     };
   },
   components: {
@@ -175,15 +180,15 @@ export default {
     Form,
     ErrorMessage,
   },
+  computed: {
+    ...mapGetters({
+      errorMessage: "registration/getError",
+    }),
+  },
   watch: {
-    country: {
-      handler(country) {
-        this.error = true;
-      },
-    },
-    name: {
-      handler(name) {
-        this.setName(name);
+    errorMessage: {
+      handler(error) {
+        this.errorEmail = error;
       },
     },
     date: {
@@ -202,20 +207,17 @@ export default {
     },
   },
   methods: {
-    onSubmit(values) {
+    async onSubmit(values) {
       if (!values.age) {
         this.error = true;
       } else {
-        console.log("можно отправлять в базу");
-        console.log(values);
+        await this.$emit("userData", values);
       }
     },
-    setCountry(country) {
-      this.$emit("countryData", country);
+    returnPage() {
+      this.$emit("returnPage", "1");
     },
-    setName(name) {
-      this.$emit("nameData", name);
-    },
+
     calendar() {
       if (!this.isActive) {
         this.isActive = true;
@@ -432,6 +434,20 @@ export default {
       width: 25px;
       height: 25px;
       transition: all 0.5s;
+    }
+  }
+  &__error-email {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: red;
+    font-size: 14px;
+    span {
+      cursor: pointer;
+      color: #0a68f5;
+      padding: 3px;
     }
   }
 }

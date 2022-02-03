@@ -21,8 +21,27 @@
               <li>Shop</li>
               <li>Sponsorship</li>
             </ul>
-            <div class="header__user">
-              <button class="header__login">Login</button>
+
+            <div v-if="user" class="header__current-user">
+              <div class="header__icon-user"><img src="" alt="" /></div>
+              <div class="header__user-body">
+                <div class="header__user-name">{{ user.name }}</div>
+                <div class="header__user-many">
+                  <div class="header__user-euro">111 <span>EUR</span></div>
+                  <span>/</span>
+                  <div class="header__user-dtc">111 <span>DTC</span></div>
+                </div>
+              </div>
+              <div @click="signOut" class="header__user-drop-down">></div>
+            </div>
+
+            <div v-else class="header__user">
+              <button
+                @click="this.$router.push('/login')"
+                class="header__login"
+              >
+                Login
+              </button>
               <button
                 @click="this.$router.push('/sign-up')"
                 class="header__sign-up"
@@ -38,13 +57,50 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
 export default {
   data() {
     return {
       isActive: "",
+      user: null,
     };
   },
+  computed: {
+    ...mapGetters({
+      getUser: "loadUser/getUser",
+    }),
+  },
+  watch: {
+    getUser: {
+      handler(user) {
+        this.user = user;
+      },
+    },
+  },
+  async mounted() {
+    const auth = getAuth();
+    await onAuthStateChanged(auth, (userSystem) => {
+      if (userSystem) {
+        this.$store.dispatch("loadUser/load", userSystem.uid);
+      } else {
+        console.log("нужна аутентификация");
+      }
+    });
+  },
   methods: {
+    signOut() {
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          console.log("Вышли с аккаунта");
+          this.user = null;
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    },
     burger() {
       if (!this.isActive) {
         this.isActive = "active";
@@ -116,6 +172,65 @@ export default {
     margin-left: 8px;
     color: #f5f5f5;
     font-weight: 700;
+  }
+
+  &__current-user {
+    display: flex;
+    max-width: 200px;
+    max-height: 40px;
+    padding: 0px 5px;
+  }
+
+  &__icon-user {
+    width: 40px;
+    height: 40px;
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+  }
+
+  &__user-body {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__user-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  &__user-many {
+    color: #55aaff;
+    font-size: 12px;
+    display: flex;
+    span {
+      color: #55aaff;
+      margin: 0px 5px;
+    }
+  }
+
+  &__user-euro {
+    span {
+      color: #55aaff;
+      font-size: 12px;
+    }
+  }
+
+  &__user-dtc {
+    span {
+      font-size: 12px;
+      color: #55aaff;
+    }
+  }
+
+  &__user-drop-down {
+    color: #2b353f;
+    transform: rotate(90deg);
+    cursor: pointer;
   }
 }
 @media (max-width: 1430px) {
