@@ -127,7 +127,7 @@ export default {
 
   &__logo {
     position: relative;
-    z-index: 2;
+    z-index: 4;
 
     cursor: pointer;
   }
@@ -262,7 +262,7 @@ export default {
       padding: 100px 0px;
       transition: all 0.5s;
       overflow: auto;
-      z-index: 1;
+      z-index: 3;
       ul {
         align-items: center;
         flex-direction: column;
@@ -273,7 +273,7 @@ export default {
     }
     &__menu.active {
       top: 0;
-      z-index: 1;
+      z-index: 3;
     }
     &__user {
       display: flex;
@@ -293,7 +293,7 @@ export default {
       position: relative;
       width: 30px;
       height: 20px;
-      z-index: 3;
+      z-index: 4;
     }
 
     &__burger span {
