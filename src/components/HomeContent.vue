@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import GameSlider from "@/components/home/GameSlider.vue";
+import GameSlider from "@/components/home/games_slider/GameSlider.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
@@ -125,7 +125,7 @@ export default {
     font-weight: 700;
   }
 }
-@media (max-width: 1230px) {
+@media (max-width: 1430px) {
   .home {
     margin-left: 120px;
   }
