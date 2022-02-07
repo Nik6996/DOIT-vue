@@ -17,22 +17,38 @@
             <ul>
               <li>Play</li>
               <li>News</li>
-              <li>Games</li>
+              <li @click="this.$router.push('/games')">Games</li>
               <li>Shop</li>
               <li>Sponsorship</li>
             </ul>
 
-            <div v-if="user" class="header__current-user">
-              <div class="header__icon-user"><img src="" alt="" /></div>
-              <div class="header__user-body">
-                <div class="header__user-name">{{ user.name }}</div>
-                <div class="header__user-many">
-                  <div class="header__user-euro">111 <span>EUR</span></div>
-                  <span>/</span>
-                  <div class="header__user-dtc">111 <span>DTC</span></div>
+            <div
+              @mouseover="upHere = true"
+              @mouseleave="upHere = false"
+              v-if="user"
+              class="header__current-user"
+            >
+              <div class="header__current-user-main">
+                <div class="header__icon-user">
+                  <img src="@/assets/img/avatar.jpg" alt="" />
+                </div>
+                <div class="header__user-body">
+                  <div class="header__user-name">{{ user.name }}</div>
+                  <div class="header__user-many">
+                    <div class="header__user-euro">0 <span>EUR</span></div>
+                    <span>/</span>
+                    <div class="header__user-dtc">0 <span>DTC</span></div>
+                  </div>
                 </div>
               </div>
-              <div @click="signOut" class="header__user-drop-down">></div>
+              <div
+                @click="dropUp()"
+                :class="{ arrow: upHere }"
+                class="header__user-drop-down"
+              >
+                <img src="@/assets/icon/arrow-header.svg" alt="" />
+              </div>
+              <drop-down-menu-header v-show="upHere" />
             </div>
 
             <div v-else class="header__user">
@@ -59,13 +75,18 @@
 <script>
 import { mapGetters } from "vuex";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import DropDownMenuHeader from "@/components/login/DropDownMenuHeader.vue";
 
 export default {
   data() {
     return {
       isActive: "",
       user: null,
+      upHere: false,
     };
+  },
+  components: {
+    DropDownMenuHeader,
   },
   computed: {
     ...mapGetters({
@@ -90,16 +111,21 @@ export default {
     });
   },
   methods: {
-    signOut() {
-      const auth = getAuth();
-      signOut(auth)
-        .then(() => {
-          console.log("Вышли с аккаунта");
-          this.user = null;
-        })
-        .catch((error) => {
-          // An error happened.
-        });
+    dropUp() {
+      if (this.upHere) {
+        this.upHere = false;
+      } else {
+        this.upHere = true;
+      }
+      // const auth = getAuth();
+      // signOut(auth)
+      //   .then(() => {
+      //     console.log("Вышли с аккаунта");
+      //     this.user = null;
+      //   })
+      //   .catch((error) => {
+      //     // An error happened.
+      //   });
     },
     burger() {
       if (!this.isActive) {
@@ -175,10 +201,15 @@ export default {
   }
 
   &__current-user {
+    position: relative;
     display: flex;
-    max-width: 200px;
-    max-height: 40px;
-    padding: 0px 5px;
+    width: 225px;
+    height: 50px;
+    padding: 5px 10px;
+    background: #161a1f;
+  }
+  &__current-user-main {
+    display: flex;
   }
 
   &__icon-user {
@@ -228,9 +259,16 @@ export default {
   }
 
   &__user-drop-down {
+    position: absolute;
+    right: 15px;
+    top: 40%;
     color: #2b353f;
-    transform: rotate(90deg);
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 15px;
+    height: 10px;
+
+    transition: all 0.5s;
   }
 }
 @media (max-width: 1430px) {
@@ -329,17 +367,11 @@ export default {
     &__burger.active::before {
       transform: translateY(8.5px);
       transition: all 0.3s ease 0.4s;
-      // top: 8.5px;
-      // transform: rotate(45deg);
-      // top: 9px;
     }
 
     &__burger.active::after {
       transform: translateY(-8.5px);
       transition: all 0.3s ease 0.2s;
-      // bottom: 8.5px;
-      // transform: rotate(-45deg);
-      // bottom: 9px;
     }
 
     &__burger.active span {
@@ -347,5 +379,9 @@ export default {
       transition: all 0.3s ease 0s;
     }
   }
+}
+.arrow {
+  transform: rotateX(180deg);
+  transition: all 0.5s;
 }
 </style>
