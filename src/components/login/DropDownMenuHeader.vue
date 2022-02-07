@@ -6,7 +6,7 @@
           LVL <span>0</span> <span class="menu__lvl-row"></span>
         </div>
         <ul class="menu__list">
-          <li class="menu__link">
+          <li @click="this.$router.push('/user/profile')" class="menu__link">
             My profile
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>
@@ -39,6 +39,10 @@
             </li>
             <li>
               Settings
+              <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
+            </li>
+            <li>
+              Logout
               <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
             </li>
           </ul>
