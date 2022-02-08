@@ -1,18 +1,13 @@
 <template>
   <div>
-    <div class="user">
-      <div class="user__title">User Panel</div>
-      <ul class="user__list">
-        <li @click="this.$router.push('/user/profile')">My profile</li>
-        <li @click="this.$router.push('/user/team')">My Team</li>
-        <li>Withdraw</li>
-        <li>Deposit</li>
-        <li>Premium Account</li>
-        <li>Statistics</li>
-        <li>Support</li>
-        <li @click="this.$router.push('/user/settings')">Settings</li>
-        <li>Logout</li>
-        <li>Game profile</li>
+    <div class="setting">
+      <div class="setting__title"></div>
+      <ul class="setting__list">
+        <li>Edit account details</li>
+        <li>Change adress email</li>
+        <li>Change password</li>
+        <li>Manage preferences</li>
+        <li>Close account</li>
       </ul>
     </div>
   </div>
@@ -23,7 +18,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.user {
+.setting {
   &__title {
     display: flex;
     justify-content: center;
@@ -31,10 +26,12 @@ export default {};
     color: #f5f5f5;
     margin-bottom: 59px;
   }
+
   &__list {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1100px;
     li {
       cursor: pointer;
       margin: 0px 25px 50px 25px;

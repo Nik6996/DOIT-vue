@@ -5,8 +5,8 @@
         <div class="user__logo">
           <img src="@/assets/img/avatar.jpg" alt="" />
         </div>
-        <div class="user__name">name</div>
-        <div class="user__balance">Balance: $<span>1000</span></div>
+        <div class="user__name">{{ getUser.name }}</div>
+        <div class="user__balance">Balance: $<span>0</span></div>
         <div class="user__icons">
           <div class="user__plus">
             <img src="@/assets/icon/plus-user.svg" alt="" />
@@ -60,12 +60,13 @@
           </li>
         </ul>
       </div>
-      <div><router-view></router-view></div>
+      <div class="user__main"><router-view></router-view></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -76,6 +77,11 @@ export default {
       tournamnets: false,
       team: false,
     };
+  },
+  computed: {
+    ...mapGetters({
+      getUser: "loadUser/getUser",
+    }),
   },
   updated() {
     if (this.$route.fullPath === "/user/profile") {
@@ -189,21 +195,27 @@ export default {
 
 <style lang="scss" scoped>
 .user {
+  max-width: 1200px;
+  margin: 0 auto;
   margin-top: 50px;
   padding-bottom: 30px;
   &__content {
     display: flex;
+    justify-content: space-between;
   }
 
   &__info {
-    width: 340px !important;
+    min-width: 370px;
     height: 100vh;
-    margin-left: 120px;
+    // margin-left: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     border-right: 1px solid #1a1f24;
+  }
+  &__main {
+    width: 100%;
   }
 
   &__logo {

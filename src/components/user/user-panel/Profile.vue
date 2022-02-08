@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
   computed: {
     ...mapGetters({

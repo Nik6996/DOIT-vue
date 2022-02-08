@@ -6,8 +6,8 @@
           LVL <span>0</span> <span class="menu__lvl-row"></span>
         </div>
         <ul class="menu__list">
-          <li @click="this.$router.push('/user/profile')" class="menu__link">
-            My profile
+          <li @click="this.$router.push('/user/user-panel')" class="menu__link">
+            User panel
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>
           <li class="menu__link">
@@ -37,11 +37,11 @@
               Statistics
               <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
             </li>
-            <li>
+            <li @click="this.$router.push('/user/settings')">
               Settings
               <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
             </li>
-            <li>
+            <li @click="signOut()">
               Logout
               <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
             </li>
@@ -53,7 +53,18 @@
 </template>
 
 <script>
-export default {};
+import { getAuth, signOut } from "firebase/auth";
+export default {
+  methods: {
+    async signOut() {
+      const auth = getAuth();
+      await signOut(auth).then(() => {
+        this.user = null;
+      });
+      await this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

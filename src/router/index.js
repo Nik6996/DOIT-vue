@@ -7,6 +7,11 @@ import RestorePassword from '@/components/login/RestorePassword'
 import UserMainPage from '@/components/user/UserMainPage'
 import Profile from '@/components/user/user-panel/Profile'
 import UserPanel from '@/components/user/user-panel/UserPanel'
+import Settings from '@/components/user/user-panel/Settings'
+import MyTeam from '@/components/user/user-panel/team/MyTeam'
+import CreateTeam from '@/components/user/user-panel/team/CreateTeam'
+
+
 
 
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -34,7 +39,19 @@ const routes = [{
 				{
 					path: 'user-panel',
 					component: UserPanel
-				}
+				},
+				{
+					path: 'settings',
+					component: Settings
+				},
+				{
+					path: 'team',
+					component: MyTeam
+				},
+				{
+					path: 'create-team',
+					component: CreateTeam
+				},
 			]
 		}
 	],

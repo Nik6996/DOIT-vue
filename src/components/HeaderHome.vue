@@ -107,9 +107,11 @@ export default {
         this.$store.dispatch("loadUser/load", userSystem.uid);
       } else {
         console.log("нужна аутентификация");
+        this.user = null;
       }
     });
   },
+
   methods: {
     dropUp() {
       if (this.upHere) {
