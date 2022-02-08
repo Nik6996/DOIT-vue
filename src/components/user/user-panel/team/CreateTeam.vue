@@ -62,7 +62,7 @@
         <button @click="this.$router.push('/user/team')" class="team__delete">
           Back
         </button>
-        <button class="team__save">Save Team</button>
+        <button @click="save()" class="team__save">Save Team</button>
       </div>
     </div>
   </div>
@@ -110,6 +110,10 @@ export default {
     await this.$store.dispatch("games/load");
   },
   methods: {
+    save() {
+      this.$store.dispatch("team/save", this.team);
+    },
+
     previewImg() {
       if (!this.$refs.ImgInput || !this.$refs.ImgInput.files?.length) {
         this.team.img = "";

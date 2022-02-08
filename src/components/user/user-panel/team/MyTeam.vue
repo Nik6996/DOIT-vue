@@ -3,7 +3,10 @@
     <div class="team">
       <div class="team__title"></div>
       <div class="team__list">
-        <div><preview-team /></div>
+        <div v-for="(team, index) in teams" :key="team.id">
+          <preview-team v-model="teams[index]" />
+        </div>
+
         <div
           @click="this.$router.push('/user/create-team')"
           class="team__create"
@@ -17,9 +20,18 @@
 
 <script>
 import PreviewTeam from "@/components/user/user-panel/team/PreviewTeam";
+import { mapGetters } from "vuex";
 export default {
   components: {
     PreviewTeam,
+  },
+  computed: {
+    ...mapGetters({
+      teams: "team/getTeams",
+    }),
+  },
+  mounted() {
+    this.$store.dispatch("team/load");
   },
 };
 </script>
@@ -35,11 +47,11 @@ export default {
   }
   &__create {
     cursor: pointer;
-    margin: 0px 25px 50px 25px;
+    margin: 0px 22px 30px 22px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 236px;
+    width: 230px;
     height: 82px;
     font-size: 22px;
     color: #f5f5f5;
