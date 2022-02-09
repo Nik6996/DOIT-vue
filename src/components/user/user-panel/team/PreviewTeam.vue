@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="team">
-      <div class="team__name">{{ name }}</div>
-    </div>
+    <router-link :to="'/user/team' + this.$attrs.modelValue.id">
+      <div class="team">
+        <div class="team__name">{{ name }}</div>
+      </div></router-link
+    >
   </div>
 </template>
 

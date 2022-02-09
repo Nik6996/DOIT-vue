@@ -16,8 +16,8 @@ export const team = {
 
 	},
 	actions: {
-		async save({ commit }, team) {
-			console.log(team);
+		async save({ }, team) {
+
 			async function updateImg(item) {
 				const img = item.img;
 				const storageRef = refStorage(storage, `team/${team.id}`)
@@ -33,7 +33,6 @@ export const team = {
 				onAuthStateChanged(auth, (userSystem) => {
 					if (userSystem) {
 						const userUid = userSystem.uid
-						console.log(userUid);
 						set(ref(database, `team/${userUid}/${team.id}`), {
 							...team,
 						})
@@ -76,6 +75,26 @@ export const team = {
 			}
 
 
+		},
+		async remove({ }, id) {
+
+			try {
+				const auth = getAuth();
+				onAuthStateChanged(auth, (userSystem) => {
+					if (userSystem) {
+						const userUid = userSystem.uid
+						removeTeam(userUid)
+					}
+				});
+
+				async function removeTeam(uid) {
+					set(ref(database, `team/${uid}/${id}`), null);
+					const storageRef = refStorage(storage, `team/${id}`);
+					deleteObject(storageRef);
+				}
+			} catch (e) {
+				console.log(e);
+			}
 		}
 
 	},

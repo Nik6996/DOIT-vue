@@ -52,6 +52,10 @@ const routes = [{
 					path: 'create-team',
 					component: CreateTeam
 				},
+				{
+					path: 'team:id',
+					component: CreateTeam
+				},
 			]
 		}
 	],

@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="team">
-      <div class="team__title">Create Team</div>
+      <div v-if="this.$route.params.id" class="team__title">Edit Team</div>
+      <div v-else class="team__title">Create Team</div>
       <div class="team__content">
         <div class="team__info">Basic info</div>
         <div class="team__name">
@@ -43,7 +44,10 @@
         <div class="team__logo">
           <span>logo 128 x 128</span>
           <div class="team__upload">
-            <div class="team__img-name">{{ team.img.name }}</div>
+            <div v-if="this.$route.params.id" class="team__img-name">
+              {{ team.imgUrl.name }}
+            </div>
+            <div v-else class="team__img-name">{{ team.img.name }}</div>
             <label class="team__upload-btn" for="img">UPLOAD</label>
             <input
               v-on:change="previewImg()"
@@ -59,7 +63,18 @@
         </div>
       </div>
       <div class="team__btns">
-        <button @click="this.$router.push('/user/team')" class="team__delete">
+        <button
+          v-if="this.$route.params.id"
+          @click="deleteTeam()"
+          class="team__delete"
+        >
+          Delete team
+        </button>
+        <button
+          v-else
+          @click="this.$router.push('/user/team')"
+          class="team__delete"
+        >
           Back
         </button>
         <button @click="save()" class="team__save">Save Team</button>
@@ -101,17 +116,41 @@ export default {
 
     ...mapGetters({
       games: "games/getGames",
+      teams: "team/getTeams",
     }),
   },
   async mounted() {
+    await this.$store.dispatch("games/load");
+
+    if (this.$route.params.id) {
+      await this.$store.dispatch("team/load");
+    }
     if (!this.team.id) {
       this.team.id = new Date().valueOf();
     }
-    await this.$store.dispatch("games/load");
+  },
+
+  watch: {
+    teams: {
+      handler(teams) {
+        const id = this.$route.params.id;
+        teams.forEach((team) => {
+          if (team.id == id) {
+            this.team = team;
+          }
+        });
+      },
+    },
   },
   methods: {
-    save() {
-      this.$store.dispatch("team/save", this.team);
+    async deleteTeam() {
+      console.log(this.team.id);
+      await this.$store.dispatch("team/remove", this.team.id);
+      this.$router.push("/user/team");
+    },
+    async save() {
+      await this.$store.dispatch("team/save", this.team);
+      this.$router.push("/user/team");
     },
 
     previewImg() {
