@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div :class="{ active: isError }" class="modal-error">
+      <span>All fields are required</span>
+    </div>
     <div class="team">
       <div v-if="this.$route.params.id" class="team__title">Edit Team</div>
       <div v-else class="team__title">Create Team</div>
@@ -101,6 +104,7 @@ export default {
         id: "",
       },
       imgLocalUrl: "",
+      isError: false,
     };
   },
   computed: {
@@ -141,16 +145,35 @@ export default {
         });
       },
     },
+    isError: {
+      handler() {
+        setTimeout(this.errorMessage, 6000);
+      },
+    },
   },
   methods: {
+    errorMessage() {
+      this.isError = false;
+    },
     async deleteTeam() {
-      console.log(this.team.id);
       await this.$store.dispatch("team/remove", this.team.id);
       this.$router.push("/user/team");
     },
     async save() {
-      await this.$store.dispatch("team/save", this.team);
-      this.$router.push("/user/team");
+      if (
+        this.team.name &&
+        this.team.game &&
+        this.team.teamLeader &&
+        this.team.password &&
+        this.team.country &&
+        this.team.site &&
+        (this.team.img || this.team.imgUrl)
+      ) {
+        await this.$store.dispatch("team/save", this.team);
+        this.$router.push("/user/team");
+      } else {
+        this.isError = true;
+      }
     },
 
     previewImg() {
@@ -321,5 +344,69 @@ export default {
     background-color: #1a222d;
     margin: 0px 17px;
   }
+}
+.modal-error {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  right: 5%;
+  // top: 50%;
+
+  bottom: 50%;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
+  transition: all 0.5s;
+  background-color: red;
+  border-radius: 15px;
+  width: 150px;
+  height: 40px;
+  span {
+    color: white;
+  }
+}
+
+.active {
+  // animation: active 1s cubic-bezier(0.5, 0.5, 0.5, 0.5) both;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all 0.5s;
+  // backface-visibility: hidden;
+  // perspective: 1000px;
+}
+
+@keyframes active {
+  // 10% {
+  //   transform: translate3d(0, 50px, 0);
+  // }
+  // 50% {
+  //   transform: translate3d(0, 0, 20px);
+  // }
+  // 30% {
+  //   transform: translate3d(20px, 0, 0);
+  // }
+  // 40% {
+  //   transform: translate3d(0, -100px, 0);
+  // }
+  // // // 10%,
+  // 90% {
+  //   transform: translate3d(0, -100px, 0);
+  // }
+
+  // 20%,
+  // 80% {
+  //   transform: translate3d(2px, 0, 0);
+  // }
+
+  // 30%,
+  // 50%,
+  // 60% {
+  //   transform: translate3d(0, 0, 30px);
+  // }
+
+  // // 40%,
+  // 40% {
+  //   transform: translate3d(20px, 0, 0);
+  // }
 }
 </style>

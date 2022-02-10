@@ -5,7 +5,7 @@
       <ul class="user__list">
         <li @click="this.$router.push('/user/profile')">My profile</li>
         <li @click="this.$router.push('/user/team')">My Team</li>
-        <li>Withdraw</li>
+        <li @click="this.$router.push('/user/withdraw/deposit')">Withdraw</li>
         <li>Deposit</li>
         <li>Premium Account</li>
         <li>Statistics</li>
@@ -37,7 +37,7 @@ export default {};
     justify-content: center;
     li {
       cursor: pointer;
-      margin: 0px 25px 50px 25px;
+      margin: 0px 20px 50px 20px;
       display: flex;
       justify-content: center;
       align-items: center;

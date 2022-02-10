@@ -10,6 +10,7 @@ import UserPanel from '@/components/user/user-panel/UserPanel'
 import Settings from '@/components/user/user-panel/Settings'
 import MyTeam from '@/components/user/user-panel/team/MyTeam'
 import CreateTeam from '@/components/user/user-panel/team/CreateTeam'
+import WithdrawDeposit from '@/components/user/user-panel/withdraw-deposit/WithdrawDeposit'
 
 
 
@@ -55,6 +56,10 @@ const routes = [{
 				{
 					path: 'team:id',
 					component: CreateTeam
+				},
+				{
+					path: 'withdraw/deposit',
+					component: WithdrawDeposit
 				},
 			]
 		}

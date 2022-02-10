@@ -28,7 +28,10 @@ export const team = {
 			}
 			const auth = getAuth();
 			try {
-				await updateImg(team)
+				if (team.img) {
+					await updateImg(team)
+				}
+
 
 				onAuthStateChanged(auth, (userSystem) => {
 					if (userSystem) {
@@ -90,7 +93,7 @@ export const team = {
 				async function removeTeam(uid) {
 					set(ref(database, `team/${uid}/${id}`), null);
 					const storageRef = refStorage(storage, `team/${id}`);
-					deleteObject(storageRef);
+					await deleteObject(storageRef);
 				}
 			} catch (e) {
 				console.log(e);

@@ -3,8 +3,8 @@
     <div class="team">
       <div class="team__title"></div>
       <div class="team__list">
-        <div v-for="(team, index) in teams" :key="team.id">
-          <preview-team v-model="teams[index]" />
+        <div v-for="(team, index) in teamArr" :key="team.id">
+          <preview-team v-model="teamArr[index]" />
         </div>
 
         <div
@@ -22,6 +22,11 @@
 import PreviewTeam from "@/components/user/user-panel/team/PreviewTeam";
 import { mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      teamArr: "",
+    };
+  },
   components: {
     PreviewTeam,
   },
@@ -29,6 +34,13 @@ export default {
     ...mapGetters({
       teams: "team/getTeams",
     }),
+  },
+  watch: {
+    teams: {
+      handler(teams) {
+        this.teamArr = teams;
+      },
+    },
   },
   mounted() {
     this.$store.dispatch("team/load");
