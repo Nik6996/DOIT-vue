@@ -18,6 +18,7 @@ export default {
         name: "",
         country: "",
         date: "",
+        balance: 0,
       },
       step: "1",
     };

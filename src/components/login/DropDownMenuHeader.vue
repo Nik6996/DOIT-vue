@@ -10,7 +10,7 @@
             User panel
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>
-          <li class="menu__link">
+          <li @click="this.$router.push('/user/team')" class="menu__link">
             My team
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>

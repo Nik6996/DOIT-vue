@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 export default {
   computed: {
     ...mapGetters({
@@ -27,12 +27,7 @@ export default {
     }),
   },
   async mounted() {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (userSystem) => {
-      if (userSystem) {
-        this.$store.dispatch("loadUser/load", userSystem.uid);
-      }
-    });
+    this.$store.dispatch("loadUser/load");
   },
 };
 </script>

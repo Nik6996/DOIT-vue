@@ -1,12 +1,10 @@
 <template>
   <div>
     <div class="history">
-      <div class="history__content">
-        <div class="history__list">
-          <preview-history />
-          <preview-history />
-          <preview-history />
-        </div>
+      <div class="history__list">
+        <preview-history />
+        <preview-history />
+        <preview-history />
       </div>
     </div>
   </div>

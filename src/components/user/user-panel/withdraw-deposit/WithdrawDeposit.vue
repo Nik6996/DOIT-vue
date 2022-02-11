@@ -10,7 +10,9 @@
 
           <div class="withdraw__info">
             <div class="withdraw__name">{{ getUser.name }}</div>
-            <div class="withdraw__balance">BALANCE: $<span>1000</span></div>
+            <div class="withdraw__balance">
+              BALANCE: $<span>{{ getUser.balance }}</span>
+            </div>
             <div class="withdraw__doit">DOIT POINTS: <span>100</span></div>
           </div>
         </div>
@@ -40,7 +42,7 @@
       </div>
       <div class="withdraw__body">
         <withdraw v-if="this.withdraw" />
-        <deposit v-if="this.deposit" />
+        <deposit v-bind:balance="getUser.balance" v-if="this.deposit" />
         <history v-if="this.history" />
       </div>
     </div>
@@ -145,10 +147,12 @@ export default {
 
   &__balance {
     color: #37b7fa;
+    margin-top: 10px;
   }
 
   &__doit {
     color: #37b7fa;
+    margin-top: 10px;
   }
 
   &__btns {

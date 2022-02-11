@@ -6,7 +6,9 @@
           <img src="@/assets/img/avatar.jpg" alt="" />
         </div>
         <div class="user__name">{{ getUser.name }}</div>
-        <div class="user__balance">Balance: $<span>0</span></div>
+        <div class="user__balance">
+          Balance: $<span>{{ getUser.balance }}</span>
+        </div>
         <div class="user__icons">
           <div class="user__plus">
             <img src="@/assets/icon/plus-user.svg" alt="" />
@@ -134,8 +136,8 @@ export default {
     // }
   },
   mounted() {
-    if (this.$route.fullPath === "/user/profile") {
-      this.profile = true;
+    if (this.$route.fullPath === "/user/user-panel") {
+      this.panel = true;
     }
   },
   methods: {

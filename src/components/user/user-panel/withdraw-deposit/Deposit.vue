@@ -35,16 +35,16 @@
       </div>
       <div class="deposit__body">
         <div class="deposit__input">
-          <span>How much do you want to add?</span>
-          <input type="text" />
+          <span>Your name</span>
+          <input v-model="deposit.name" type="text" />
         </div>
         <div class="deposit__input">
           <span>Amount</span>
-          <input type="text" />
+          <input v-model="deposit.amount" type="number" />
         </div>
       </div>
       <div class="deposit__save">
-        <button>Deposit</button>
+        <button @click="save()">Deposit</button>
       </div>
     </div>
   </div>
@@ -54,37 +54,66 @@
 export default {
   data() {
     return {
+      deposit: {
+        name: "",
+        date: new Date().toLocaleDateString(),
+        amount: null,
+        system: "paypal",
+        balance: this.balance,
+        action: "deposit",
+      },
       paypal: true,
       btc: false,
       qiwi: false,
       doit: false,
     };
   },
+  props: {
+    balance: {
+      type: Number,
+    },
+  },
+  watch: {
+    balance: {
+      handler(balance) {
+        this.deposit.balance = balance;
+      },
+    },
+  },
   methods: {
+    async save() {
+      await this.$store.dispatch("deposit/add", this.deposit);
+      this.deposit.name = "";
+      this.deposit.amount = null;
+    },
     change(data) {
       if (data === "paypal") {
         this.paypal = true;
         this.btc = false;
         this.qiwi = false;
         this.doit = false;
+        this.deposit.system = "paypal";
       }
       if (data === "btc") {
         this.paypal = false;
         this.btc = true;
         this.qiwi = false;
         this.doit = false;
+        this.deposit.system = "btc";
       }
       if (data === "qiwi") {
         this.paypal = false;
         this.btc = false;
         this.qiwi = true;
         this.doit = false;
+        this.deposit.system = "qiwi";
       }
       if (data === "doit") {
         this.paypal = false;
         this.btc = false;
         this.qiwi = false;
         this.doit = true;
+        this.deposit.system = "doit";
       }
     },
   },
