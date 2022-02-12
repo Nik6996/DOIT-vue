@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div :class="{ error: isError }" class="modal-error">
+      <span>All fields are required</span>
+    </div>
     <div class="deposit">
       <div class="deposit__content">
         <div class="deposit__btns">
@@ -66,6 +69,7 @@ export default {
       btc: false,
       qiwi: false,
       doit: false,
+      isError: false,
     };
   },
   props: {
@@ -79,12 +83,24 @@ export default {
         this.deposit.balance = balance;
       },
     },
+    isError: {
+      handler() {
+        setTimeout(this.errorMessage, 4000);
+      },
+    },
   },
   methods: {
+    errorMessage() {
+      this.isError = false;
+    },
     async save() {
-      await this.$store.dispatch("deposit/add", this.deposit);
-      this.deposit.name = "";
-      this.deposit.amount = null;
+      if (this.deposit.name && this.deposit.amount) {
+        await this.$store.dispatch("deposit/add", this.deposit);
+        this.deposit.name = "";
+        this.deposit.amount = null;
+      } else {
+        this.isError = true;
+      }
     },
     change(data) {
       if (data === "paypal") {
@@ -125,7 +141,7 @@ export default {
   max-width: 928px;
   background: #0d1d2c;
   padding: 19px 41px;
-
+  margin-bottom: 30px;
   &__btns {
     display: flex;
     margin-bottom: 35px;
@@ -176,8 +192,40 @@ export default {
     }
   }
 }
+@media (max-width: 768px) {
+  .deposit {
+    padding: 19px 17px;
+  }
+}
 .active {
   background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
   color: #f5f5f5;
+}
+
+.modal-error {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  right: 5%;
+  // top: 50%;
+
+  bottom: 50%;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
+  transition: all 0.5s;
+  background-color: red;
+  border-radius: 15px;
+  width: 150px;
+  height: 40px;
+  span {
+    color: white;
+  }
+}
+
+.error {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all 0.5s;
 }
 </style>

@@ -1,18 +1,36 @@
 <template>
   <div>
     <div class="history">
-      <div class="history__content">
-        <div class="history__input">1111</div>
-        <div class="history__input">123443</div>
-        <div class="history__input">123</div>
-        <div class="history__input">12321</div>
+      <div :class="{ red: withdraw, green: deposit }" class="history__content">
+        <div class="history__input">{{ date }}</div>
+        <div class="history__input">{{ system }}</div>
+        <div class="history__input">{{ action }}</div>
+        <div class="history__input">{{ amount }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      action: this.$attrs.modelValue.action,
+      system: this.$attrs.modelValue.system,
+      date: this.$attrs.modelValue.date,
+      amount: this.$attrs.modelValue.amount,
+      deposit: false,
+      withdraw: false,
+    };
+  },
+  mounted() {
+    if (this.action == "deposit") {
+      this.deposit = true;
+    } else {
+      this.withdraw = true;
+    }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -28,9 +46,17 @@ export default {};
   &__input {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0px 10px;
     color: white;
     height: 30px;
+    width: 100%;
   }
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
 }
 </style>

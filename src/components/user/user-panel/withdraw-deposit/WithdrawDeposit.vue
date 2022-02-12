@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="withdraw__body">
-        <withdraw v-if="this.withdraw" />
+        <withdraw v-bind:balance="getUser.balance" v-if="this.withdraw" />
         <deposit v-bind:balance="getUser.balance" v-if="this.deposit" />
         <history v-if="this.history" />
       </div>
@@ -186,5 +186,23 @@ export default {
 }
 .active {
   border-bottom: 4px solid #ffffff;
+}
+@media (max-width: 768px) {
+  .withdraw {
+    margin: 0px 15px;
+    &__title {
+      font-size: 35px;
+    }
+    &__content {
+      padding: 10px 10px 0px 10px;
+      margin-bottom: 20px;
+    }
+    &__withdraw,
+    &__deposit,
+    &__history {
+      font-size: 20px;
+      width: 100px;
+    }
+  }
 }
 </style>

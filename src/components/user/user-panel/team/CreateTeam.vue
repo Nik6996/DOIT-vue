@@ -367,46 +367,8 @@ export default {
 }
 
 .active {
-  // animation: active 1s cubic-bezier(0.5, 0.5, 0.5, 0.5) both;
   transform: translate3d(0, 0, 0);
   opacity: 1;
   transition: all 0.5s;
-  // backface-visibility: hidden;
-  // perspective: 1000px;
-}
-
-@keyframes active {
-  // 10% {
-  //   transform: translate3d(0, 50px, 0);
-  // }
-  // 50% {
-  //   transform: translate3d(0, 0, 20px);
-  // }
-  // 30% {
-  //   transform: translate3d(20px, 0, 0);
-  // }
-  // 40% {
-  //   transform: translate3d(0, -100px, 0);
-  // }
-  // // // 10%,
-  // 90% {
-  //   transform: translate3d(0, -100px, 0);
-  // }
-
-  // 20%,
-  // 80% {
-  //   transform: translate3d(2px, 0, 0);
-  // }
-
-  // 30%,
-  // 50%,
-  // 60% {
-  //   transform: translate3d(0, 0, 30px);
-  // }
-
-  // // 40%,
-  // 40% {
-  //   transform: translate3d(20px, 0, 0);
-  // }
 }
 </style>

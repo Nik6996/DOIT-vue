@@ -35,9 +35,11 @@
                 <div class="header__user-body">
                   <div class="header__user-name">{{ user.name }}</div>
                   <div class="header__user-many">
-                    <div class="header__user-euro">0 <span>EUR</span></div>
+                    <div class="header__user-euro">
+                      {{ getUser.balance }} <span>EUR</span>
+                    </div>
                     <span>/</span>
-                    <div class="header__user-dtc">0 <span>DTC</span></div>
+                    <div class="header__user-dtc">100 <span>DTC</span></div>
                   </div>
                 </div>
               </div>

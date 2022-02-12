@@ -6,7 +6,7 @@
         <li @click="this.$router.push('/user/profile')">My profile</li>
         <li @click="this.$router.push('/user/team')">My Team</li>
         <li @click="this.$router.push('/user/withdraw/deposit')">Withdraw</li>
-        <li>Deposit</li>
+        <li @click="this.$router.push('/user/withdraw/deposit')">Deposit</li>
         <li>Premium Account</li>
         <li>Statistics</li>
         <li>Support</li>

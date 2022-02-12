@@ -14,11 +14,17 @@
             My team
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>
-          <li class="menu__link">
+          <li
+            @click="this.$router.push('/user/withdraw/deposit')"
+            class="menu__link"
+          >
             Withdraw
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>
-          <li class="menu__link">
+          <li
+            @click="this.$router.push('/user/withdraw/deposit')"
+            class="menu__link"
+          >
             Deposit
             <span> <img src="@/assets/icon/arrow-header.svg" alt="" /></span>
           </li>

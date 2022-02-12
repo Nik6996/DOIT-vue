@@ -7,6 +7,8 @@ import { login } from './modules/user/login'
 import { restorePassword } from './modules/user/restorePassword'
 import { team } from './modules/team/team'
 import { deposit } from './modules/balance/deposit'
+import { history } from './modules/balance/history'
+import { withdraw } from './modules/balance/withdraw'
 
 export default createStore({
 	modules: {
@@ -16,7 +18,9 @@ export default createStore({
 		login: login,
 		restorePassword: restorePassword,
 		team: team,
-		deposit: deposit
+		deposit: deposit,
+		history: history,
+		withdraw: withdraw
 	}
 
 })
