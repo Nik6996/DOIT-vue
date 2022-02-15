@@ -427,6 +427,7 @@ export default {
     width: 20px;
     height: 20px;
   }
+
   &__arrow {
     position: relative;
     top: 0px;
@@ -436,6 +437,7 @@ export default {
       transition: all 0.5s;
     }
   }
+
   &__error-email {
     margin-top: 10px;
     display: flex;

@@ -9,6 +9,8 @@ import { team } from './modules/team/team'
 import { deposit } from './modules/balance/deposit'
 import { history } from './modules/balance/history'
 import { withdraw } from './modules/balance/withdraw'
+import { edit } from './modules/user/editAccount'
+import { changeEmail } from './modules/user/changeEmail'
 
 export default createStore({
 	modules: {
@@ -20,7 +22,9 @@ export default createStore({
 		team: team,
 		deposit: deposit,
 		history: history,
-		withdraw: withdraw
+		withdraw: withdraw,
+		edit: edit,
+		changeEmail: changeEmail
 	}
 
 })

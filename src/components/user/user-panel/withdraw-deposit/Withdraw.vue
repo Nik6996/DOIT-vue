@@ -47,7 +47,7 @@
         </div>
         <div class="withdraw__input">
           <span>Amount</span>
-          <input v-model="withdraw.amount" type="text" />
+          <input v-model="withdraw.amount" type="number" />
         </div>
       </div>
       <div class="withdraw__save">

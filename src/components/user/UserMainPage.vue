@@ -21,40 +21,40 @@
           <li
             :class="{ active: profile }"
             class="user__link"
-            @click="this.$router.push('/user/profile'), active('profile')"
+            @click="this.$router.push('/user/profile')"
           >
             Profile
           </li>
           <li
-            @click="this.$router.push('/user/user-panel'), active('panel')"
+            @click="this.$router.push('/user/user-panel')"
             :class="{ active: panel }"
             class="user__link"
           >
             User Panel
           </li>
           <li
-            @click="this.$router.push('/user/profile'), active('edit')"
+            @click="this.$router.push('/user/edit-account')"
             :class="{ active: edit }"
             class="user__link"
           >
             Edit account details
           </li>
           <li
-            @click="this.$router.push('/user/profile'), active('add')"
+            @click="this.$router.push('/user/profile')"
             :class="{ active: add }"
             class="user__link"
           >
             Add Team
           </li>
           <li
-            @click="this.$router.push('/user/profile'), active('tournamnets')"
+            @click="this.$router.push('/user/profile')"
             :class="{ active: tournamnets }"
             class="user__link"
           >
             My tournamnets
           </li>
           <li
-            @click="this.$router.push('/user/profile'), active('team')"
+            @click="this.$router.push('/user/profile')"
             :class="{ active: team }"
             class="user__link"
           >
@@ -102,14 +102,14 @@ export default {
       this.tournamnets = false;
       this.team = false;
     }
-    // if (this.$route.fullPath === "/user/user-panel") {
-    //   this.profile = false;
-    //   this.panel = false;
-    //   this.edit = true;
-    //   this.add = false;
-    //   this.tournamnets = false;
-    //   this.team = false;
-    // }
+    if (this.$route.fullPath === "/user/edit-account") {
+      this.profile = false;
+      this.panel = false;
+      this.edit = true;
+      this.add = false;
+      this.tournamnets = false;
+      this.team = false;
+    }
     // if (this.$route.fullPath === "/user/user-panel") {
     //   this.profile = false;
     //   this.panel = false;
@@ -141,56 +141,56 @@ export default {
     }
   },
   methods: {
-    active(item) {
-      if (item === "profile") {
-        this.profile = true;
-        this.panel = false;
-        this.edit = false;
-        this.add = false;
-        this.tournamnets = false;
-        this.team = false;
-      }
-      if (item === "panel") {
-        this.profile = false;
-        this.panel = true;
-        this.edit = false;
-        this.add = false;
-        this.tournamnets = false;
-        this.team = false;
-      }
-      if (item === "edit") {
-        this.profile = false;
-        this.panel = false;
-        this.edit = true;
-        this.add = false;
-        this.tournamnets = false;
-        this.team = false;
-      }
-      if (item === "add") {
-        this.profile = false;
-        this.panel = false;
-        this.edit = false;
-        this.add = true;
-        this.tournamnets = false;
-        this.team = false;
-      }
-      if (item === "tournamnets") {
-        this.profile = false;
-        this.panel = false;
-        this.edit = false;
-        this.add = false;
-        this.tournamnets = true;
-        this.team = false;
-      }
-      if (item === "team") {
-        this.profile = false;
-        this.panel = false;
-        this.edit = false;
-        this.add = false;
-        this.tournamnets = false;
-        this.team = true;
-      }
-    },
+    // active(item) {
+    //   if (item === "profile") {
+    //     this.profile = true;
+    //     this.panel = false;
+    //     this.edit = false;
+    //     this.add = false;
+    //     this.tournamnets = false;
+    //     this.team = false;
+    //   }
+    //   if (item === "panel") {
+    //     this.profile = false;
+    //     this.panel = true;
+    //     this.edit = false;
+    //     this.add = false;
+    //     this.tournamnets = false;
+    //     this.team = false;
+    //   }
+    //   if (item === "edit") {
+    //     this.profile = false;
+    //     this.panel = false;
+    //     this.edit = true;
+    //     this.add = false;
+    //     this.tournamnets = false;
+    //     this.team = false;
+    //   }
+    //   if (item === "add") {
+    //     this.profile = false;
+    //     this.panel = false;
+    //     this.edit = false;
+    //     this.add = true;
+    //     this.tournamnets = false;
+    //     this.team = false;
+    //   }
+    //   if (item === "tournamnets") {
+    //     this.profile = false;
+    //     this.panel = false;
+    //     this.edit = false;
+    //     this.add = false;
+    //     this.tournamnets = true;
+    //     this.team = false;
+    //   }
+    //   if (item === "team") {
+    //     this.profile = false;
+    //     this.panel = false;
+    //     this.edit = false;
+    //     this.add = false;
+    //     this.tournamnets = false;
+    //     this.team = true;
+    //   }
+    // },
   },
 };
 </script>
@@ -209,7 +209,6 @@ export default {
   &__info {
     min-width: 370px;
     height: 100vh;
-    // margin-left: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;

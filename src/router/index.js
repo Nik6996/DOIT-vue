@@ -7,10 +7,14 @@ import RestorePassword from '@/components/login/RestorePassword'
 import UserMainPage from '@/components/user/UserMainPage'
 import Profile from '@/components/user/user-panel/Profile'
 import UserPanel from '@/components/user/user-panel/UserPanel'
-import Settings from '@/components/user/user-panel/Settings'
+import Settings from '@/components/user/user-panel/settings/Settings'
 import MyTeam from '@/components/user/user-panel/team/MyTeam'
 import CreateTeam from '@/components/user/user-panel/team/CreateTeam'
 import WithdrawDeposit from '@/components/user/user-panel/withdraw-deposit/WithdrawDeposit'
+import EditAccount from '@/components/user/user-panel/settings/EditAccount'
+import ChangeEmail from '@/components/user/user-panel/settings/ChangeEmail'
+import ChangePassword from '@/components/user/user-panel/settings/ChangePassword'
+
 
 
 
@@ -60,6 +64,18 @@ const routes = [{
 				{
 					path: 'withdraw/deposit',
 					component: WithdrawDeposit
+				},
+				{
+					path: 'edit-account',
+					component: EditAccount
+				},
+				{
+					path: 'changeEmail',
+					component: ChangeEmail
+				},
+				{
+					path: 'changePassword',
+					component: ChangePassword
 				},
 			]
 		}

@@ -1,6 +1,6 @@
 import { database } from "@/firebaseConfig";
 import { ref, set, get, } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, deleteUser, updateEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 //this.$store.getters[`cinema/getCinemas`]
 

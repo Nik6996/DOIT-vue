@@ -3,11 +3,15 @@
     <div class="setting">
       <div class="setting__title"></div>
       <ul class="setting__list">
-        <li>Edit account details</li>
-        <li>Change adress email</li>
-        <li>Change password</li>
-        <li>Manage preferences</li>
-        <li>Close account</li>
+        <li @click="this.$router.push('/user/edit-account')">
+          Edit account details
+        </li>
+        <li @click="this.$router.push('/user/changeEmail')">
+          Change adress email
+        </li>
+        <li @click="this.$router.push('/user/changePassword')">
+          Change password
+        </li>
       </ul>
     </div>
   </div>

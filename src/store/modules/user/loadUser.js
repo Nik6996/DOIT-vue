@@ -15,21 +15,7 @@ export const loadUser = {
 		}
 	},
 	actions: {
-		// async load({ commit }, id) {
 
-		// 	try {
-		// 		const userRef = ref(database, `users/${id}`)
-		// 		const userRecord = await get(userRef);
-		// 		if (userRecord.exists()) {
-
-		// 			const user = userRecord.val()
-		// 			commit('setUser', user)
-		// 		}
-
-		// 	} catch (e) {
-		// 		console.log(e)
-		// 	}
-		// }
 		async load({ commit }) {
 			try {
 				async function loadUser(id) {
