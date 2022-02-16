@@ -17,6 +17,7 @@ import ChangePassword from '@/components/user/user-panel/settings/ChangePassword
 import Support from '@/components/user/user-panel/Support'
 import Statistics from '@/components/user/user-panel/Statistics'
 import YouTeamTournaments from '@/components/user/user-panel/YouTeamTournaments'
+import Subscribe from '@/components/user/user-panel/subscribe/Subscribe'
 
 
 
@@ -90,6 +91,10 @@ const routes = [{
 				{
 					path: 'team-tournaments',
 					component: YouTeamTournaments
+				},
+				{
+					path: 'subscribe',
+					component: Subscribe
 				},
 			]
 		}
