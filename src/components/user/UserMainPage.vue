@@ -9,6 +9,16 @@
         <div class="user__balance">
           Balance: $<span>{{ getUser.balance }}</span>
         </div>
+        <div
+          :class="{
+            free: getUser.subscribe == 'free',
+            pro: getUser.subscribe == 'pro',
+            organizer: getUser.subscribe == 'organizer',
+          }"
+          class="user__subscribe"
+        >
+          {{ getUser.subscribe }}
+        </div>
         <div class="user__icons">
           <div class="user__plus">
             <img src="@/assets/icon/plus-user.svg" alt="" />
@@ -140,58 +150,7 @@ export default {
       this.panel = true;
     }
   },
-  methods: {
-    // active(item) {
-    //   if (item === "profile") {
-    //     this.profile = true;
-    //     this.panel = false;
-    //     this.edit = false;
-    //     this.add = false;
-    //     this.tournamnets = false;
-    //     this.team = false;
-    //   }
-    //   if (item === "panel") {
-    //     this.profile = false;
-    //     this.panel = true;
-    //     this.edit = false;
-    //     this.add = false;
-    //     this.tournamnets = false;
-    //     this.team = false;
-    //   }
-    //   if (item === "edit") {
-    //     this.profile = false;
-    //     this.panel = false;
-    //     this.edit = true;
-    //     this.add = false;
-    //     this.tournamnets = false;
-    //     this.team = false;
-    //   }
-    //   if (item === "add") {
-    //     this.profile = false;
-    //     this.panel = false;
-    //     this.edit = false;
-    //     this.add = true;
-    //     this.tournamnets = false;
-    //     this.team = false;
-    //   }
-    //   if (item === "tournamnets") {
-    //     this.profile = false;
-    //     this.panel = false;
-    //     this.edit = false;
-    //     this.add = false;
-    //     this.tournamnets = true;
-    //     this.team = false;
-    //   }
-    //   if (item === "team") {
-    //     this.profile = false;
-    //     this.panel = false;
-    //     this.edit = false;
-    //     this.add = false;
-    //     this.tournamnets = false;
-    //     this.team = true;
-    //   }
-    // },
-  },
+  methods: {},
 };
 </script>
 
@@ -284,6 +243,11 @@ export default {
     border-radius: 50%;
     border: 1px solid #ffffff;
   }
+  &__subscribe {
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 18px;
+  }
 }
 @media (max-width: 1060px) {
   .user {
@@ -304,5 +268,14 @@ export default {
 }
 .active::before {
   background-color: #37b7fa;
+}
+.free {
+  color: #2788f6;
+}
+.pro {
+  color: #ffd321;
+}
+.organizer {
+  color: #46f48c;
 }
 </style>

@@ -19,6 +19,7 @@ export default {
         country: "",
         date: "",
         balance: 0,
+        subscribe: "free",
       },
       step: "1",
     };

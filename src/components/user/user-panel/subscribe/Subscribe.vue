@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div :class="{ error: isError }" class="error-message">
+      <span>insufficient funds!</span>
+    </div>
     <div class="subscribe">
       <div class="subscribe__title">Premium</div>
       <div class="subscribe__content">
@@ -16,7 +19,14 @@
             at Copa America and this final had it by the bucketlad. Thanks for
             your company.
           </div>
-          <div class="card__btn"><button>Sign up</button></div>
+          <div class="card__btn">
+            <button
+              :disabled="getUser.subscribe == 'free'"
+              @click="subscription('free', 0)"
+            >
+              Sign up
+            </button>
+          </div>
         </div>
         <div class="subscribe__card card pro">
           <div>
@@ -31,7 +41,14 @@
             at Copa America and this final had it by the bucketlad. Thanks for
             your company.
           </div>
-          <div class="card__btn pro-btn"><button>Sign up</button></div>
+          <div class="card__btn pro-btn">
+            <button
+              :disabled="getUser.subscribe == 'pro'"
+              @click="subscription('pro', 5)"
+            >
+              Sign up
+            </button>
+          </div>
         </div>
         <div class="subscribe__card card organizer">
           <div>
@@ -46,7 +63,14 @@
             at Copa America and this final had it by the bucketlad. Thanks for
             your company.
           </div>
-          <div class="card__btn organizer-btn"><button>Sign up</button></div>
+          <div class="card__btn organizer-btn">
+            <button
+              @click="subscription('organizer', 10)"
+              :disabled="getUser.subscribe == 'organizer'"
+            >
+              Sign up
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -54,7 +78,45 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  data() {
+    return {
+      isError: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      getUser: "loadUser/getUser",
+    }),
+  },
+  watch: {
+    isError: {
+      handler() {
+        setTimeout(this.errorMessage, 2000);
+      },
+    },
+  },
+  methods: {
+    errorMessage() {
+      this.isError = false;
+    },
+
+    subscription(item, sum) {
+      if (item === "pro" && this.getUser.balance < 5) {
+        this.isError = true;
+        return;
+      }
+      if (item === "organizer" && this.getUser.balance < 10) {
+        this.isError = true;
+        return;
+      } else {
+        const premium = { item, sum, balance: this.getUser.balance };
+        this.$store.dispatch("subscribe/save", premium);
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -114,6 +176,7 @@ export default {};
   &__btn {
     display: flex;
     justify-content: center;
+
     button {
       width: 136px;
       height: 48px;
@@ -153,5 +216,33 @@ export default {};
   button {
     background: linear-gradient(180deg, #46f48c 0%, #2b9d37 100%);
   }
+}
+.error-message {
+  position: fixed;
+  display: flex;
+  align-items: center;
+
+  padding: 15px;
+  right: 5%;
+  // top: 50%;
+
+  bottom: 50%;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
+  transition: all 0.5s;
+  background-color: red;
+  border-radius: 15px;
+  width: 200px;
+  height: 40px;
+  z-index: 100;
+  span {
+    font-size: 20px;
+    color: white;
+  }
+}
+.error {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all 0.5s;
 }
 </style>

@@ -12,6 +12,7 @@ import { withdraw } from './modules/balance/withdraw'
 import { edit } from './modules/user/editAccount'
 import { changeEmail } from './modules/user/changeEmail'
 import { changePassword } from './modules/user/changePassword'
+import { subscribe } from './modules/user/subscribe'
 
 
 export default createStore({
@@ -27,7 +28,8 @@ export default createStore({
 		withdraw: withdraw,
 		edit: edit,
 		changeEmail: changeEmail,
-		changePassword: changePassword
+		changePassword: changePassword,
+		subscribe: subscribe
 	}
 
 })
