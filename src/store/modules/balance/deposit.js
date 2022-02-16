@@ -1,5 +1,5 @@
 import { database } from "@/firebaseConfig";
-import { ref, set, get, update } from "firebase/database";
+import { ref, set, update } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 // import { ref as refStorage, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 

@@ -1,16 +1,35 @@
 <template>
   <div>
+    <div :class="{ success: isSuccess }" class="success-message">
+      <span>Email changed successfully!</span>
+    </div>
     <div class="email">
       <div class="email__title">Change adress email</div>
       <div class="email__content">
         <div class="email__password">
           <span>Current Password</span>
-          <input v-model="password" type="text" />
+          <input v-model="user.password" type="password" />
+          <div v-if="getIsError" class="error">Invalid password</div>
         </div>
-        <div class="email__email">
-          <span>New Email</span>
-          <input v-model="email" type="text" />
-        </div>
+        <Form :validation-schema="formSchema">
+          <Field name="email" v-slot="{ field, errors }">
+            <div class="email__email">
+              <span>New Email</span>
+              <input v-bind="field" v-model="user.email" type="text" />
+            </div>
+            <template v-if="errors.length">
+              <ul>
+                <li
+                  class="error"
+                  v-for="(message, index) in errors"
+                  :key="index"
+                >
+                  {{ message }}
+                </li>
+              </ul>
+            </template>
+          </Field>
+        </Form>
         <div @click="change()" class="email__btn">
           <button>Change email</button>
         </div>
@@ -20,34 +39,57 @@
 </template>
 
 <script>
-import { getAuth, reauthenticateWithCredential } from "firebase/auth";
+import { mapGetters } from "vuex";
+import { Field, Form, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default {
   data() {
     return {
-      password: "111111",
-      email: "",
+      formSchema: yup.object({
+        email: yup.string().required().email(),
+      }),
+      initialFormValues: {
+        email: "",
+      },
+      user: {
+        password: "",
+        email: "",
+      },
+      isSuccess: false,
     };
   },
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+  computed: {
+    ...mapGetters({
+      getIsError: "changeEmail/getIsError",
+      getSuccess: "changeEmail/getSuccess",
+    }),
+  },
+  watch: {
+    getSuccess: {
+      handler(getSuccess) {
+        this.isSuccess = getSuccess;
+        this.user.password = "";
+        this.user.email = "";
+      },
+    },
+    isSuccess: {
+      handler() {
+        setTimeout(this.successMessage, 2000);
+      },
+    },
+  },
   methods: {
-    promptForCredentials() {},
-
-    change() {
-      // this.$store.dispatch("changeEmail/change", this.email);
-      const auth = getAuth();
-      const user = auth.currentUser;
-      console.log(user);
-      const credential = this.promptForCredentials();
-
-      reauthenticateWithCredential(user, credential)
-        .then(() => {
-          // User re-authenticated.
-          console.log("1");
-        })
-        .catch((error) => {
-          console.log("2");
-          // An error ocurred
-          // ...
-        });
+    successMessage() {
+      this.isSuccess = false;
+      this.$router.push("/user/settings");
+    },
+    async change() {
+      await this.$store.dispatch("changeEmail/change", this.user);
     },
   },
 };
@@ -104,5 +146,36 @@ export default {
       font-weight: 700;
     }
   }
+}
+.error {
+  margin-top: 5px;
+  color: red;
+}
+.success-message {
+  position: fixed;
+  display: flex;
+  align-items: center;
+
+  padding: 15px;
+  right: 5%;
+  // top: 50%;
+
+  bottom: 50%;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
+  transition: all 0.5s;
+  background-color: green;
+  border-radius: 15px;
+  width: 200px;
+  height: 90px;
+  span {
+    font-size: 20px;
+    color: white;
+  }
+}
+.success {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all 0.5s;
 }
 </style>

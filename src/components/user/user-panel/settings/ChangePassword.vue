@@ -1,28 +1,111 @@
 <template>
   <div>
+    <div :class="{ success: isSuccess }" class="success-message">
+      <span>Email changed successfully!</span>
+    </div>
     <div class="password">
       <div class="password__title">Change password</div>
       <div class="password__content">
-        <div class="password__password">
-          <span>Current Password</span>
-          <input v-model="password" type="text" />
-        </div>
-        <div class="password__password">
-          <span>Password</span>
-          <input v-model="password" type="text" />
-        </div>
-        <div @click="change()" class="password__btn">
-          <button>Change Password</button>
-        </div>
+        <Form
+          :initial-values="initialFormValues"
+          @submit="onSubmit"
+          :validation-schema="formSchema"
+        >
+          <div class="password__password">
+            <span>Current Password</span>
+            <input v-model="password.oldPassword" type="password" />
+            <div v-if="getIsError" class="error">Invalid password</div>
+          </div>
+          <Field name="password" v-slot="{ field, errors }">
+            <div class="password__password">
+              <span>Password</span>
+              <input
+                v-bind="field"
+                v-model="password.newPassword"
+                type="password"
+              />
+            </div>
+            <template v-if="errors.length">
+              <ul>
+                <li
+                  class="error"
+                  v-for="(message, index) in errors"
+                  :key="index"
+                >
+                  {{ message }}
+                </li>
+              </ul>
+            </template>
+          </Field>
+          <div class="password__btn">
+            <button>Change Password</button>
+          </div>
+        </Form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { Field, Form, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default {
   data() {
-    return {};
+    return {
+      formSchema: yup.object({
+        password: yup.string().required().min(6),
+      }),
+      initialFormValues: {
+        password: "",
+      },
+
+      password: {
+        oldPassword: "",
+        newPassword: "",
+      },
+      isSuccess: false,
+    };
+  },
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+  computed: {
+    ...mapGetters({
+      getIsError: "changePassword/getIsError",
+      getSuccess: "changePassword/getSuccess",
+    }),
+  },
+  watch: {
+    getSuccess: {
+      handler(getSuccess) {
+        this.isSuccess = getSuccess;
+        this.password.oldPassword = "";
+        this.password.newPassword = "";
+      },
+    },
+    isSuccess: {
+      handler() {
+        setTimeout(this.successMessage, 2000);
+      },
+    },
+  },
+  methods: {
+    async onSubmit(values) {
+      if (values) {
+        //await (this.password.newPassword = values.password);
+        this.change();
+      }
+    },
+    successMessage() {
+      this.isSuccess = false;
+      this.$router.push("/user/settings");
+    },
+    async change() {
+      await this.$store.dispatch("changePassword/change", this.password);
+    },
   },
 };
 </script>
@@ -78,5 +161,37 @@ export default {
       font-weight: 700;
     }
   }
+}
+
+.error {
+  margin-top: 5px;
+  color: red;
+}
+.success-message {
+  position: fixed;
+  display: flex;
+  align-items: center;
+
+  padding: 15px;
+  right: 5%;
+  // top: 50%;
+
+  bottom: 50%;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
+  transition: all 0.5s;
+  background-color: green;
+  border-radius: 15px;
+  width: 200px;
+  height: 90px;
+  span {
+    font-size: 20px;
+    color: white;
+  }
+}
+.success {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all 0.5s;
 }
 </style>

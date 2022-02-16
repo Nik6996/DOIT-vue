@@ -14,7 +14,9 @@ import WithdrawDeposit from '@/components/user/user-panel/withdraw-deposit/Withd
 import EditAccount from '@/components/user/user-panel/settings/EditAccount'
 import ChangeEmail from '@/components/user/user-panel/settings/ChangeEmail'
 import ChangePassword from '@/components/user/user-panel/settings/ChangePassword'
-
+import Support from '@/components/user/user-panel/Support'
+import Statistics from '@/components/user/user-panel/Statistics'
+import YouTeamTournaments from '@/components/user/user-panel/YouTeamTournaments'
 
 
 
@@ -76,6 +78,18 @@ const routes = [{
 				{
 					path: 'changePassword',
 					component: ChangePassword
+				},
+				{
+					path: 'support',
+					component: Support
+				},
+				{
+					path: 'statistics',
+					component: Statistics
+				},
+				{
+					path: 'team-tournaments',
+					component: YouTeamTournaments
 				},
 			]
 		}

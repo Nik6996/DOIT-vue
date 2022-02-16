@@ -8,18 +8,29 @@
         <li @click="this.$router.push('/user/withdraw/deposit')">Withdraw</li>
         <li @click="this.$router.push('/user/withdraw/deposit')">Deposit</li>
         <li>Premium Account</li>
-        <li>Statistics</li>
-        <li>Support</li>
+        <li @click="this.$router.push('/user/statistics')">Statistics</li>
+        <li @click="this.$router.push('/user/support')">Support</li>
         <li @click="this.$router.push('/user/settings')">Settings</li>
-        <li>Logout</li>
-        <li>Game profile</li>
+        <li @click="signOut()">Logout</li>
+        <li @click="this.$router.push('/user/profile')">Game profile</li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { getAuth, signOut } from "firebase/auth";
+export default {
+  methods: {
+    async signOut() {
+      const auth = getAuth();
+      await signOut(auth).then(() => {
+        this.user = null;
+      });
+      await this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

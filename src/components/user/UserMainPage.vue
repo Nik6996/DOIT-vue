@@ -40,25 +40,25 @@
             Edit account details
           </li>
           <li
-            @click="this.$router.push('/user/profile')"
+            @click="this.$router.push('/user/team')"
             :class="{ active: add }"
             class="user__link"
           >
             Add Team
           </li>
           <li
-            @click="this.$router.push('/user/profile')"
+            @click="this.$router.push('/user/team-tournaments')"
             :class="{ active: tournamnets }"
             class="user__link"
           >
             My tournamnets
           </li>
           <li
-            @click="this.$router.push('/user/profile')"
-            :class="{ active: team }"
+            @click="this.$router.push('/user/settings')"
+            :class="{ active: settings }"
             class="user__link"
           >
-            Manage Team
+            Settings
           </li>
         </ul>
       </div>
@@ -77,7 +77,7 @@ export default {
       edit: false,
       add: false,
       tournamnets: false,
-      team: false,
+      settings: false,
     };
   },
   computed: {
@@ -92,7 +92,7 @@ export default {
       this.edit = false;
       this.add = false;
       this.tournamnets = false;
-      this.team = false;
+      this.settings = false;
     }
     if (this.$route.fullPath === "/user/user-panel") {
       this.profile = false;
@@ -100,7 +100,7 @@ export default {
       this.edit = false;
       this.add = false;
       this.tournamnets = false;
-      this.team = false;
+      this.settings = false;
     }
     if (this.$route.fullPath === "/user/edit-account") {
       this.profile = false;
@@ -108,32 +108,32 @@ export default {
       this.edit = true;
       this.add = false;
       this.tournamnets = false;
-      this.team = false;
+      this.settings = false;
     }
-    // if (this.$route.fullPath === "/user/user-panel") {
-    //   this.profile = false;
-    //   this.panel = false;
-    //   this.edit = false;
-    //   this.add = true;
-    //   this.tournamnets = false;
-    //   this.team = false;
-    // }
-    // if (this.$route.fullPath === "/user/user-panel") {
-    //   this.profile = false;
-    //   this.panel = false;
-    //   this.edit = false;
-    //   this.add = false;
-    //   this.tournamnets = true;
-    //   this.team = false;
-    // }
-    // if (this.$route.fullPath === "/user/user-panel") {
-    //   this.profile = false;
-    //   this.panel = false;
-    //   this.edit = false;
-    //   this.add = false;
-    //   this.tournamnets = false;
-    //   this.team = true;
-    // }
+    if (this.$route.fullPath === "/user/team") {
+      this.profile = false;
+      this.panel = false;
+      this.edit = false;
+      this.add = true;
+      this.tournamnets = false;
+      this.settings = false;
+    }
+    if (this.$route.fullPath === "/user/team-tournaments") {
+      this.profile = false;
+      this.panel = false;
+      this.edit = false;
+      this.add = false;
+      this.tournamnets = true;
+      this.settings = false;
+    }
+    if (this.$route.fullPath === "/user/settings") {
+      this.profile = false;
+      this.panel = false;
+      this.edit = false;
+      this.add = false;
+      this.tournamnets = false;
+      this.settings = true;
+    }
   },
   mounted() {
     if (this.$route.fullPath === "/user/user-panel") {
