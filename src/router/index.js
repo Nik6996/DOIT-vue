@@ -18,7 +18,7 @@ import Support from '@/components/user/user-panel/Support'
 import Statistics from '@/components/user/user-panel/Statistics'
 import YouTeamTournaments from '@/components/user/user-panel/YouTeamTournaments'
 import Subscribe from '@/components/user/user-panel/subscribe/Subscribe'
-
+import NotFound from '@/components/NotFound404'
 
 
 
@@ -36,6 +36,7 @@ const routes = [{
 			path: '/games',
 			component: Games
 		},
+
 		{
 			path: '/user',
 			component: UserMainPage,
@@ -97,7 +98,9 @@ const routes = [{
 					component: Subscribe
 				},
 			]
-		}
+		},
+
+		{ path: '/:pathMatch(.*)*', component: NotFound }
 	],
 },
 {

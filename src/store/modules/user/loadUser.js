@@ -1,6 +1,6 @@
 import { database } from "@/firebaseConfig";
 import { ref, get, } from "firebase/database";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, getUser } from "firebase/auth";
 
 
 export const loadUser = {
@@ -32,6 +32,7 @@ export const loadUser = {
 					if (userSystem) {
 						//	userSystem.uid
 						loadUser(userSystem.uid)
+						console.log(auth)
 
 					}
 				});

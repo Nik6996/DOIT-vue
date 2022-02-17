@@ -76,7 +76,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import DropDownMenuHeader from "@/components/login/DropDownMenuHeader.vue";
 
 export default {
