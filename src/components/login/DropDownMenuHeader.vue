@@ -66,6 +66,7 @@ export default {
       const auth = getAuth();
       await signOut(auth).then(() => {
         this.user = null;
+        this.$store.dispatch("loadUser/load");
       });
       await this.$router.push("/");
     },

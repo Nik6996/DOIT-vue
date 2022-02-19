@@ -20,6 +20,7 @@ export default {
         date: "",
         balance: 0,
         subscribe: "free",
+        isAdmin: false,
       },
       step: "1",
     };

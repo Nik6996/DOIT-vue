@@ -2,6 +2,9 @@
   <div>
     <div class="game">
       <div class="game__content">
+        <div v-if="isAdmin" class="game__admin-btn">
+          <button>Add game</button>
+        </div>
         <div class="game__header">
           <div class="game__title">Games</div>
           <div class="game__search">
@@ -32,6 +35,7 @@ export default {
   data() {
     return {
       search: "",
+      isAdmin: false,
     };
   },
   components: {
@@ -40,11 +44,15 @@ export default {
 
   async mounted() {
     await this.$store.dispatch("games/load");
+    if (this.getUser) {
+      this.isAdmin = this.getUser.isAdmin;
+    }
   },
 
   computed: {
     ...mapGetters({
       games: "games/getGames",
+      getUser: "loadUser/getUser",
     }),
     returnSearchGame() {
       if (this.games) {

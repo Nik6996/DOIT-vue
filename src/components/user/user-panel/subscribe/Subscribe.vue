@@ -1,5 +1,15 @@
 <template>
   <div>
+    <transition name="modal">
+      <div v-show="subscribes.newSubscribe">
+        <modal-subscribe
+          :item="subscribes"
+          @newSubscribe="updateAccount"
+          @close="close"
+        />
+      </div>
+    </transition>
+
     <div :class="{ error: isError }" class="error-message">
       <span>insufficient funds!</span>
     </div>
@@ -78,22 +88,40 @@
 </template>
 
 <script>
+import ModalSubscribe from "@/components/user/user-panel/subscribe/ModalSubscribe.vue";
 import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       isError: false,
+      subscribes: {
+        newSubscribe: "",
+        oldSubscribe: "",
+      },
+      newPremium: "",
     };
+  },
+  components: {
+    ModalSubscribe,
   },
   computed: {
     ...mapGetters({
       getUser: "loadUser/getUser",
     }),
   },
+  mounted() {
+    this.subscribes.oldSubscribe = this.getUser.subscribe;
+  },
+
   watch: {
     isError: {
       handler() {
         setTimeout(this.errorMessage, 2000);
+      },
+    },
+    getUser: {
+      handler(getUser) {
+        this.subscribes.oldSubscribe = getUser.subscribe;
       },
     },
   },
@@ -109,11 +137,20 @@ export default {
       }
       if (item === "organizer" && this.getUser.balance < 10) {
         this.isError = true;
+
         return;
       } else {
-        const premium = { item, sum, balance: this.getUser.balance };
-        this.$store.dispatch("subscribe/save", premium);
+        this.subscribes.newSubscribe = item;
+        this.newPremium = { item, sum, balance: this.getUser.balance };
       }
+    },
+
+    async updateAccount() {
+      await this.$store.dispatch("subscribe/save", this.newPremium);
+      this.subscribes.newSubscribe = "";
+    },
+    close() {
+      this.subscribes.newSubscribe = "";
     },
   },
 };
@@ -244,5 +281,15 @@ export default {
   transform: translate3d(0, 0, 0);
   opacity: 1;
   transition: all 0.5s;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.5s;
+}
+
+.modal-enter,
+.modal-leave-to {
+  opacity: 0;
 }
 </style>

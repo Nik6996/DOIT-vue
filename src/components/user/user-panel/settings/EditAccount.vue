@@ -49,7 +49,7 @@
                   <div class="edit__arrow">
                     <img
                       v-bind:class="{ active: isActive }"
-                      src="@/assets/icon/arrow.svg"
+                      src="@/assets/icon/arrow-header.svg"
                       alt=""
                     />
                   </div>
@@ -83,6 +83,7 @@ export default {
         balance: 0,
         email: "",
         realName: "",
+        subscribe: "",
       },
       date: new Date(),
       isActive: false,
@@ -106,6 +107,7 @@ export default {
       this.user.balance = this.getUser.balance || 0;
       this.user.email = this.getUser.email;
       this.user.sex = this.getUser.sex;
+      this.user.subscribe = this.getUser.subscribe;
     }
   },
   watch: {
@@ -224,7 +226,7 @@ export default {
     z-index: 20;
   }
   &__date-published {
-    border: 1px solid #627ca3;
+    border: 1px solid #16263d;
     display: flex;
     justify-content: space-between;
     height: 40px;
@@ -274,11 +276,13 @@ export default {
   }
 
   &__arrow {
+    transform: rotateX(180deg);
     position: relative;
     top: 0px;
+    margin-left: 7px;
     img {
-      width: 25px;
-      height: 25px;
+      width: 12px;
+      height: 12px;
       transition: all 0.5s;
     }
   }
@@ -308,7 +312,7 @@ export default {
   border: 1px solid #16263d;
 }
 .active {
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
   transition: all 0.5s;
 }
 </style>

@@ -24,14 +24,12 @@ export const edit = {
 				const auth = getAuth();
 				await onAuthStateChanged(auth, (userSystem) => {
 					if (userSystem) {
-						console.log(userSystem);
 						set(ref(database, `users/${userSystem.uid}`), {
 							...user
 						})
 					}
 				});
 				await dispatch("loadUser/load", null, { root: true })
-
 			} catch (e) {
 				console.log(e)
 			}

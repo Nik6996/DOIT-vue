@@ -106,7 +106,7 @@ export default {
     const auth = getAuth();
     await onAuthStateChanged(auth, (userSystem) => {
       if (userSystem) {
-        this.$store.dispatch("loadUser/load", userSystem.uid);
+        this.$store.dispatch("loadUser/load");
       } else {
         console.log("нужна аутентификация");
         this.user = null;

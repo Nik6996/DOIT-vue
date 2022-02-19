@@ -32,8 +32,9 @@ export const loadUser = {
 					if (userSystem) {
 						//	userSystem.uid
 						loadUser(userSystem.uid)
-						console.log(auth)
 
+					} else {
+						commit('setUser', null)
 					}
 				});
 
