@@ -19,6 +19,7 @@ import Statistics from '@/components/user/user-panel/Statistics'
 import YouTeamTournaments from '@/components/user/user-panel/YouTeamTournaments'
 import Subscribe from '@/components/user/user-panel/subscribe/Subscribe'
 import NotFound from '@/components/NotFound404'
+import NewEditGame from '@/components/games/NewEditGame'
 
 
 
@@ -34,9 +35,12 @@ const routes = [{
 		},
 		{
 			path: '/games',
-			component: Games
+			component: Games,
 		},
-
+		{
+			path: '/new-edit-games',
+			component: NewEditGame
+		},
 		{
 			path: '/user',
 			component: UserMainPage,
@@ -115,6 +119,7 @@ const routes = [{
 	path: '/restore-password',
 	component: RestorePassword
 },
+
 
 ]
 

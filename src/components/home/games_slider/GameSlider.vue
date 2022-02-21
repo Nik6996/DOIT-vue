@@ -87,5 +87,8 @@ export default {
   &__slider {
     //display: flex;
   }
+  .swiper {
+    padding-bottom: 40px;
+  }
 }
 </style>

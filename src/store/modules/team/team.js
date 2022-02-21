@@ -66,7 +66,6 @@ export const team = {
 					if (itemsRecord.exists()) {
 						const teams = []
 						itemsRecord.forEach(itemRecord => {
-
 							teams.push(itemRecord.val())
 						});
 						commit('setTeams', teams)

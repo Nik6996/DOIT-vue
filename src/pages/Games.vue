@@ -2,7 +2,11 @@
   <div>
     <div class="game">
       <div class="game__content">
-        <div v-if="isAdmin" class="game__admin-btn">
+        <div
+          v-if="isAdmin"
+          class="admin-btn"
+          @click="this.$router.push('/new-edit-games')"
+        >
           <button>Add game</button>
         </div>
         <div class="game__header">
@@ -44,9 +48,19 @@ export default {
 
   async mounted() {
     await this.$store.dispatch("games/load");
+    console.log(this.getUser);
     if (this.getUser) {
       this.isAdmin = this.getUser.isAdmin;
     }
+  },
+  watch: {
+    getUser: {
+      handler(getUser) {
+        if (getUser) {
+          this.isAdmin = this.getUser.isAdmin;
+        }
+      },
+    },
   },
 
   computed: {
@@ -134,6 +148,22 @@ export default {
         width: 100%;
       }
     }
+  }
+}
+.admin-btn {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 22px;
+  margin-bottom: 30px;
+  width: 200px;
+  margin: 10px 0px 30px 40px;
+  button {
+    background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
+    border-radius: 2px;
+    width: 100%;
+    height: 44px;
+    color: #f5f5f5;
+    font-weight: 700;
   }
 }
 </style>
