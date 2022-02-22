@@ -48,7 +48,7 @@ export default {
 
   async mounted() {
     await this.$store.dispatch("games/load");
-    console.log(this.getUser);
+
     if (this.getUser) {
       this.isAdmin = this.getUser.isAdmin;
     }
@@ -89,7 +89,7 @@ export default {
   }
 
   &__header {
-    margin: 0px 43px;
+    margin: 20px 43px;
     display: flex;
     justify-content: space-between;
   }

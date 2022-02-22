@@ -16,7 +16,7 @@
           <div v-bind:class="{ active: isActive }" class="header__menu">
             <ul>
               <li>Play</li>
-              <li>News</li>
+              <li @click="this.$router.push('/news')">News</li>
               <li @click="this.$router.push('/games')">Games</li>
               <li>Shop</li>
               <li>Sponsorship</li>

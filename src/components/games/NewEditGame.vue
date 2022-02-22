@@ -35,8 +35,13 @@
             <span>Description</span>
             <textarea v-model="newGame.description"></textarea>
           </div>
-          <div @click="saveNew()" class="game__new-btn">
-            <button>Save game</button>
+          <div class="game__new-btn">
+            <button
+              :disabled="!newGame.name && !newGame.img"
+              @click="saveNew()"
+            >
+              Save game
+            </button>
           </div>
         </div>
 
@@ -119,7 +124,7 @@ export default {
       },
       nameEditGame: "",
       isSuccess: false,
-      successText: "",
+      successText: ".",
     };
   },
   computed: {
@@ -159,8 +164,10 @@ export default {
       },
     },
     isSuccess: {
-      handler() {
-        setTimeout(this.successMessage, 6000);
+      handler(isSuccess) {
+        if (isSuccess) {
+          setTimeout(this.successMessage, 6000);
+        }
       },
     },
   },
@@ -170,7 +177,7 @@ export default {
   methods: {
     successMessage() {
       this.isSuccess = false;
-      successText = "";
+      this.successText = ".";
     },
     async update() {
       await this.$store.dispatch("games/update", this.editGame);

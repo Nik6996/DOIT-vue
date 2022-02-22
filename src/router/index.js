@@ -20,8 +20,8 @@ import YouTeamTournaments from '@/components/user/user-panel/YouTeamTournaments'
 import Subscribe from '@/components/user/user-panel/subscribe/Subscribe'
 import NotFound from '@/components/NotFound404'
 import NewEditGame from '@/components/games/NewEditGame'
-
-
+import News from '@/pages/News'
+import NewsUpdate from '@/components/news/NewsUpdate'
 
 import { createRouter, createWebHashHistory } from "vue-router";
 
@@ -40,6 +40,14 @@ const routes = [{
 		{
 			path: '/new-edit-games',
 			component: NewEditGame
+		},
+		{
+			path: '/news',
+			component: News,
+		},
+		{
+			path: '/update-news',
+			component: NewsUpdate
 		},
 		{
 			path: '/user',

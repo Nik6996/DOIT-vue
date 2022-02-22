@@ -19,21 +19,24 @@ export const games = {
 		async saveNew({ dispatch }, item) {
 
 			try {
-				const storageRef = refStorage(storage, `games/${item.id}`)
-				await uploadBytes(storageRef, item.img);
-				const url = await getDownloadURL(refStorage(storage, `games/${item.id}`))
-				item.img = '';
-				item.imgLocalUrl = '';
-				item.url = url
-				await set(ref(database, `games/${item.id}`), {
-					...item,
-				})
-				await dispatch("games/load", null, { root: true })
+				if (item.name && item.img) {
+					const storageRef = refStorage(storage, `games/${item.id}`)
+					await uploadBytes(storageRef, item.img);
+					const url = await getDownloadURL(refStorage(storage, `games/${item.id}`))
+					item.img = '';
+					item.imgLocalUrl = '';
+					item.url = url
+					await set(ref(database, `games/${item.id}`), {
+						...item,
+					})
+					await dispatch("games/load", null, { root: true })
+				}
+
 			} catch (e) {
 				console.log(e)
 			}
 		},
-		async update({ }, item) {
+		async update({ dispatch }, item) {
 
 			try {
 				if (item.img) {
@@ -46,6 +49,7 @@ export const games = {
 					await set(ref(database, `games/${item.id}`), {
 						...item,
 					})
+					await dispatch("games/load", null, { root: true })
 				} else {
 					console.log('изменений не найдено');
 				}
@@ -70,14 +74,14 @@ export const games = {
 			// const url = await getDownloadURL(refStorage(storage, `games/Valorant.png`))
 			// console.log(url)
 		},
-		async remove({ }, id) {
+		async remove({ dispatch }, id) {
 			console.log(id)
 
 			try {
 				set(ref(database, `games/${id}`), null);
 				const storageRef = refStorage(storage, `games/${id}`);
 				await deleteObject(storageRef);
-
+				await dispatch("games/load", null, { root: true })
 			} catch (e) {
 				console.log(e);
 			}

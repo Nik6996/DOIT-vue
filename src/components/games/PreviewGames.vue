@@ -22,18 +22,19 @@ export default {
 
 <style lang="scss" scoped>
 .games {
+  margin: 10px;
   &__card {
     position: relative;
-    width: 387px;
-    height: 500px;
+    width: 367px;
+    height: 480px;
   }
 
   &__img {
-    width: 387px;
-    height: 500px;
+    width: 367px;
+    height: 480px;
     img {
-      width: 387px;
-      height: 500px;
+      width: 367px;
+      height: 480px;
       object-fit: cover;
     }
   }

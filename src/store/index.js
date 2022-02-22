@@ -13,7 +13,7 @@ import { edit } from './modules/user/editAccount'
 import { changeEmail } from './modules/user/changeEmail'
 import { changePassword } from './modules/user/changePassword'
 import { subscribe } from './modules/user/subscribe'
-
+import { news } from './modules/news/news'
 
 export default createStore({
 	modules: {
@@ -29,7 +29,8 @@ export default createStore({
 		edit: edit,
 		changeEmail: changeEmail,
 		changePassword: changePassword,
-		subscribe: subscribe
+		subscribe: subscribe,
+		news: news
 	}
 
 })
