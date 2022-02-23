@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div
+      v-bind:style="{ background: 'red' }"
+      v-show="isError"
+      class="modal-message"
+    >
+      <span>All fields required!</span>
+    </div>
+    <div v-show="isSuccess" class="modal-message">
+      <span>{{ successText }}</span>
+    </div>
     <div class="news">
       <div class="news__content">
         <div class="news__title">New news</div>
@@ -15,11 +25,18 @@
           </div>
           <div class="news__name">
             <span>News title</span>
-            <input v-model="newNews.title" type="text" />
+            <input
+              :disabled="!newNews.gameId"
+              v-model="newNews.title"
+              type="text"
+            />
           </div>
           <div class="news__description">
             <span>Description</span>
-            <textarea v-model="newNews.description"></textarea>
+            <textarea
+              :disabled="!newNews.gameId"
+              v-model="newNews.description"
+            ></textarea>
           </div>
           <div class="news__image">
             <div class="news__image-title">Image</div>
@@ -28,6 +45,7 @@
                 <div class="news__img-name">{{ newNews.img.file.name }}</div>
                 <label class="news__upload-btn" for="newImg">UPLOAD</label>
                 <input
+                  :disabled="!newNews.gameId"
                   v-on:change="newPreviewImg()"
                   accept=".png, .jpg, .jpeg"
                   id="newImg"
@@ -70,10 +88,17 @@
           </div>
           <div class="news__name">
             <span>News title</span>
-            <input v-model="editNews.title" type="text" />
+            <input
+              :disabled="!editGameId"
+              v-model="editNews.title"
+              type="text"
+            />
           </div>
           <div class="news__description">
-            <textarea v-model="editNews.description"></textarea>
+            <textarea
+              :disabled="!editGameId"
+              v-model="editNews.description"
+            ></textarea>
           </div>
           <div class="news__image">
             <div class="news__image-title">Image</div>
@@ -82,6 +107,7 @@
                 <div class="news__img-name">{{ editNews.img.file.name }}</div>
                 <label class="news__upload-btn" for="editImg">UPLOAD</label>
                 <input
+                  :disabled="!editGameId"
                   v-on:change="editPreviewImg()"
                   accept=".png, .jpg, .jpeg"
                   id="editImg"
@@ -95,8 +121,10 @@
             </div>
           </div>
           <div class="news__btns">
-            <button>Delete news</button>
-            <button>Edit news</button>
+            <button :disabled="!editGameId" @click="remove()">
+              Delete news
+            </button>
+            <button @click="edit()">Edit news</button>
           </div>
         </div>
       </div>
@@ -134,6 +162,9 @@ export default {
       },
       editGameId: "",
       editNewsId: "",
+      isError: false,
+      isSuccess: false,
+      successText: "",
     };
   },
   computed: {
@@ -182,19 +213,38 @@ export default {
         });
       },
     },
+    isSuccess: {
+      handler(isSuccess) {
+        if (isSuccess) {
+          setTimeout(this.successMessage, 6000);
+        }
+      },
+    },
+    isError: {
+      handler(isError) {
+        if (isError) {
+          setTimeout(this.errorMessage, 3000);
+        }
+      },
+    },
   },
   async mounted() {
     await this.$store.dispatch("games/load");
   },
   methods: {
+    successMessage() {
+      this.isSuccess = false;
+      this.successText = ".";
+    },
+    errorMessage() {
+      this.isError = false;
+    },
     newPreviewImg() {
       if (!this.$refs.newImg || !this.$refs.newImg.files?.length) {
         this.newNews.img.file = "";
         this.newNews.img.url = "";
         return;
       }
-
-      //this.newNews.id = new Date().valueOf();
       const file = this.$refs.newImg.files[0];
       const reader = new FileReader();
 
@@ -207,11 +257,11 @@ export default {
     },
     editPreviewImg() {
       if (!this.$refs.editImg || !this.$refs.editImg.files?.length) {
-        this.editNews.img.file = "";
+        //this.editNews.img.file = "";
         this.editNews.img.url = "";
         return;
       }
-
+      this.editNews.img.url = "";
       const file = this.$refs.editImg.files[0];
       const reader = new FileReader();
 
@@ -223,16 +273,60 @@ export default {
       reader.readAsDataURL(file);
     },
     async save() {
-      if (!this.newNews.id) {
+      if (
+        this.newNews.img.file &&
+        this.newNews.title &&
+        this.newNews.description
+      ) {
         this.newNews.id = new Date().valueOf();
         await this.$store.dispatch("news/save", this.newNews);
+        this.dataReset("new");
+        this.isSuccess = true;
+        this.successText = "Added successfully!";
+      } else {
+        this.isError = true;
       }
-      this.newNews.id = "";
-      this.newNews.gameId = "";
-      this.newNews.title = "";
-      this.newNews.description = "";
-      this.newNews.img.file = "";
-      this.newNews.img.localUrl = "";
+    },
+    async edit() {
+      if (
+        (this.editNews.img.file || this.editNews.img.url) &&
+        this.editNews.title &&
+        this.editNews.description
+      ) {
+        await this.$store.dispatch("news/edit", this.editNews);
+        this.dataReset("edit");
+        this.isSuccess = true;
+        this.successText = "Modified successful!";
+      } else {
+        this.isError = true;
+      }
+    },
+    async remove() {
+      const listId = { gameId: this.editGameId, newsId: this.editNews.id };
+      await this.$store.dispatch("news/remove", listId);
+      this.dataReset("edit");
+      this.isSuccess = true;
+      this.successText = "News deleted!";
+    },
+    dataReset(item) {
+      if (item === "edit") {
+        this.editNews.id = "";
+        this.editNews.gameId = "";
+        this.editNews.title = "";
+        this.editNews.description = "";
+        this.editNews.img.file = "";
+        this.editNews.img.localUrl = "";
+        this.editNews.img.url = "";
+        this.editGameId = "";
+      }
+      if (item === "new") {
+        this.newNews.id = "";
+        this.newNews.gameId = "";
+        this.newNews.title = "";
+        this.newNews.description = "";
+        this.newNews.img.file = "";
+        this.newNews.img.localUrl = "";
+      }
     },
   },
 };
@@ -415,6 +509,24 @@ export default {
       color: #f5f5f5;
       background: #1a222d;
     }
+  }
+}
+.modal-message {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 230px;
+  height: 70px;
+  background-color: rgb(3, 172, 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  span {
+    display: block;
+    font-size: 22px;
+    color: #f5f5f5;
+    font-weight: 700;
   }
 }
 </style>
