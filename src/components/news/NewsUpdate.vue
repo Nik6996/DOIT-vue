@@ -245,6 +245,7 @@ export default {
         this.newNews.img.url = "";
         return;
       }
+
       const file = this.$refs.newImg.files[0];
       const reader = new FileReader();
 
@@ -281,6 +282,7 @@ export default {
         this.newNews.id = new Date().valueOf();
         await this.$store.dispatch("news/save", this.newNews);
         this.dataReset("new");
+        this.newNews.gameId = "";
         this.isSuccess = true;
         this.successText = "Added successfully!";
       } else {

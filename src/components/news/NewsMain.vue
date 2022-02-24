@@ -4,25 +4,51 @@
       <div class="news__header">
         <div class="news__title">News</div>
         <div class="news__btns">
-          <div class="news__btn-all"><button>All</button></div>
+          <div
+            @click="downloadAllNews(), (this.active = null)"
+            class="news__btn-all"
+          >
+            <button :class="{ active: active === null }" class="btn">
+              All
+            </button>
+          </div>
           <div class="news__list-btn">
             <div
-              v-for="game in games"
+              v-for="(game, i) in games"
               :value="game.name"
               :key="game.name"
               class="news__btn"
             >
-              <button @click="downloadТews(game.id)">{{ game.name }}</button>
+              <button
+                class="btn"
+                :data-col="i"
+                :class="{ active: active === i }"
+                @click="
+                  downloadNews(game.id), (active = active === i ? null : i)
+                "
+              >
+                {{ game.name }}
+              </button>
             </div>
           </div>
         </div>
       </div>
       <div class="news__content">
         <div class="news__list">
-          <div v-for="news in newsArray" :key="news.id" class="news__news">
-            <div class="card big-size">
+          <div
+            v-for="(news, index) in newsArray"
+            :key="news.id"
+            class="news__news"
+          >
+            <div
+              class="card"
+              :class="{ big: index % 6 === 0 || index % 6 === 1 }"
+            >
               <div class="card__column">
-                <div class="card__img">
+                <div
+                  :class="{ bigImg: index % 6 === 0 || index % 6 === 1 }"
+                  class="card__img"
+                >
                   <img :src="news.img.url" alt="" />
                 </div>
               </div>
@@ -31,27 +57,23 @@
                 <div class="card__description">{{ news.description }}</div>
               </div>
             </div>
-            <!-- <news-card v-model="newsArray[index]" /> -->
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- v-for="game in games" :value="game.name" :key="game.name" -->
 </template>
 
 <script>
-import NewsCard from "@/components/news/NewsCard";
 import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       newsArray: "",
+      active: null,
     };
   },
-  components: {
-    NewsCard,
-  },
+
   computed: {
     ...mapGetters({
       games: "games/getGames",
@@ -67,10 +89,14 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("games/load");
+    await this.$store.dispatch("news/loadAll");
   },
   methods: {
-    downloadТews(id) {
+    downloadNews(id) {
       this.$store.dispatch("news/load", id);
+    },
+    downloadAllNews() {
+      this.$store.dispatch("news/loadAll");
     },
   },
 };
@@ -78,7 +104,11 @@ export default {
 
 <style lang="scss" scoped>
 .news {
+  margin-left: 5%;
+  max-width: 1224px;
+  width: 100%;
   &__header {
+    padding: 0px 15px;
     display: flex;
     margin-bottom: 34px;
   }
@@ -104,50 +134,32 @@ export default {
   &__btn,
   &__btn-all {
     cursor: pointer;
-    button {
-      max-height: 56px;
-      margin: 2px;
-      background: #14191f;
-      width: auto;
-      padding: 16px;
-
-      font-weight: 500;
-      font-size: 18px;
-      color: #a0a5ad;
-    }
-  }
-
-  &__content {
   }
 
   &__list {
     display: flex;
-  }
-
-  &__news {
+    flex-wrap: wrap;
   }
 }
 
 .card {
-  width: 288px;
+  width: 273px;
   margin: 12px;
   background: #10171f;
   overflow: hidden;
   height: 500px;
-  &__content {
-  }
 
   &__column1 {
     padding: 24px;
-  }
-  &__column {
+    width: 100%;
+    //overflow: hidden;
   }
 
   &__img {
     max-width: 288px;
     img {
       width: 100%;
-      max-height: 240px;
+      height: 240px;
       object-fit: cover;
     }
   }
@@ -164,8 +176,89 @@ export default {
     line-height: 21px;
   }
 }
-.big-size {
-  width: 580px;
+
+.big {
+  width: 570px;
+  max-height: 328px;
   display: flex;
+}
+
+.bigImg {
+  width: 208px;
+  height: 328px;
+  img {
+    width: 208px;
+    height: 328px;
+  }
+}
+
+.btn {
+  max-height: 56px;
+  margin: 2px;
+  background: #14191f;
+  width: auto;
+  padding: 16px;
+
+  font-weight: 500;
+  font-size: 18px;
+  color: #a0a5ad;
+}
+
+.active {
+  color: #0f1215;
+  background: #d8dfeb;
+}
+
+@media (max-width: 1200px) {
+  .big {
+    //width: 100%;
+    margin-right: 20px;
+  }
+}
+@media (max-width: 1350px) {
+  .btn {
+    max-height: 46px;
+    font-size: 16px;
+  }
+  .news {
+    margin-left: 11%;
+    &__header {
+      position: relative;
+      display: block;
+      align-items: flex-start;
+    }
+    &__btn-all {
+      top: 0;
+      left: 150px;
+      position: absolute;
+    }
+    &__list {
+      justify-content: center;
+    }
+  }
+}
+@media (max-width: 1060px) {
+  .news {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .big {
+    display: inline-table;
+    width: 273px;
+    margin: 12px;
+    background: #10171f;
+    overflow: hidden;
+    height: 500px;
+  }
+  .bigImg {
+    width: 100%;
+    height: 328px;
+    img {
+      width: 100%;
+      height: 328px;
+    }
+  }
 }
 </style>

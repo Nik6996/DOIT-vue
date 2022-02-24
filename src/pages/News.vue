@@ -52,10 +52,13 @@ export default {
 
 <style lang="scss" scoped>
 .news {
-  max-width: 1200px;
+ 
+  max-width: 1224px;
   margin: 0 auto;
+
   &__content {
     width: 100%;
+    //margin-left: 11%;
   }
 }
 
@@ -65,7 +68,7 @@ export default {
   margin-top: 22px;
   margin-bottom: 30px;
   width: 200px;
-  margin: 10px 0px 30px 40px;
+  margin: 10px 0px 30px 10%;
   button {
     background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
     border-radius: 2px;
