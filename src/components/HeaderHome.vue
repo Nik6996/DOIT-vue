@@ -19,7 +19,7 @@
               <li @click="this.$router.push('/news')">News</li>
               <li @click="this.$router.push('/games')">Games</li>
               <li>Shop</li>
-              <li>Sponsorship</li>
+              <li @click="this.$router.push('/comming-soon')">Sponsorship</li>
             </ul>
 
             <div
@@ -27,6 +27,7 @@
               @mouseleave="upHere = false"
               v-if="user"
               class="header__current-user"
+              @click="dropUp()"
             >
               <div class="header__current-user-main">
                 <div class="header__icon-user">
@@ -43,11 +44,7 @@
                   </div>
                 </div>
               </div>
-              <div
-                @click="dropUp()"
-                :class="{ arrow: upHere }"
-                class="header__user-drop-down"
-              >
+              <div :class="{ arrow: upHere }" class="header__user-drop-down">
                 <img src="@/assets/icon/arrow-header.svg" alt="" />
               </div>
               <drop-down-menu-header v-show="upHere" />
@@ -101,6 +98,9 @@ export default {
         this.user = user;
       },
     },
+    $route(to, from) {
+      this.isActive = "";
+    },
   },
   async mounted() {
     const auth = getAuth();
@@ -121,15 +121,6 @@ export default {
       } else {
         this.upHere = true;
       }
-      // const auth = getAuth();
-      // signOut(auth)
-      //   .then(() => {
-      //     console.log("Вышли с аккаунта");
-      //     this.user = null;
-      //   })
-      //   .catch((error) => {
-      //     // An error happened.
-      //   });
     },
     burger() {
       if (!this.isActive) {

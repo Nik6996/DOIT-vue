@@ -155,6 +155,7 @@ import { Calendar, DatePicker } from "v-calendar";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import { mapGetters } from "vuex";
+import "v-calendar/dist/style.css";
 
 export default {
   data() {

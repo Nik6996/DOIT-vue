@@ -22,6 +22,7 @@ import NotFound from '@/components/NotFound404'
 import NewEditGame from '@/components/games/NewEditGame'
 import News from '@/pages/News'
 import NewsUpdate from '@/components/news/NewsUpdate'
+import CommingSoon from '@/components/other/CommingSoon'
 
 import { createRouter, createWebHashHistory } from "vue-router";
 
@@ -48,6 +49,10 @@ const routes = [{
 		{
 			path: '/update-news',
 			component: NewsUpdate
+		},
+		{
+			path: '/comming-soon',
+			component: CommingSoon
 		},
 		{
 			path: '/user',

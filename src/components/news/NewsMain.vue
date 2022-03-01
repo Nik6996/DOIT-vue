@@ -229,7 +229,7 @@ export default {
     }
     &__btn-all {
       top: 0;
-      left: 150px;
+      right: 20px;
       position: absolute;
     }
     &__list {

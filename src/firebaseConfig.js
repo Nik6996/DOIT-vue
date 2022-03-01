@@ -3,6 +3,19 @@ import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getStorage } from "firebase/storage";
 
+
+// const firebaseConfig = {
+// 	apiKey: "AIzaSyDIk_DdoA2k5gAQj-iH7-DxUrUPI0E9uuk",
+// 	authDomain: "doit-cec2b.firebaseapp.com",
+// 	projectId: "doit-cec2b",
+// 	databaseURL: "https://doit-cec2b-default-rtdb.firebaseio.com/",
+// 	storageBucket: "doit-cec2b.appspot.com",
+// 	messagingSenderId: "874300581401",
+// 	appId: "1:874300581401:web:4e016ce91794cedf9dac88"
+// };
+
+
+
 const firebaseConfig = {
 	apiKey: "AIzaSyCW8qFUZm1wiNyvtmgggM0y02pTHZBLBF8",
 	authDomain: "doit-a6bd5.firebaseapp.com",

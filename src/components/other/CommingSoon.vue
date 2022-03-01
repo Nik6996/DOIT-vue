@@ -1,74 +1,26 @@
 <template>
   <div>
     <div class="home">
-      <div v-if="topIsActive" class="home__top top">
-        <div class="top__content">
-          <div class="top__title">DOIT <span>BETA</span></div>
-          <div class="top__desc">
-            Prepare for your esports career and get ready for awesome
-            tournaments with big prize pools and many fun!
-            <span>Register Now!</span>
+      <div class="soon">
+        <div class="soon__content">
+          <div class="soon__title">DOIT <span>BETA</span></div>
+          <div class="soon__desc">
+            We are working hard to provide you the best experience on our
+            platform
           </div>
-          <div class="top__btns">
-            <button @click="this.$router.push('/login')" class="top__login">
-              login
-            </button>
-            <button @click="this.$router.push('/sign-up')" class="top__sign-up">
-              Sign up
-            </button>
-          </div>
+          <div class="soon__btns"></div>
         </div>
-      </div>
-      <div class="home__content">
-        <game-slider />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import GameSlider from "@/components/home/games_slider/GameSlider.vue";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-export default {
-  data() {
-    return {
-      topIsActive: true,
-    };
-  },
-  components: {
-    GameSlider,
-  },
-  async mounted() {
-    const auth = getAuth();
-    await onAuthStateChanged(auth, (userSystem) => {
-      if (userSystem) {
-        this.topIsActive = false;
-      } else {
-        this.topIsActive = true;
-      }
-    });
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
-.home {
-  max-width: 1200px;
-  padding: 30px 10px;
-  margin: 0 auto;
-  background-image: url("../assets/img/homeBcg.jpg");
-  background-repeat: repeat;
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  &__top {
-  }
-
-  &__content {
-  }
-}
-.top {
+.soon {
   margin: 0 auto;
   max-width: 1008px;
   &__content {
@@ -78,7 +30,8 @@ export default {
     width: 100%;
     height: 760px;
     background-size: contain;
-    background-image: url("../assets/img/bcgMain.svg");
+    background-image: url("../../assets/img/bcgMain.svg");
+    // background-image: url(".../assets/img/bcgMain.svg");
     background-repeat: no-repeat;
     padding-top: 14%;
   }
@@ -104,6 +57,7 @@ export default {
     flex-direction: column;
     max-width: 460px;
     line-height: 24px;
+    padding: 0px 10px 0px 10px;
   }
 
   &__btns {
@@ -140,8 +94,7 @@ export default {
   }
 }
 @media (max-width: 768px) {
-  .top {
-    justify-content: center;
+  .soon {
     &__title {
       font-size: 84px;
       span {

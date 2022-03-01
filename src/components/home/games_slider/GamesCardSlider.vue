@@ -48,4 +48,20 @@ export default {
     font-weight: 700;
   }
 }
+
+@media (max-width: 430px) {
+  .card {
+    &__content {
+      width: 317px;
+      height: 450px;
+    }
+    &__img {
+      img {
+        width: 317px;
+        height: 450px;
+        object-fit: cover;
+      }
+    }
+  }
+}
 </style>

@@ -6,3 +6,4 @@ import vueCountryRegionSelect from 'vue3-country-region-select'
 
 
 createApp(App).use(store).use(router).use(vueCountryRegionSelect).mount('#app');
+

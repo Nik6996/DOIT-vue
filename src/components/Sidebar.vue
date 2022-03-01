@@ -10,7 +10,9 @@
           <li><img src="@/assets/img/item-03.svg" alt="" /></li>
           <li><img src="@/assets/img/item-04.svg" alt="" /></li>
           <li><img src="@/assets/img/item-05.svg" alt="" /></li>
-          <li><img src="@/assets/img/item-06.svg" alt="" /></li>
+          <li @click="this.$router.push('/comming-soon')">
+            <img src="@/assets/img/item-06.svg" alt="" />
+          </li>
         </ul>
       </div>
     </div>

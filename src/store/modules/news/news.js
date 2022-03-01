@@ -53,25 +53,9 @@ export const news = {
 				} else {
 					commit('setNews', null)
 				}
+
+
 			} catch (e) { console.log(e) }
-		},
-		async loadAll({ commit },) {
-			try {
-
-				const newsRef = ref(database, `news`)
-				const newsRecord = await get(newsRef)
-				if (newsRecord.exists()) {
-					let newsList = []
-					newsRecord.forEach(itemNews => {
-
-						itemNews.forEach(item => {
-							newsList.push(item.val())
-						})
-					})
-					commit('setNews', newsList)
-				}
-			}
-			catch (e) { console.log(e); }
 		},
 
 		async edit({ }, item) {
@@ -104,7 +88,25 @@ export const news = {
 				const storageRef = refStorage(storage, `news/${id.gameId}/${id.newsId}`);
 				await deleteObject(storageRef);
 			} catch (e) { console.log(e); }
-		}
+		},
+		async loadAll({ commit },) {
+			try {
+
+				const newsRef = ref(database, `news`)
+				const newsRecord = await get(newsRef)
+				if (newsRecord.exists()) {
+					let newsList = []
+					newsRecord.forEach(itemNews => {
+
+						itemNews.forEach(item => {
+							newsList.push(item.val())
+						})
+					})
+					commit('setNews', newsList)
+				}
+			}
+			catch (e) { console.log(e); }
+		},
 
 
 	},
