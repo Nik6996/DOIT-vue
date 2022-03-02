@@ -23,6 +23,11 @@ import NewEditGame from '@/components/games/NewEditGame'
 import News from '@/pages/News'
 import NewsUpdate from '@/components/news/NewsUpdate'
 import CommingSoon from '@/components/other/CommingSoon'
+import Tournament from '@/pages/Tournament'
+import TournamentAdmin from '@/components/tournament/TournamentAdmin'
+import MainTournament from '@/components/tournament/tournament-admin/MainTournament'
+
+
 
 import { createRouter, createWebHashHistory } from "vue-router";
 
@@ -49,6 +54,18 @@ const routes = [{
 		{
 			path: '/update-news',
 			component: NewsUpdate
+		},
+		{
+			path: '/tournament',
+			component: Tournament
+		},
+		{
+			path: '/tournament-admin',
+			component: TournamentAdmin
+		},
+		{
+			path: '/tournament-create',
+			component: MainTournament
 		},
 		{
 			path: '/comming-soon',

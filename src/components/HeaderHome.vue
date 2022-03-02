@@ -15,7 +15,7 @@
           </div>
           <div v-bind:class="{ active: isActive }" class="header__menu">
             <ul>
-              <li>Play</li>
+              <li @click="this.$router.push('/tournament')">Play</li>
               <li @click="this.$router.push('/news')">News</li>
               <li @click="this.$router.push('/games')">Games</li>
               <li>Shop</li>
@@ -23,11 +23,11 @@
             </ul>
 
             <div
+              @click="dropUp()"
               @mouseover="upHere = true"
               @mouseleave="upHere = false"
               v-if="user"
               class="header__current-user"
-              @click="dropUp()"
             >
               <div class="header__current-user-main">
                 <div class="header__icon-user">
@@ -98,13 +98,13 @@ export default {
         this.user = user;
       },
     },
-    $route(to, from) {
+    $route() {
       this.isActive = "";
     },
   },
   async mounted() {
     const auth = getAuth();
-    await onAuthStateChanged(auth, (userSystem) => {
+    onAuthStateChanged(auth, (userSystem) => {
       if (userSystem) {
         this.$store.dispatch("loadUser/load");
       } else {
@@ -197,6 +197,7 @@ export default {
 
   &__current-user {
     position: relative;
+    z-index: 1;
     display: flex;
     width: 225px;
     height: 50px;
