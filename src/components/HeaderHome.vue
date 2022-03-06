@@ -197,7 +197,7 @@ export default {
 
   &__current-user {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     width: 225px;
     height: 50px;

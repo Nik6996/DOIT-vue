@@ -8,6 +8,20 @@ export default {};
 
 <style lang="scss" >
 @import url(https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+// Стили скролла
+
+::-webkit-scrollbar {
+  width: 10px; /* ширина для вертикального скролла */
+  height: 6px; /* высота для горизонтального скролла */
+  background-color: #0e2846;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #350452;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #f3faf7;
+}
+
 // Обнуление стилей
 * {
   padding: 0;
