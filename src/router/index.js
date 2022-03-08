@@ -26,6 +26,7 @@ import CommingSoon from '@/components/other/CommingSoon'
 import Tournament from '@/pages/Tournament'
 import TournamentAdmin from '@/components/tournament/TournamentAdmin'
 import MainTournament from '@/components/tournament/tournament-admin/MainTournament'
+import SelectTournament from '@/components/tournament/tournament-admin/SelectTournament'
 
 
 
@@ -65,6 +66,14 @@ const routes = [{
 		},
 		{
 			path: '/tournament-create',
+			component: MainTournament
+		},
+		{
+			path: '/tournament-select',
+			component: SelectTournament
+		},
+		{
+			path: '/tournament:id',
 			component: MainTournament
 		},
 		{

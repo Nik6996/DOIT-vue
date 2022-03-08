@@ -4,19 +4,19 @@
       <div class="info__content">
         <div class="info__input">
           <span>Host</span>
-          <input type="text" />
+          <input v-model="basicInfo.host" type="text" />
         </div>
         <div class="info__input">
           <span>Tournament name*</span>
-          <input type="text" />
+          <input v-model="basicInfo.name" type="text" />
         </div>
         <div class="info__input">
           <span>URL</span>
-          <input type="text" />
+          <input v-model="basicInfo.url" type="text" />
         </div>
         <div class="info__rules">
           <span>Quick Rules</span>
-          <textarea></textarea>
+          <textarea v-model="basicInfo.quickRules"></textarea>
         </div>
       </div>
     </div>
@@ -24,7 +24,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    basicInfo: {
+      type: Object,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

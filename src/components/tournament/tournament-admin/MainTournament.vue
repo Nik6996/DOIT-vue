@@ -1,25 +1,28 @@
 <template>
   <div>
     <div class="tournament">
+      <div v-if="isLoading" class="loading"></div>
       <div class="tournament__title"><span>Tournament</span></div>
       <div class="tournament__content">
-        <vue-collapsible-panel-group
-          class="header-collaps"
-          base-color=" #181818"
-        >
+        <vue-collapsible-panel-group base-color=" #181818">
           <vue-collapsible-panel :expanded="false">
             <template #title> Basic Info</template>
-            <template #content> <basic-info /> </template>
+            <template #content>
+              <basic-info :basicInfo="tournament.basicInfo" />
+            </template>
           </vue-collapsible-panel>
           <vue-collapsible-panel :expanded="false">
             <template #title> GAME INFO </template>
-            <template #content> <game-info /> </template>
+            <template #content>
+              <game-info :gameInfo="tournament.gameInfo" />
+            </template>
           </vue-collapsible-panel>
           <vue-collapsible-panel :expanded="false">
             <template #title>
               REGISTRATION
               <div class="tournament__registration-check">
                 <input
+                  v-model="tournament.registration.dontAprovePlayersAutomaticly"
                   class="tournament__custom-checkbox"
                   type="checkbox"
                   name=""
@@ -30,9 +33,30 @@
                 >
               </div>
             </template>
-            <template #content> <registration /> </template>
+            <template #content>
+              <registration :registration="tournament.registration" />
+            </template>
+          </vue-collapsible-panel>
+          <vue-collapsible-panel :expanded="false">
+            <template #title>Prize pool </template>
+            <template #content>
+              <prize-pool :prizePool="tournament.prizePool" />
+            </template>
+          </vue-collapsible-panel>
+          <vue-collapsible-panel :expanded="false">
+            <template #title>Rules </template>
+            <template #content> <rules :rules="tournament.rules" /> </template>
           </vue-collapsible-panel>
         </vue-collapsible-panel-group>
+        <div class="tournament__save">
+          <button @click="save()">
+            <span v-if="this.$route.params.id">Save changes</span>
+            <span v-else>Save tournament</span>
+          </button>
+          <button v-show="this.$route.params.id" @click="remove()">
+            Delete Torunament
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -42,7 +66,9 @@
 import BasicInfo from "@/components/tournament/tournament-admin/BasicInfo.vue";
 import GameInfo from "@/components/tournament/tournament-admin/GameInfo.vue";
 import Registration from "@/components/tournament/tournament-admin/Registration.vue";
-
+import PrizePool from "@/components/tournament/tournament-admin/PrizePool.vue";
+import Rules from "@/components/tournament/tournament-admin/Rules.vue";
+import { mapGetters } from "vuex";
 import {
   VueCollapsiblePanelGroup,
   VueCollapsiblePanel,
@@ -50,14 +76,118 @@ import {
 
 export default {
   data() {
-    return {};
+    return {
+      tournament: {
+        basicInfo: {
+          host: "",
+          name: "",
+          url: "",
+          quickRules: "",
+        },
+        gameInfo: {
+          game: "",
+          type: "",
+          formatGame: "",
+          match3place: false,
+          mode: "",
+          mapVotingSystem: "",
+          banner: {
+            img: "",
+            imgUrl: "",
+            id: "",
+          },
+          background: {
+            img: "",
+            imgUrl: "",
+            id: "",
+          },
+        },
+        registration: {
+          dontAprovePlayersAutomaticly: false,
+          account: "",
+          startDate: "",
+          estimateDate: "",
+          checkingTime: "",
+          minute: "",
+        },
+        prizePool: {
+          prizeSum: "",
+          placeTurnOn3: "",
+          stPlace1: "",
+          stPlace2: "",
+          stPlace3: "",
+          stPlace4: "",
+          typePrize: [],
+          maxPlayers: "",
+          ro8: "",
+          ro16: "",
+          ro32: "",
+          ro64: "",
+          ro128: "",
+          ro256: "",
+          ro512: "",
+          donations: "",
+        },
+        rules: "",
+        id: "",
+      },
+      isLoading: false,
+    };
   },
   components: {
     BasicInfo,
     GameInfo,
+    Registration,
+    PrizePool,
+    Rules,
     VueCollapsiblePanelGroup,
     VueCollapsiblePanel,
-    Registration,
+  },
+  computed: {
+    ...mapGetters({
+      tournaments: "tournament/getTournaments",
+    }),
+  },
+  async mounted() {
+    if (this.$route.params.id) {
+      await this.$store.dispatch("tournament/load");
+      this.loadTournament(this.$route.params.id);
+    }
+  },
+  methods: {
+    async remove() {
+      this.isLoading = true;
+      const idForRemove = {
+        idTournament: this.tournament.id,
+        idBanner: this.tournament.gameInfo.banner.id,
+        idBackground: this.tournament.gameInfo.background.id,
+      };
+      await this.$store.dispatch("tournament/remove", idForRemove);
+      await this.$store.dispatch("tournament/load");
+      this.isLoading = false;
+      this.$router.push("/tournament-admin");
+    },
+    loadTournament(id) {
+      this.tournaments.forEach((tournament) => {
+        if (tournament.id == id) {
+          this.tournament = tournament;
+        }
+      });
+    },
+    async save() {
+      if (!this.tournament.id) {
+        this.tournament.id = new Date().valueOf();
+        this.isLoading = true;
+        await this.$store.dispatch("tournament/save", this.tournament);
+        this.$router.push("/tournament-admin");
+        this.isLoading = false;
+      } else {
+        this.isLoading = true;
+        await this.$store.dispatch("tournament/save", this.tournament);
+        this.$router.push("/tournament-admin");
+        this.isLoading = false;
+      }
+    },
   },
 };
 </script>
@@ -117,6 +247,18 @@ export default {
     background-position: center;
     background-image: url("../../../assets/icon/check2.svg");
   }
+  &__save {
+    display: flex;
+    justify-content: center;
+    button {
+      margin: 10px;
+      background: #1a222d;
+      width: 160px;
+      height: 50px;
+      color: #f5f5f5;
+      font-weight: 700;
+    }
+  }
 }
 
 .vcpg {
@@ -125,5 +267,15 @@ export default {
 .vcp {
   margin: 10px;
   border: 1px solid #20252b;
+}
+.loading {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background-color: #58585838;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
 }
 </style>

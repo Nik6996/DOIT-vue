@@ -8,7 +8,12 @@
         >
           <button>Create Tournamnet</button>
         </div>
-        <div class="admin__edit"><button>Edit Tournamnet</button></div>
+        <div
+          @click="this.$router.push('/tournament-select')"
+          class="admin__edit"
+        >
+          <button>Edit Tournamnet</button>
+        </div>
       </div>
     </div>
   </div>

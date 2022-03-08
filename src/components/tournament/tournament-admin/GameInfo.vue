@@ -4,7 +4,7 @@
       <div class="game__content">
         <div class="game__select">
           <span>Main Game</span>
-          <select v-model="game">
+          <select v-model="gameInfo.game">
             <option disabled value="">Select game</option>
             <option v-for="game in games" :value="game.name" :key="game.id">
               {{ game.name }}
@@ -17,7 +17,7 @@
             <input
               class="game__custom-radio"
               value="single"
-              v-model="typeGame"
+              v-model="gameInfo.type"
               id="single"
               type="radio"
             />
@@ -27,7 +27,7 @@
             <input
               class="game__custom-radio"
               value="two"
-              v-model="typeGame"
+              v-model="gameInfo.type"
               id="two"
               type="radio"
             />
@@ -36,7 +36,7 @@
         </div>
         <div class="game__format">
           <span>Format*</span>
-          <select v-model="formatGame">
+          <select v-model="gameInfo.formatGame">
             <option disabled value="">Select format</option>
             <option>Single elimination</option>
             <option>2</option>
@@ -46,7 +46,7 @@
         <div class="game__match3place">
           <input
             class="game__custom-checkbox"
-            v-model="match3place"
+            v-model="gameInfo.match3place"
             id="match3place"
             type="checkbox"
           />
@@ -55,15 +55,16 @@
         <div class="game__middle">
           <div class="game__mode">
             <span>Mode*</span>
-            <select>
-              <option value="">5 vs 5</option>
-              <option value="">3 vs 3</option>
-              <option value="">1 vs 1</option>
+            <select v-model="gameInfo.mode">
+              <option disabled value="">Select mode</option>
+              <option>5 vs 5</option>
+              <option>3 vs 3</option>
+              <option>1 vs 1</option>
             </select>
           </div>
           <div class="game__voting">
             <span>Map voting system</span>
-            <select>
+            <select v-model="gameInfo.mapVotingSystem">
               <option value="">1</option>
               <option value="">2</option>
               <option value="">3</option>
@@ -113,32 +114,21 @@ const defaultImg = require("@/assets/img/preview.png");
 export default {
   data() {
     return {
-      banner: {
-        img: "",
-        imgUrl: "",
-        id: "",
-      },
-      background: {
-        img: "",
-        imgUrl: "",
-        id: "",
-      },
-
-      game: "",
-      typeGame: "",
-      formatGame: "",
-      match3place: false,
-
       imgLocalUrlBanner: "",
       imgLocalUrlBcg: "",
     };
+  },
+  props: {
+    gameInfo: {
+      type: Object,
+    },
   },
   computed: {
     imageBannerSrc() {
       if (this.imgLocalUrlBanner) {
         return this.imgLocalUrlBanner;
-      } else if (this.banner.imgUrl) {
-        return this.banner.imgUrl;
+      } else if (this.gameInfo.banner.imgUrl) {
+        return this.gameInfo.banner.imgUrl;
       } else {
         return defaultImg;
       }
@@ -146,8 +136,8 @@ export default {
     imageBcgSrc() {
       if (this.imgLocalUrlBcg) {
         return this.imgLocalUrlBcg;
-      } else if (this.background.imgUrl) {
-        return this.background.imgUrl;
+      } else if (this.gameInfo.background.imgUrl) {
+        return this.gameInfo.background.imgUrl;
       } else {
         return defaultImg;
       }
@@ -163,18 +153,18 @@ export default {
   methods: {
     previewBannerImg() {
       if (!this.$refs.ImgBanner || !this.$refs.ImgBanner.files?.length) {
-        this.banner.img = "";
-        this.banner.imgUrl = "";
+        this.gameInfo.banner.img = "";
+        this.gameInfo.banner.imgUrl = "";
         return;
       }
-      if (!this.banner.id) {
-        this.banner.id = new Date().valueOf();
+      if (!this.gameInfo.banner.id) {
+        this.gameInfo.banner.id = new Date().valueOf();
       }
       const file = this.$refs.ImgBanner.files[0];
       const reader = new FileReader();
 
       reader.onload = (ev) => {
-        this.banner.img = file;
+        this.gameInfo.banner.img = file;
         this.imgLocalUrlBanner = ev.currentTarget.result;
       };
 
@@ -182,18 +172,18 @@ export default {
     },
     previewBcgImg() {
       if (!this.$refs.ImgBcg || !this.$refs.ImgBcg.files?.length) {
-        this.background.img = "";
-        this.background.imgUrl = "";
+        this.gameInfo.background.img = "";
+        this.gameInfo.background.imgUrl = "";
         return;
       }
-      if (!this.background.id) {
-        this.background.id = new Date().valueOf();
+      if (!this.gameInfo.background.id) {
+        this.gameInfo.background.id = new Date().valueOf();
       }
       const file = this.$refs.ImgBcg.files[0];
       const reader = new FileReader();
 
       reader.onload = (ev) => {
-        this.background.img = file;
+        this.gameInfo.background.img = file;
         this.imgLocalUrlBcg = ev.currentTarget.result;
       };
 
@@ -254,9 +244,7 @@ export default {
   }
   &__custom-radio + label::before {
     content: "";
-    display: flex;
-    justify-content: center;
-    position: relative;
+
     width: 20px;
     height: 20px;
     border: 2px solid #20252b;
@@ -264,14 +252,10 @@ export default {
     margin-right: 10px;
   }
 
-  &__custom-radio:checked + label::after {
-    content: "";
-    margin-left: 5px;
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    background-color: #2281f2;
-    border-radius: 50%;
+  &__custom-radio:checked + label::before {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../../../assets/icon/radioCheck.svg");
   }
 
   &__format {
@@ -344,7 +328,7 @@ export default {
       margin-top: 10px;
       margin-bottom: 20px;
       height: 40px;
-      width: 108px;
+      width: 118px;
       padding-left: 10px;
       color: #cccdcd;
       background-color: #0f1215;
