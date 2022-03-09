@@ -59,8 +59,8 @@ export default {
       games: "games/getGames",
     }),
   },
-  mounted() {
-    this.$store.dispatch("games/load");
+  async mounted() {
+    await this.$store.dispatch("games/load");
   },
 
   components: {

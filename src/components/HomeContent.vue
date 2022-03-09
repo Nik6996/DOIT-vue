@@ -20,6 +20,7 @@
         </div>
       </div>
       <div class="home__content">
+        <news-slider />
         <game-slider />
       </div>
     </div>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import NewsSlider from "@/components/home/news_slider/NewsSlider.vue";
 import GameSlider from "@/components/home/games_slider/GameSlider.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -38,10 +40,12 @@ export default {
   },
   components: {
     GameSlider,
+    NewsSlider,
   },
-  async mounted() {
+
+  async created() {
     const auth = getAuth();
-    await onAuthStateChanged(auth, (userSystem) => {
+    onAuthStateChanged(auth, (userSystem) => {
       if (userSystem) {
         this.topIsActive = false;
       } else {
