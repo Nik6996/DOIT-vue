@@ -20,6 +20,7 @@
         </div>
       </div>
       <div class="home__content">
+        <tournament-slider />
         <news-slider />
         <game-slider />
       </div>
@@ -30,6 +31,8 @@
 <script>
 import NewsSlider from "@/components/home/news_slider/NewsSlider.vue";
 import GameSlider from "@/components/home/games_slider/GameSlider.vue";
+import TournamentSlider from "@/components/home/tournament_slider/TournamentSlider.vue";
+
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
@@ -41,6 +44,7 @@ export default {
   components: {
     GameSlider,
     NewsSlider,
+    TournamentSlider,
   },
 
   async created() {

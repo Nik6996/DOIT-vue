@@ -65,6 +65,7 @@
             <swiper-slide v-for="(game, index) in news" :key="index">
               <news-card-slider v-model="news[index]" />
             </swiper-slide>
+            <div class="swiper-pagination"></div>
           </swiper>
         </div>
       </div>

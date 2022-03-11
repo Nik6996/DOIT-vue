@@ -109,6 +109,8 @@ export default {
           estimateDate: "",
           checkingTime: "",
           minute: "",
+          platform: "",
+          server: "",
         },
         prizePool: {
           prizeSum: "",
@@ -129,8 +131,10 @@ export default {
           donations: "",
         },
         rules: "",
+
         id: "",
       },
+      oldGame: "",
       isLoading: false,
     };
   },
@@ -152,6 +156,7 @@ export default {
     if (this.$route.params.id) {
       await this.$store.dispatch("tournament/load");
       this.loadTournament(this.$route.params.id);
+      this.oldGame = this.tournament.gameInfo.game;
     }
   },
   methods: {
@@ -161,6 +166,7 @@ export default {
         idTournament: this.tournament.id,
         idBanner: this.tournament.gameInfo.banner.id,
         idBackground: this.tournament.gameInfo.background.id,
+        game: this.oldGame,
       };
       await this.$store.dispatch("tournament/remove", idForRemove);
       await this.$store.dispatch("tournament/load");
@@ -183,7 +189,8 @@ export default {
         this.isLoading = false;
       } else {
         this.isLoading = true;
-        await this.$store.dispatch("tournament/save", this.tournament);
+
+        await this.$store.dispatch("tournament/edit", this.tournament);
         this.$router.push("/tournament-admin");
         this.isLoading = false;
       }

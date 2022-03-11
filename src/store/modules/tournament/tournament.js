@@ -7,11 +7,15 @@ export const tournament = {
 	namespaced: true,
 
 	state: () => ({
-		tournaments: ''
+		tournaments: '',
+		concreteTournaments: ''
 	}),
 	getters: {
 		getTournaments(state) {
 			return state.tournaments
+		},
+		getСoncreteTournaments(state) {
+			return state.concreteTournaments
 		}
 	},
 	actions: {
@@ -39,7 +43,7 @@ export const tournament = {
 					await saveBackgroundImg(item.gameInfo.background.img)
 				}
 
-				set(ref(database, `tournament/${item.id}`), {
+				set(ref(database, `tournament/${item.gameInfo.game}/${item.id}`), {
 					...item,
 				})
 			} catch (e) {
@@ -47,6 +51,23 @@ export const tournament = {
 			}
 
 		},
+
+		async edit({ dispatch }, item) {
+			console.log(item);
+			if (item.gameInfo.game === item.oldGame) {
+				dispatch('save', item)
+			} else {
+				try {
+					await set(ref(database, `tournament/${item.oldGame}/${item.id}`), null);
+					dispatch('save', item)
+
+				} catch (e) {
+					console.log(e);
+				}
+
+			}
+		},
+
 		async load({ commit }) {
 
 			try {
@@ -56,11 +77,13 @@ export const tournament = {
 				if (itemsRecord.exists()) {
 					const tournaments = []
 					itemsRecord.forEach(itemRecord => {
-						tournaments.push(itemRecord.val())
+
+						itemRecord.forEach(item => {
+							tournaments.push(item.val())
+						})
 					});
 					commit('setTournaments', tournaments)
 				}
-
 			} catch (e) {
 				console.log(e);
 			}
@@ -68,10 +91,28 @@ export const tournament = {
 
 		},
 
+		async loadConcreteGame({ commit }, game) {
+
+			try {
+				const itemsRef = ref(database, `tournament/${game}`);
+				const itemsRecord = await get(itemsRef);
+				if (itemsRecord.exists()) {
+					const tournaments = []
+					itemsRecord.forEach(itemRecord => {
+						tournaments.push(itemRecord.val())
+						commit('setСoncreteTournaments', tournaments)
+					});
+				} else {
+					commit('setСoncreteTournaments', null)
+				}
+
+			} catch (e) { console.log(e) }
+		},
+
 		async remove({ }, idForRemove) {
 			try {
 
-				set(ref(database, `tournament/${idForRemove.idTournament}`), null);
+				set(ref(database, `tournament/${idForRemove.game}/${idForRemove.idTournament}`), null);
 				if (idForRemove.idBanner) {
 					const storageBannerRef = refStorage(storage, `tournament/${idForRemove.idBanner}`);
 					await deleteObject(storageBannerRef);
@@ -90,6 +131,9 @@ export const tournament = {
 	mutations: {
 		setTournaments(state, tournaments) {
 			state.tournaments = tournaments;
+		},
+		setСoncreteTournaments(state, tournaments) {
+			state.concreteTournaments = tournaments
 		}
 	}
 }

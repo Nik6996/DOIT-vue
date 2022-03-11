@@ -82,6 +82,29 @@
             <option>30 minute</option>
           </select>
         </div>
+        <div class="registration__platform">
+          <select v-model="registration.platform">
+            <option disabled value="">Select platform</option>
+            <option>PC</option>
+            <option>XBOX ONE</option>
+            <option>PS4</option>
+            <option>NINTENDO SWTCH</option>
+            <option>PS5</option>
+            <option>XBOX SERIES X</option>
+          </select>
+        </div>
+        <div class="registration__server">
+          <select v-model="registration.server">
+            <option disabled value="">Select server</option>
+            <option>Europe nordic & east</option>
+            <option>Europe West</option>
+            <option>Australia & Oceania</option>
+            <option>China</option>
+            <option>PS5</option>
+            <option>Asia</option>
+            <option>America</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -230,6 +253,20 @@ export default {
       margin-bottom: 20px;
       height: 40px;
       width: 160px;
+      padding-left: 10px;
+      color: #cccdcd;
+      background-color: #0f1215;
+      border: 2px solid #20252b;
+      border-radius: 4px;
+    }
+  }
+  &__platform,
+  &__server {
+    select {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      height: 40px;
+      width: 100%;
       padding-left: 10px;
       color: #cccdcd;
       background-color: #0f1215;
