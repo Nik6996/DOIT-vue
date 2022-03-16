@@ -31,7 +31,8 @@
             >
               <div class="header__current-user-main">
                 <div class="header__icon-user">
-                  <img src="@/assets/img/avatar.jpg" alt="" />
+                  <img v-if="getUser.photoUrl" :src="getUser.photoUrl" alt="" />
+                  <img v-else src="@/assets/img/avatar.jpg" alt="" />
                 </div>
                 <div class="header__user-body">
                   <div class="header__user-name">{{ user.name }}</div>

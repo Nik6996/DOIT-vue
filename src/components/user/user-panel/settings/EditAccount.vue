@@ -11,6 +11,17 @@
           <span>Name</span>
           <input v-model="user.realName" type="text" />
         </div>
+        <div class="edit__photo">
+          <label class="edit__upload-btn" for="img">UPLOAD LOGO</label>
+          <input
+            v-on:change="previewImg()"
+            accept=".png, .jpg, .jpeg"
+            id="img"
+            type="file"
+            ref="ImgInput"
+          />
+          <img :src="imageSrc" alt="" />
+        </div>
 
         <div class="edit__country">
           <span>Country</span>
@@ -26,9 +37,7 @@
         <div class="edit__sex">
           <span>Sex</span>
           <select v-model="user.sex">
-            <option selected="true" disabled="disabled" value="">
-              I don't want to talk
-            </option>
+            <option disabled="disabled" value="">I don't want to talk</option>
             <option value="male">male</option>
             <option value="famale">famale</option>
           </select>
@@ -72,6 +81,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { Calendar, DatePicker } from "v-calendar";
+const defaultImg = require("@/assets/img/preview.png");
 export default {
   data() {
     return {
@@ -84,6 +94,8 @@ export default {
         email: "",
         realName: "",
         subscribe: "",
+        photo: "",
+        photoUrl: "",
       },
       date: new Date(),
       isActive: false,
@@ -94,21 +106,29 @@ export default {
     DatePicker,
   },
   computed: {
+    imageSrc() {
+      if (this.user.photoUrl) {
+        return this.user.photoUrl;
+      } else {
+        return defaultImg;
+      }
+    },
     ...mapGetters({
       getUser: "loadUser/getUser",
     }),
   },
   mounted() {
-    if (this.getUser) {
-      this.user.country = this.getUser.country;
-      this.date = new Date(this.getUser.date);
-      this.user.name = this.getUser.name;
-      this.user.realName = this.getUser.realName || "";
-      this.user.balance = this.getUser.balance || 0;
-      this.user.email = this.getUser.email;
-      this.user.sex = this.getUser.sex;
-      this.user.subscribe = this.getUser.subscribe;
-    }
+    this.$store.dispatch("loadUser/load");
+    // if (this.getUser) {
+    //   this.user.country = this.getUser.country;
+    //   this.date = new Date(this.getUser.date);
+    //   this.user.name = this.getUser.name;
+    //   this.user.realName = this.getUser.realName || "";
+    //   this.user.balance = this.getUser.balance || 0;
+    //   this.user.email = this.getUser.email;
+    //   this.user.sex = this.getUser.sex;
+    //   this.user.subscribe = this.getUser.subscribe;
+    // }
   },
   watch: {
     getUser: {
@@ -120,6 +140,7 @@ export default {
         this.user.balance = getUser.balance || 0;
         this.user.email = getUser.email;
         this.user.sex = getUser.sex;
+        this.user.photoUrl = this.getUser.photoUrl;
       },
     },
     date: {
@@ -134,14 +155,25 @@ export default {
   methods: {
     async save() {
       await this.$store.dispatch("edit/save", this.user);
-      this.$router.push("/user/profile");
-    },
+      await this.$router.push("/user/profile");
+    }, //
     calendar() {
       if (!this.isActive) {
         this.isActive = true;
       } else {
         this.isActive = false;
       }
+    },
+    previewImg() {
+      const file = this.$refs.ImgInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (ev) => {
+        this.user.photo = file;
+        this.user.photoUrl = ev.currentTarget.result;
+      };
+
+      reader.readAsDataURL(file);
     },
   },
 };
@@ -299,6 +331,29 @@ export default {
       border-radius: 2px;
       color: #e6e6e6;
       font-weight: 700;
+    }
+  }
+  &__upload-btn {
+    margin-top: 15px;
+    width: 137px;
+    height: 40px;
+    background-color: #1a222d;
+    font-size: 10px;
+    color: #f5f5f5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__photo {
+    input {
+      display: none;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      margin-top: 15px;
+      object-fit: cover;
     }
   }
 }

@@ -27,7 +27,9 @@ export default {
     }),
   },
   async mounted() {
-    this.$store.dispatch("loadUser/load");
+    if (!this.getUser) {
+      await this.$store.dispatch("loadUser/load");
+    }
   },
 };
 </script>

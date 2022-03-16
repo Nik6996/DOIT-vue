@@ -28,6 +28,7 @@ import TournamentAdmin from '@/components/tournament/TournamentAdmin'
 import MainTournament from '@/components/tournament/tournament-admin/MainTournament'
 import SelectTournament from '@/components/tournament/tournament-admin/SelectTournament'
 import ListTournament from '@/components/tournament/tournament-user/ListTournament'
+import CardTournament from '@/components/tournament/tournament-user/main-tournament/CardTournament'
 
 
 
@@ -63,8 +64,13 @@ const routes = [{
 		},
 		{
 			path: '/tournament/:game',
-			component: ListTournament
+			component: ListTournament,
 		},
+		{
+			path: '/tournament/:game/:id',
+			component: CardTournament,
+		},
+
 
 		{
 			path: '/tournament-admin',

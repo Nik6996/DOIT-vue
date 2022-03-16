@@ -84,7 +84,7 @@
         </div>
         <div class="registration__platform">
           <select v-model="registration.platform">
-            <option disabled value="">Select platform</option>
+            <option disabled value="">Select platform*</option>
             <option>PC</option>
             <option>XBOX ONE</option>
             <option>PS4</option>
@@ -95,7 +95,7 @@
         </div>
         <div class="registration__server">
           <select v-model="registration.server">
-            <option disabled value="">Select server</option>
+            <option disabled value="">Select server*</option>
             <option>Europe nordic & east</option>
             <option>Europe West</option>
             <option>Australia & Oceania</option>

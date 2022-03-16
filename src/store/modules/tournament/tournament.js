@@ -1,5 +1,5 @@
 import { database, storage } from "@/firebaseConfig";
-import { ref, set, get, } from "firebase/database";
+import { ref, set, get, update } from "firebase/database";
 import { ref as refStorage, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 
@@ -8,14 +8,18 @@ export const tournament = {
 
 	state: () => ({
 		tournaments: '',
-		concreteTournaments: ''
+		concreteGame: '',
+		concreteTournament: ''
 	}),
 	getters: {
 		getTournaments(state) {
 			return state.tournaments
 		},
-		getСoncreteTournaments(state) {
-			return state.concreteTournaments
+		getСoncreteGame(state) {
+			return state.concreteGame
+		},
+		getСoncreteTournament(state) {
+			return state.concreteTournament
 		}
 	},
 	actions: {
@@ -53,7 +57,6 @@ export const tournament = {
 		},
 
 		async edit({ dispatch }, item) {
-			console.log(item);
 			if (item.gameInfo.game === item.oldGame) {
 				dispatch('save', item)
 			} else {
@@ -100,10 +103,23 @@ export const tournament = {
 					const tournaments = []
 					itemsRecord.forEach(itemRecord => {
 						tournaments.push(itemRecord.val())
-						commit('setСoncreteTournaments', tournaments)
+						commit('setСoncreteGame', tournaments)
 					});
 				} else {
-					commit('setСoncreteTournaments', null)
+					commit('setСoncreteGame', null)
+				}
+
+			} catch (e) { console.log(e) }
+		},
+
+		async loadConcreteTournament({ commit }, item) {
+			try {
+				const itemsRef = ref(database, `tournament/${item.game}/${item.id}`);
+				const itemsRecord = await get(itemsRef);
+				if (itemsRecord.exists()) {
+
+					commit('setСoncreteTournaments', itemsRecord.val())
+
 				}
 
 			} catch (e) { console.log(e) }
@@ -126,14 +142,36 @@ export const tournament = {
 			} catch (e) {
 				console.log(e);
 			}
+		},
+		async players({ }, item) {
+
+
+
+			try {
+				if (item.players.length >= 1) {
+					const players = item.players
+					update(ref(database, `tournament/${item.game}/${item.id}`), {
+						players: players
+					});
+				} else {
+					update(ref(database, `tournament/${item.game}/${item.id}`), {
+						players: ''
+					});
+				}
+
+
+			} catch (e) { console.log(e); }
 		}
 	},
 	mutations: {
 		setTournaments(state, tournaments) {
 			state.tournaments = tournaments;
 		},
-		setСoncreteTournaments(state, tournaments) {
-			state.concreteTournaments = tournaments
+		setСoncreteGame(state, tournaments) {
+			state.concreteGame = tournaments
+		},
+		setСoncreteTournaments(state, tournament) {
+			state.concreteTournament = tournament
 		}
 	}
 }

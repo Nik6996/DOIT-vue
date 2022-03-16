@@ -5,7 +5,7 @@
         <div class="game__select">
           <span>Main Game</span>
           <select v-model="gameInfo.game">
-            <option disabled value="">Select game</option>
+            <option disabled value="">Select game*</option>
             <option v-for="game in games" :value="game.name" :key="game.id">
               {{ game.name }}
             </option>

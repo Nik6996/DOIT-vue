@@ -1,6 +1,9 @@
 <template>
   <div>
     <div class="tournament">
+      <div v-show="isError" class="modal-message">
+        Fill in all required fields!
+      </div>
       <div v-if="isLoading" class="loading"></div>
       <div class="tournament__title"><span>Tournament</span></div>
       <div class="tournament__content">
@@ -48,6 +51,7 @@
             <template #content> <rules :rules="tournament.rules" /> </template>
           </vue-collapsible-panel>
         </vue-collapsible-panel-group>
+
         <div class="tournament__save">
           <button @click="save()">
             <span v-if="this.$route.params.id">Save changes</span>
@@ -131,9 +135,10 @@ export default {
           donations: "",
         },
         rules: "",
-
+        players: "",
         id: "",
       },
+      isError: false,
       oldGame: "",
       isLoading: false,
     };
@@ -152,6 +157,15 @@ export default {
       tournaments: "tournament/getTournaments",
     }),
   },
+  watch: {
+    isError: {
+      handler(isError) {
+        if (isError) {
+          setTimeout(this.validError, 3000);
+        }
+      },
+    },
+  },
   async mounted() {
     if (this.$route.params.id) {
       await this.$store.dispatch("tournament/load");
@@ -160,6 +174,9 @@ export default {
     }
   },
   methods: {
+    validError() {
+      this.isError = false;
+    },
     async remove() {
       this.isLoading = true;
       const idForRemove = {
@@ -182,17 +199,45 @@ export default {
     },
     async save() {
       if (!this.tournament.id) {
-        this.tournament.id = new Date().valueOf();
-        this.isLoading = true;
-        await this.$store.dispatch("tournament/save", this.tournament);
-        this.$router.push("/tournament-admin");
-        this.isLoading = false;
-      } else {
-        this.isLoading = true;
+        if (
+          this.tournament.basicInfo.name &&
+          this.tournament.gameInfo.game &&
+          this.tournament.gameInfo.mode &&
+          this.tournament.gameInfo.formatGame &&
+          this.tournament.registration.platform &&
+          this.tournament.prizePool.prizeSum &&
+          this.tournament.gameInfo.banner.img &&
+          this.tournament.prizePool.maxPlayers
+        ) {
+          this.tournament.id = new Date().valueOf();
+          this.isLoading = true;
 
-        await this.$store.dispatch("tournament/edit", this.tournament);
-        this.$router.push("/tournament-admin");
-        this.isLoading = false;
+          await this.$store.dispatch("tournament/save", this.tournament);
+          this.$router.push("/tournament-admin");
+          this.isLoading = false;
+        } else {
+          this.isError = true;
+        }
+      } else {
+        if (
+          this.tournament.basicInfo.name &&
+          this.tournament.gameInfo.game &&
+          this.tournament.gameInfo.mode &&
+          this.tournament.gameInfo.formatGame &&
+          this.tournament.registration.platform &&
+          this.tournament.prizePool.prizeSum &&
+          this.tournament.prizePool.maxPlayers &&
+          (this.tournament.gameInfo.banner.img ||
+            this.tournament.gameInfo.banner.imgUrl)
+        ) {
+          this.isLoading = true;
+
+          await this.$store.dispatch("tournament/edit", this.tournament);
+          this.$router.push("/tournament-admin");
+          this.isLoading = false;
+        } else {
+          this.isError = true;
+        }
       }
     },
   },
@@ -284,5 +329,22 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 1000;
+}
+.modal-message {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 230px;
+  height: 70px;
+  background-color: rgb(136, 20, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  z-index: 200;
+
+  font-size: 17px;
+  color: #f5f5f5;
+  font-weight: 700;
 }
 </style>

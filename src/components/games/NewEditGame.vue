@@ -423,6 +423,7 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  z-index: 200;
   span {
     display: block;
     font-size: 22px;

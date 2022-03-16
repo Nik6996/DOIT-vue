@@ -5,7 +5,10 @@
         <div class="tournament__title">
           {{ this.$route.params.game }}:Tournaments
         </div>
-        <div class="tournament__list">
+        <div v-if="!tournaments" class="tournament__error">
+          Tournaments not found!
+        </div>
+        <div v-else class="tournament__list">
           <div v-for="(tournament, index) in tournaments" :key="tournament.id">
             <preview-tournament v-model="tournaments[index]" />
           </div>
@@ -24,7 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      tournaments: "tournament/getСoncreteTournaments",
+      tournaments: "tournament/getСoncreteGame",
     }),
   },
   async mounted() {
@@ -51,6 +54,14 @@ export default {
     font-size: 34px;
     margin-bottom: 16px;
     text-transform: uppercase;
+  }
+  &__error {
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    color: rgb(148, 28, 28);
   }
 }
 @media (max-width: 1430px) {

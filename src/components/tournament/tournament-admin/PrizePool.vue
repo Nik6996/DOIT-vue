@@ -3,7 +3,7 @@
     <div class="prize">
       <div class="prize__column">
         <div class="prize__place">
-          <span>Prize pool: $</span
+          <span>Prize pool*: $</span
           ><input v-model="prizePool.prizeSum" type="number" />
         </div>
         <div class="prize__place3">
@@ -87,7 +87,7 @@
       </div>
       <div class="prize__column">
         <div class="prize__place-top">
-          <span>MAX players</span>
+          <span>MAX players*</span>
           <input v-model="prizePool.maxPlayers" type="number" />
         </div>
         <div class="prize__place">

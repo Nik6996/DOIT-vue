@@ -1,37 +1,46 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card__img"><img :src="img" alt="" /></div>
-      <div class="card__content">
-        <div class="card__title">{{ title }}</div>
-        <div class="card__main">
-          <div class="card__prize">
-            <span>PRIZE</span>
-            <div>${{ prize }}</div>
-          </div>
-          <div class="card__entry">
-            <span>MAX PLAYERS</span>
-            <div>{{ players }}</div>
-          </div>
-          <div class="card__platform">
-            <span>PLATFORM</span>
-            <div>{{ platform }}</div>
-          </div>
-          <div class="card__slots">
-            <span>SLOTS</span>
-            <div>16/16</div>
-          </div>
-          <div class="card__mode">
-            <span>MODE</span>
-            <div>{{ mode }}</div>
-          </div>
-          <div class="card__server">
-            <span>SERVER</span>
-            <div>{{ server }}</div>
+    <router-link
+      :to="
+        '/tournament/' +
+        this.$attrs.modelValue.gameInfo.game +
+        '/' +
+        this.$attrs.modelValue.id
+      "
+    >
+      <div class="card">
+        <div class="card__img"><img :src="img" alt="" /></div>
+        <div class="card__content">
+          <div class="card__title">{{ title }}</div>
+          <div class="card__main">
+            <div class="card__prize">
+              <span>PRIZE</span>
+              <div>${{ prize }}</div>
+            </div>
+            <div class="card__entry">
+              <span>MAX PLAYERS</span>
+              <div>{{ players }}</div>
+            </div>
+            <div class="card__platform">
+              <span>PLATFORM</span>
+              <div>{{ platform }}</div>
+            </div>
+            <div class="card__slots">
+              <span>SLOTS</span>
+              <div>16/16</div>
+            </div>
+            <div class="card__mode">
+              <span>MODE</span>
+              <div>{{ mode }}</div>
+            </div>
+            <div class="card__server">
+              <span>SERVER</span>
+              <div>{{ server }}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -55,7 +64,7 @@ export default {
 .card {
   display: flex;
   border: 2px solid #20252b;
-
+  margin: 15px;
   &__img {
     img {
       width: 130px;

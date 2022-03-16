@@ -3,7 +3,8 @@
     <div class="user__content">
       <div class="user__info">
         <div class="user__logo">
-          <img src="@/assets/img/avatar.jpg" alt="" />
+          <img v-if="getUser.photoUrl" :src="getUser.photoUrl" alt="" />
+          <img v-else src="@/assets/img/avatar.jpg" alt="" />
         </div>
         <div class="user__name">{{ getUser.name }}</div>
         <div class="user__balance">

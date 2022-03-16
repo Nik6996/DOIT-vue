@@ -1,36 +1,45 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card__content">
-        <div class="card__img"><img :src="img" alt="" /></div>
-        <div class="card__title">{{ title }}</div>
-        <div class="card__bottom">
-          <div class="card__block">
-            <div class="card__name">Start</div>
-            <div class="card__data">
-              <span v-if="this.day <= 9">0</span>
-              <div class="card__day">{{ day }}</div>
-              <span>/</span>
-              <span v-if="this.month <= 9">0</span>
+    <router-link
+      :to="
+        '/tournament/' +
+        this.$attrs.modelValue.gameInfo.game +
+        '/' +
+        this.$attrs.modelValue.id
+      "
+    >
+      <div class="card">
+        <div class="card__content">
+          <div class="card__img"><img :src="img" alt="" /></div>
+          <div class="card__title">{{ title }}</div>
+          <div class="card__bottom">
+            <div class="card__block">
+              <div class="card__name">Start</div>
+              <div class="card__data">
+                <span v-if="this.day <= 9">0</span>
+                <div class="card__day">{{ day }}</div>
+                <span>/</span>
+                <span v-if="this.month <= 9">0</span>
 
-              <div class="card__month">{{ month }}</div>
+                <div class="card__month">{{ month }}</div>
+              </div>
+            </div>
+            <div class="card__block">
+              <div class="card__name">Mode</div>
+              <div class="card__data">{{ mode }}</div>
+            </div>
+            <div class="card__block">
+              <div class="card__name">Slots</div>
+              <div class="card__data">16/16</div>
+            </div>
+            <div class="card__block">
+              <div class="card__name">Pool</div>
+              <div class="card__data"><span>$</span> {{ pool }}</div>
             </div>
           </div>
-          <div class="card__block">
-            <div class="card__name">Mode</div>
-            <div class="card__data">{{ mode }}</div>
-          </div>
-          <div class="card__block">
-            <div class="card__name">Slots</div>
-            <div class="card__data">16/16</div>
-          </div>
-          <div class="card__block">
-            <div class="card__name">Pool</div>
-            <div class="card__data"><span>$</span> {{ pool }}</div>
-          </div>
         </div>
-      </div>
-    </div>
+      </div></router-link
+    >
   </div>
 </template>
 
