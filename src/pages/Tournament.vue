@@ -5,7 +5,7 @@
       class="admin-btn"
       @click="this.$router.push('/tournament-admin')"
     >
-      <button>Add Tournament</button>
+      <button>Admin panel</button>
     </div>
     <div class="game">
       <div class="game__content">

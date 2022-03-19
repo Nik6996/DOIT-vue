@@ -29,6 +29,7 @@ import MainTournament from '@/components/tournament/tournament-admin/MainTournam
 import SelectTournament from '@/components/tournament/tournament-admin/SelectTournament'
 import ListTournament from '@/components/tournament/tournament-user/ListTournament'
 import CardTournament from '@/components/tournament/tournament-user/main-tournament/CardTournament'
+import EditBracket from '@/components/tournament/tournament-admin/EditBracket'
 
 
 
@@ -79,6 +80,10 @@ const routes = [{
 		{
 			path: '/tournament-create',
 			component: MainTournament
+		},
+		{
+			path: '/tournament-bracket:id',
+			component: EditBracket
 		},
 		{
 			path: '/tournament-select',

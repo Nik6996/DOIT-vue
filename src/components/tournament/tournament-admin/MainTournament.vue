@@ -48,7 +48,9 @@
           </vue-collapsible-panel>
           <vue-collapsible-panel :expanded="false">
             <template #title>Rules </template>
-            <template #content> <rules :rules="tournament.rules" /> </template>
+            <template #content>
+              <rules @rulesData="rulesSet" :rules="tournament.rules" />
+            </template>
           </vue-collapsible-panel>
         </vue-collapsible-panel-group>
 
@@ -134,6 +136,7 @@ export default {
           ro512: "",
           donations: "",
         },
+        slots: "",
         rules: "",
         players: "",
         id: "",
@@ -239,6 +242,9 @@ export default {
           this.isError = true;
         }
       }
+    },
+    rulesSet(data) {
+      this.tournament.rules = data;
     },
   },
 };

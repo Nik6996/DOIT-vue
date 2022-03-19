@@ -30,7 +30,7 @@
             </div>
             <div class="card__block">
               <div class="card__name">Slots</div>
-              <div class="card__data">16/16</div>
+              <div class="card__data">{{ slots }}/16</div>
             </div>
             <div class="card__block">
               <div class="card__name">Pool</div>
@@ -54,6 +54,7 @@ export default {
       day: new Date(this.$attrs.modelValue.registration.startDate).getDate(),
       mode: this.$attrs.modelValue.gameInfo.mode,
       pool: this.$attrs.modelValue.prizePool.prizeSum,
+      slots: this.$attrs.modelValue.slots,
     };
   },
 };

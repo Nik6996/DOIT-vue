@@ -13,7 +13,7 @@ export default {};
 
 ::-webkit-scrollbar {
   width: 10px; /* ширина для вертикального скролла */
-  height: 6px; /* высота для горизонтального скролла */
+  height: 10px; /* высота для горизонтального скролла */
   background-color: #0e2846;
 }
 ::-webkit-scrollbar-thumb {

@@ -3,7 +3,7 @@
     <div class="rules">
       <div class="rules__title">Rules</div>
       <textarea
-        v-model="rules"
+        v-model="rulesLocal"
         placeholder="You can write here somebody about your tournament...."
       ></textarea>
     </div>
@@ -12,10 +12,23 @@
 
 <script>
 export default {
+  data() {
+    return {
+      rulesLocal: "",
+    };
+  },
   props: {
-    rules: {
-      type: String,
+    rules: {},
+  },
+  watch: {
+    rulesLocal: {
+      handler(rulesLocal) {
+        this.$emit("rulesData", rulesLocal);
+      },
     },
+  },
+  mounted() {
+    this.rulesLocal = this.rules;
   },
 };
 </script>

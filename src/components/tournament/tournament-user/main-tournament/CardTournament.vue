@@ -55,12 +55,22 @@
             >
               Support
             </div>
+            <div
+              v-if="isAdmin"
+              class="admin-btn"
+              @click="
+                this.$router.push('/tournament-bracket' + this.$route.params.id)
+              "
+            >
+              <button>Edit bracket</button>
+            </div>
           </div>
+
           <div>
             <info :info="info" v-if="isActive === 'Info'" />
             <bracket v-if="isActive === 'Bracket'" />
             <players :players="players" v-if="isActive === 'Players'" />
-            <rules v-if="isActive === 'Rules'" />
+            <rules :rules="rules" v-if="isActive === 'Rules'" />
             <support v-if="isActive === 'Support'" />
           </div>
         </div>
@@ -108,8 +118,10 @@ export default {
       game: "",
       name: "",
       endDate: "",
+      rules: "",
       players: [],
       userUid: "",
+      isAdmin: false,
       info: {
         time: "",
         game: "",
@@ -147,10 +159,10 @@ export default {
         this.info.prize = getTournament.prizePool.prizeSum;
         this.info.mode = getTournament.gameInfo.mode;
         this.info.format = getTournament.gameInfo.formatGame;
-
         if (this.getTournament.players.length >= 1) {
           this.players = getTournament.players;
         }
+        this.rules = getTournament.rules;
       },
     },
     players: {
@@ -164,8 +176,18 @@ export default {
         this.$store.dispatch("tournament/players", item);
       },
     },
+    getUser: {
+      handler(getUser) {
+        if (getUser) {
+          this.isAdmin = this.getUser.isAdmin;
+        }
+      },
+    },
   },
   async mounted() {
+    if (this.getUser) {
+      this.isAdmin = this.getUser.isAdmin;
+    }
     const item = { game: this.$route.params.game, id: this.$route.params.id };
     await this.$store.dispatch("tournament/loadConcreteTournament", item);
     const auth = getAuth();
@@ -349,6 +371,20 @@ export default {
 .unregister {
   button {
     background: #20252b;
+  }
+}
+.admin-btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 200px;
+
+  button {
+    background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
+    border-radius: 2px;
+    width: 100%;
+    height: 44px;
+    color: #f5f5f5;
+    font-weight: 700;
   }
 }
 </style>

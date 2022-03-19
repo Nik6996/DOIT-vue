@@ -4,15 +4,21 @@
       <div class="admin__btns">
         <div
           @click="this.$router.push('/tournament-create')"
-          class="admin__create"
+          class="admin__btn"
         >
           <button>Create Tournamnet</button>
         </div>
         <div
           @click="this.$router.push('/tournament-select')"
-          class="admin__edit"
+          class="admin__btn"
         >
           <button>Edit Tournamnet</button>
+        </div>
+        <div
+          @click="this.$router.push('/tournament-bracket')"
+          class="admin__btn"
+        >
+          <button>Edit Tournamnet bracket</button>
         </div>
       </div>
     </div>
@@ -33,19 +39,7 @@ export default {};
     display: flex;
   }
 
-  &__create {
-    margin: 20px;
-    button {
-      width: 250px;
-      height: 100px;
-      color: #f5f5f5;
-      font-weight: 700;
-      font-size: 22px;
-      background: #1a222d;
-    }
-  }
-
-  &__edit {
+  &__btn {
     margin: 20px;
     button {
       width: 250px;
@@ -55,6 +49,6 @@ export default {};
       font-weight: 700;
       font-size: 22px;
     }
-  }
+  } //изменить путь и написать компонент
 }
 </style>

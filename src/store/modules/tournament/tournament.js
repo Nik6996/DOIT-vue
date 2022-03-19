@@ -145,17 +145,17 @@ export const tournament = {
 		},
 		async players({ }, item) {
 
-
-
 			try {
 				if (item.players.length >= 1) {
 					const players = item.players
 					update(ref(database, `tournament/${item.game}/${item.id}`), {
-						players: players
+						players: players,
+						slots: players.length
 					});
 				} else {
 					update(ref(database, `tournament/${item.game}/${item.id}`), {
-						players: ''
+						players: '',
+						slots: 0
 					});
 				}
 

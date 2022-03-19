@@ -27,7 +27,7 @@
             </div>
             <div class="card__slots">
               <span>SLOTS</span>
-              <div>16/16</div>
+              <div>{{ slots }}/16</div>
             </div>
             <div class="card__mode">
               <span>MODE</span>
@@ -55,6 +55,7 @@ export default {
       mode: this.$attrs.modelValue.gameInfo.mode,
       platform: this.$attrs.modelValue.registration.platform,
       server: this.$attrs.modelValue.registration.server,
+      slots: this.$attrs.modelValue.slots,
     };
   },
 };

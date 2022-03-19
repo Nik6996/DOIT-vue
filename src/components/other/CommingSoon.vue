@@ -31,7 +31,7 @@ export default {};
     height: 760px;
     background-size: contain;
     background-image: url("../../assets/img/bcgMain.svg");
-    // background-image: url(".../assets/img/bcgMain.svg");
+
     background-repeat: no-repeat;
     padding-top: 14%;
   }
