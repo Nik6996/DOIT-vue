@@ -13,7 +13,7 @@
               slidesPerView: 2,
             },
             1320: {
-              slidesPerView: 3,
+              slidesPerView: 4,
             },
           }"
           class="swiper"
@@ -23,7 +23,7 @@
             <div class="bracket__column">
               <div class="bracket__block">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A1">
+                  <select v-model="bracket.playersIn16.userIn16A1.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -33,10 +33,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A1.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A1.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A2">
+                  <select v-model="bracket.playersIn16.userIn16A2.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -46,40 +55,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A3">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
-                </div>
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A4">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A2.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A2.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A5">
+                  <select v-model="bracket.playersIn16.userIn16A3.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -89,10 +79,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A3.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A3.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A6">
+                  <select v-model="bracket.playersIn16.userIn16A4.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -102,40 +101,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A7">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
-                </div>
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A8">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A4.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A4.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A9">
+                  <select v-model="bracket.playersIn16.userIn16A5.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -145,10 +125,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A5.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A5.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A10">
+                  <select v-model="bracket.playersIn16.userIn16A6.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -158,40 +147,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A11">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
-                </div>
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A12">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A6.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A6.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A13">
+                  <select v-model="bracket.playersIn16.userIn16A7.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -201,10 +171,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A7.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A7.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A14">
+                  <select v-model="bracket.playersIn16.userIn16A8.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -214,12 +193,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A8.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A8.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A15">
+                  <select v-model="bracket.playersIn16.userIn16A9.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -229,10 +217,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A9.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A9.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn16.userIn16A16">
+                  <select v-model="bracket.playersIn16.userIn16A10.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -242,7 +239,154 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A10.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A10.winner"
+                  />
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn16.userIn16A11.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A11.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A11.winner"
+                  />
+                </div>
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn16.userIn16A12.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A12.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A12.winner"
+                  />
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn16.userIn16A13.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A13.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A13.winner"
+                  />
+                </div>
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn16.userIn16A14.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A14.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A14.winner"
+                  />
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn16.userIn16A15.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A15.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A15.winner"
+                  />
+                </div>
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn16.userIn16A16.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn16.userIn16A16.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn16.userIn16A16.winner"
+                  />
                 </div>
               </div>
             </div>
@@ -252,7 +396,7 @@
             <div class="bracket__column column2">
               <div class="bracket__block bracket__inner-small">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A1">
+                  <select v-model="bracket.playersIn8.userIn8A1.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -262,10 +406,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A1.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A1.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A2">
+                  <select v-model="bracket.playersIn8.userIn8A2.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -275,40 +428,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
-                </div>
-              </div>
-              <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A3">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
-                </div>
-                <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A4">
-                    <option disabled value="">Select player</option>
-                    <option
-                      v-for="player in getTournament.players"
-                      :value="player.title"
-                      :key="player.id"
-                    >
-                      {{ player.title }}
-                    </option>
-                  </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A2.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A2.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block bracket__inner-small">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A5">
+                  <select v-model="bracket.playersIn8.userIn8A3.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -318,10 +452,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A3.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A3.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A6">
+                  <select v-model="bracket.playersIn8.userIn8A4.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -331,12 +474,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A4.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A4.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block bracket__inner-small">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A7">
+                  <select v-model="bracket.playersIn8.userIn8A5.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -346,10 +498,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A5.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A5.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersIn8.userIn8A8">
+                  <select v-model="bracket.playersIn8.userIn8A6.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -359,7 +520,62 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A6.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A6.winner"
+                  />
+                </div>
+              </div>
+              <div class="bracket__block bracket__inner-small">
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn8.userIn8A7.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A7.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A7.winner"
+                  />
+                </div>
+                <div class="bracket__player">
+                  <select v-model="bracket.playersIn8.userIn8A8.name">
+                    <option disabled value="">Select player</option>
+                    <option
+                      v-for="player in getTournament.players"
+                      :value="player.title"
+                      :key="player.id"
+                    >
+                      {{ player.title }}
+                    </option>
+                  </select>
+                  <input
+                    class="points"
+                    v-model="bracket.playersIn8.userIn8A8.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersIn8.userIn8A8.winner"
+                  />
                 </div>
               </div>
             </div>
@@ -369,7 +585,7 @@
             <div class="bracket__column column2">
               <div class="bracket__block bracket__inner-small">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersSemiFinal.user1">
+                  <select v-model="bracket.playersSemiFinal.user1.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -379,10 +595,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersSemiFinal.user1.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersSemiFinal.user1.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersSemiFinal.user2">
+                  <select v-model="bracket.playersSemiFinal.user2.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -392,12 +617,21 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersSemiFinal.user2.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersSemiFinal.user2.winner"
+                  />
                 </div>
               </div>
               <div class="bracket__block bracket__inner-small">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersSemiFinal.user3">
+                  <select v-model="bracket.playersSemiFinal.user3.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -407,10 +641,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersSemiFinal.user3.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersSemiFinal.user3.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersSemiFinal.user4">
+                  <select v-model="bracket.playersSemiFinal.user4.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -420,7 +663,16 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersSemiFinal.user4.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersSemiFinal.user4.winner"
+                  />
                 </div>
               </div>
             </div>
@@ -430,7 +682,7 @@
             <div class="bracket__column">
               <div class="bracket__block bracket__inner-big">
                 <div class="bracket__player">
-                  <select v-model="bracket.playersFinal.user1">
+                  <select v-model="bracket.playersFinal.user1.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -440,10 +692,19 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersFinal.user1.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersFinal.user1.winner"
+                  />
                 </div>
                 <div class="bracket__player">
-                  <select v-model="bracket.playersFinal.user2">
+                  <select v-model="bracket.playersFinal.user2.name">
                     <option disabled value="">Select player</option>
                     <option
                       v-for="player in getTournament.players"
@@ -453,7 +714,16 @@
                       {{ player.title }}
                     </option>
                   </select>
-                  <span>22</span>
+                  <input
+                    class="points"
+                    v-model="bracket.playersFinal.user2.points"
+                    type="text"
+                  />
+                  <input
+                    class="winner"
+                    type="checkbox"
+                    v-model="bracket.playersFinal.user2.winner"
+                  />
                 </div>
               </div>
             </div>
@@ -461,7 +731,7 @@
         </swiper>
       </div>
       <div class="bracket__save">
-        <button>Save</button>
+        <button @click="save()">Save</button>
       </div>
     </div>
   </div>
@@ -479,42 +749,191 @@ export default {
     return {
       bracket: {
         playersIn16: {
-          userIn16A1: "",
-          userIn16A2: "",
-          userIn16A3: "",
-          userIn16A4: "",
-          userIn16A5: "",
-          userIn16A6: "",
-          userIn16A7: "",
-          userIn16A8: "",
-          userIn16A9: "",
-          userIn16A10: "",
-          userIn16A11: "",
-          userIn16A12: "",
-          userIn16A13: "",
-          userIn16A14: "",
-          userIn16A15: "",
-          userIn16A16: "",
+          userIn16A1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A2: {
+            name: "",
+            country: "",
+            winner: false,
+          },
+          userIn16A3: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A4: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A5: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A6: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A7: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A8: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A9: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A10: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A11: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A12: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A13: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A14: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A15: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A16: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
         },
         playersIn8: {
-          userIn8A1: "",
-          userIn8A2: "",
-          userIn8A3: "",
-          userIn8A4: "",
-          userIn8A5: "",
-          userIn8A6: "",
-          userIn8A7: "",
-          userIn8A8: "",
+          userIn8A1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A2: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A3: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A4: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A5: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A6: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A7: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A8: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
         },
         playersSemiFinal: {
-          user1: "",
-          user2: "",
-          user3: "",
-          user4: "",
+          user1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user2: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user3: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user4: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
         },
         playersFinal: {
-          user1: "",
-          user2: "",
+          user1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user2: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
         },
       },
     };
@@ -527,6 +946,25 @@ export default {
     ...mapGetters({
       getTournament: "tournament/getСoncreteTournament",
     }),
+  },
+
+  mounted() {
+    if (this.getTournament.bracket) {
+      this.bracket = this.getTournament.bracket;
+    }
+  },
+  methods: {
+    async save() {
+      const tournament = this.getTournament;
+      tournament.bracket = this.bracket;
+      await this.$store.dispatch("tournament/save", tournament);
+      this.$router.push(
+        `/tournament/` +
+          this.getTournament.gameInfo.game +
+          "/" +
+          this.getTournament.id
+      );
+    },
   },
 };
 </script>
@@ -638,5 +1076,16 @@ export default {
   height: 812px;
   justify-content: space-around;
   padding: 25px 0px;
+}
+.points {
+  background: #20272e;
+  width: 36px;
+  height: 36px;
+  color: #f5f5f5;
+  text-align: center;
+}
+.winner {
+  position: absolute;
+  right: -20px;
 }
 </style>

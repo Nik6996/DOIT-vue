@@ -4,7 +4,7 @@
       <div class="players__not-found" v-if="playersArray <= 1">
         <span>Players not found</span>
       </div>
-      <div v-else>
+      <div v-else class="players__list">
         <div v-for="(player, index) in playersArray" :key="player.id">
           <preview-player v-model="playersArray[index]" />
         </div>
@@ -46,8 +46,11 @@ export default {
 <style lang="scss" scoped>
 .players {
   border: 2px solid #20252b;
-  display: flex;
-  flex-wrap: wrap;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
   &__not-found {
     margin: 0 auto;
     padding: 40px 0px;

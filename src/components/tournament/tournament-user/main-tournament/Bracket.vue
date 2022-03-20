@@ -31,83 +31,179 @@
             <div class="bracket__title">Round 16</div>
             <div class="bracket__column">
               <div class="bracket__block">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A1.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span>22</span>
+                  {{ bracket.playersIn16.userIn16A1.name }}
+                  <span>{{ bracket.playersIn16.userIn16A1.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A2.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A2.name }}
+                  <span>{{ bracket.playersIn16.userIn16A2.points }}</span>
                 </div>
               </div>
               <div class="bracket__block">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A3.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A3.name }}
+                  <span>{{ bracket.playersIn16.userIn16A3.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A4.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-              </div>
-              <div class="bracket__block">
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A4.name }}
+                  <span>{{ bracket.playersIn16.userIn16A4.points }}</span>
                 </div>
               </div>
               <div class="bracket__block">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A5.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A5.name }}
+                  <span>{{ bracket.playersIn16.userIn16A5.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A6.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A6.name }}
+                  <span>{{ bracket.playersIn16.userIn16A6.points }}</span>
                 </div>
               </div>
               <div class="bracket__block">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A7.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A7.name }}
+                  <span>{{ bracket.playersIn16.userIn16A7.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A8.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn16.userIn16A8.name }}
+                  <span>{{ bracket.playersIn16.userIn16A8.points }}</span>
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A9.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A9.name }}
+                  <span>{{ bracket.playersIn16.userIn16A9.points }}</span>
+                </div>
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A10.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A10.name }}
+                  <span>{{ bracket.playersIn16.userIn16A10.points }}</span>
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A11.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A11.name }}
+                  <span>{{ bracket.playersIn16.userIn16A11.points }}</span>
+                </div>
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A12.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A12.name }}
+                  <span>{{ bracket.playersIn16.userIn16A12.points }}</span>
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A13.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A13.name }}
+                  <span>{{ bracket.playersIn16.userIn16A13.points }}</span>
+                </div>
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A14.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A14.name }}
+                  <span>{{ bracket.playersIn16.userIn16A14.points }}</span>
+                </div>
+              </div>
+              <div class="bracket__block">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A15.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A15.name }}
+                  <span>{{ bracket.playersIn16.userIn16A15.points }}</span>
+                </div>
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn16.userIn16A16.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn16.userIn16A16.name }}
+                  <span>{{ bracket.playersIn16.userIn16A16.points }}</span>
                 </div>
               </div>
             </div>
@@ -116,43 +212,91 @@
             <div class="bracket__title">Round 8</div>
             <div class="bracket__column column2">
               <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A1.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn8.userIn8A1.name }}
+                  <span>{{ bracket.playersIn8.userIn8A1.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A2.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-              </div>
-              <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-              </div>
-              <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
-                </div>
-                <div class="bracket__player">
-                  <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn8.userIn8A2.name }}
+                  <span>{{ bracket.playersIn8.userIn8A2.points }}</span>
                 </div>
               </div>
               <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A3.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn8.userIn8A3.name }}
+                  <span>{{ bracket.playersIn8.userIn8A3.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A4.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersIn8.userIn8A4.name }}
+                  <span>{{ bracket.playersIn8.userIn8A4.points }}</span>
+                </div>
+              </div>
+              <div class="bracket__block bracket__inner-small">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A5.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn8.userIn8A5.name }}
+                  <span>{{ bracket.playersIn8.userIn8A5.points }}</span>
+                </div>
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A6.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn8.userIn8A6.name }}
+                  <span>{{ bracket.playersIn8.userIn8A6.points }}</span>
+                </div>
+              </div>
+              <div class="bracket__block bracket__inner-small">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A7.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn8.userIn8A7.name }}
+                  <span>{{ bracket.playersIn8.userIn8A7.points }}</span>
+                </div>
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersIn8.userIn8A8.winner,
+                  }"
+                  class="bracket__player"
+                >
+                  <div class="bracket__flag"></div>
+                  {{ bracket.playersIn8.userIn8A8.name }}
+                  <span>{{ bracket.playersIn8.userIn8A8.points }}</span>
                 </div>
               </div>
             </div>
@@ -161,23 +305,47 @@
             <div class="bracket__title">Semi final</div>
             <div class="bracket__column column2">
               <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersSemiFinal.user1.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersSemiFinal.user1.name }}
+                  <span>{{ bracket.playersSemiFinal.user1.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersSemiFinal.user2.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersSemiFinal.user2.name }}
+                  <span>{{ bracket.playersSemiFinal.user2.points }}</span>
                 </div>
               </div>
               <div class="bracket__block bracket__inner-small">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersSemiFinal.user3.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersSemiFinal.user3.name }}
+                  <span>{{ bracket.playersSemiFinal.user3.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersSemiFinal.user4.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersSemiFinal.user4.name }}
+                  <span>{{ bracket.playersSemiFinal.user4.points }}</span>
                 </div>
               </div>
             </div>
@@ -186,13 +354,25 @@
             <div class="bracket__title">final</div>
             <div class="bracket__column">
               <div class="bracket__block bracket__inner-big">
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersFinal.user1.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersFinal.user1.name }}
+                  <span>{{ bracket.playersFinal.user1.points }}</span>
                 </div>
-                <div class="bracket__player">
+                <div
+                  v-bind:class="{
+                    winner: bracket.playersFinal.user2.winner,
+                  }"
+                  class="bracket__player"
+                >
                   <div class="bracket__flag"></div>
-                  user <span></span>
+                  {{ bracket.playersFinal.user2.name }}
+                  <span>{{ bracket.playersFinal.user2.points }}</span>
                 </div>
               </div>
             </div>
@@ -206,14 +386,215 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import SwiperCore, { Navigation, Autoplay } from "swiper";
-//import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 SwiperCore.use([Navigation, Autoplay]);
 import "swiper/swiper.scss";
 
 export default {
+  data() {
+    return {
+      bracket: {
+        playersIn16: {
+          userIn16A1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A2: {
+            name: "",
+            country: "",
+            winner: false,
+          },
+          userIn16A3: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A4: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A5: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A6: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A7: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A8: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A9: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A10: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A11: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A12: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A13: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A14: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A15: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn16A16: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+        },
+        playersIn8: {
+          userIn8A1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A2: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A3: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A4: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A5: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A6: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A7: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          userIn8A8: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+        },
+        playersSemiFinal: {
+          user1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user2: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user3: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user4: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+        },
+        playersFinal: {
+          user1: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+          user2: {
+            name: "",
+            country: "",
+            winner: false,
+            points: "",
+          },
+        },
+      },
+    };
+  },
   components: {
     Swiper,
     SwiperSlide,
+  },
+  computed: {
+    ...mapGetters({
+      getTournament: "tournament/getСoncreteTournament",
+    }),
+  },
+  mounted() {
+    this.bracket = this.getTournament.bracket;
   },
 };
 </script>
@@ -322,5 +703,13 @@ export default {
   height: 812px;
   justify-content: space-around;
   padding: 25px 0px;
+}
+.winner {
+  border: 1px solid #2c95ff;
+  color: #f5f5f5;
+  span {
+    background: #2c95ff;
+    color: #0f1215;
+  }
 }
 </style>

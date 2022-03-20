@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="card">
+      <div v-show="isLoading"><loading /></div>
       <div class="card__header">
         <div
           @click="this.$router.push(`/tournament/${this.game}`)"
@@ -109,6 +110,7 @@ import Players from "@/components/tournament/tournament-user/main-tournament/Pla
 import Rules from "@/components/tournament/tournament-user/main-tournament/Rules";
 import Support from "@/components/tournament/tournament-user/main-tournament/Support";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import loading from "@/components/other/Loading";
 
 export default {
   data() {
@@ -122,6 +124,7 @@ export default {
       players: [],
       userUid: "",
       isAdmin: false,
+      isLoading: false,
       info: {
         time: "",
         game: "",
@@ -137,6 +140,7 @@ export default {
     Players,
     Rules,
     Support,
+    loading,
   },
   computed: {
     ...mapGetters({
@@ -185,6 +189,11 @@ export default {
     },
   },
   async mounted() {
+    if (!this.getTournament) {
+      this.isLoading = true;
+    } else {
+      this.isLoading = false;
+    }
     if (this.getUser) {
       this.isAdmin = this.getUser.isAdmin;
     }
@@ -201,6 +210,7 @@ export default {
         });
       }
     });
+    this.isLoading = false;
   },
   methods: {
     register() {

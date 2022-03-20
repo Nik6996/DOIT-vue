@@ -35,7 +35,7 @@ export default {
   background-color: #151a1f;
   width: 157px;
   height: 250px;
-  margin: 24px;
+  margin: 22px;
   img {
     object-fit: cover;
     width: 157px;

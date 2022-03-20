@@ -136,6 +136,7 @@ export default {
           ro512: "",
           donations: "",
         },
+        bracket: "",
         slots: "",
         rules: "",
         players: "",
