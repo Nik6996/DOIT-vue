@@ -67,4 +67,20 @@ export default {
     margin-top: 10px;
   }
 }
+@media (max-width: 1060px) {
+  .card {
+    width: 120px;
+    height: 200px;
+    margin: 15px;
+
+    img {
+      object-fit: cover;
+      width: 120px;
+      height: 125px;
+    }
+    &__content {
+      height: 70px;
+    }
+  }
+}
 </style>

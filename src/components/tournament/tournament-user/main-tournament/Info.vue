@@ -68,4 +68,14 @@ export default {
     }
   }
 }
+@media (max-width: 1060px) {
+  .info {
+    padding: 20px;
+    flex-wrap: wrap;
+    &__block {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  }
+}
 </style>

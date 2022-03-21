@@ -124,7 +124,7 @@ export default {
       players: [],
       userUid: "",
       isAdmin: false,
-      isLoading: false,
+      isLoading: true,
       info: {
         time: "",
         game: "",
@@ -297,8 +297,9 @@ export default {
   }
 
   &__btns {
-    margin-top: 30px;
+    margin-top: 37px;
     display: flex;
+    position: relative;
   }
 
   &__btn {
@@ -310,7 +311,7 @@ export default {
     height: 52px;
     cursor: pointer;
     position: relative;
-    z-index: 300;
+    z-index: 2;
     top: 1.5px;
   }
 
@@ -370,10 +371,53 @@ export default {
     width: 328px;
   }
 }
+
+@media (max-width: 1430px) {
+  .card {
+    margin-left: 110px;
+  }
+}
+@media (max-width: 1300px) {
+  .card {
+    &__content {
+      flex-wrap: wrap;
+    }
+    &__right {
+      width: 100%;
+    }
+    &__main {
+      margin-right: 0px;
+    }
+  }
+}
+@media (max-width: 1060px) {
+  .card {
+    margin-left: 0px;
+    &__top {
+      padding: 15px;
+      margin-top: 5px;
+    }
+    &__name {
+      font-weight: 500;
+      font-size: 18px;
+    }
+    &__game {
+      font-size: 20px;
+    }
+    &__bottom {
+      padding: 10px 10px 30px 10px;
+      margin-bottom: 50px;
+    }
+    &__btn {
+      height: 40px;
+    }
+  }
+}
+
 .active {
   position: relative;
   background-color: #0f1215;
-  z-index: 200;
+  z-index: 2;
   border: 2px solid #20252b;
   border-bottom: none;
   color: white;
@@ -395,6 +439,23 @@ export default {
     height: 44px;
     color: #f5f5f5;
     font-weight: 700;
+  }
+}
+
+@media (max-width: 1060px) {
+  .admin-btn {
+    position: absolute;
+    right: 0;
+    top: -27px;
+    width: 100px;
+    button {
+      background: linear-gradient(180deg, #2788f6 0%, #0960e0 100%);
+      border-radius: 2px;
+      width: 100px;
+      height: 28px;
+      color: #f5f5f5;
+      font-weight: 500;
+    }
   }
 }
 </style>

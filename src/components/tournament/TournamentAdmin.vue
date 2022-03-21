@@ -49,6 +49,6 @@ export default {};
       font-weight: 700;
       font-size: 22px;
     }
-  } //изменить путь и написать компонент
+  }
 }
 </style>

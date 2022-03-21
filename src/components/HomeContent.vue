@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="home">
+      <div v-show="isLoading"><loading /></div>
       <div v-if="topIsActive" class="home__top top">
         <div class="top__content">
           <div class="top__title">DOIT <span>BETA</span></div>
@@ -32,22 +33,25 @@
 import NewsSlider from "@/components/home/news_slider/NewsSlider.vue";
 import GameSlider from "@/components/home/games_slider/GameSlider.vue";
 import TournamentSlider from "@/components/home/tournament_slider/TournamentSlider.vue";
-
+import loading from "@/components/other/Loading";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   data() {
     return {
       topIsActive: true,
+      isLoading: false,
     };
   },
   components: {
     GameSlider,
     NewsSlider,
     TournamentSlider,
+    loading,
   },
 
   async created() {
+    this.isLoading = true;
     const auth = getAuth();
     onAuthStateChanged(auth, (userSystem) => {
       if (userSystem) {
@@ -56,6 +60,10 @@ export default {
         this.topIsActive = true;
       }
     });
+  },
+  async mounted() {
+    await this.$store.dispatch("tournament/load");
+    this.isLoading = false;
   },
 };
 </script>

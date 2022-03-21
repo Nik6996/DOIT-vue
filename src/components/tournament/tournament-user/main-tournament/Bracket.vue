@@ -699,6 +699,20 @@ export default {
     height: 17px;
   }
 }
+@media (max-width: 1060px) {
+  .bracket {
+    &__player {
+      width: 265px;
+      height: 35px;
+    }
+    &__inner-small::before {
+      width: 50px;
+      height: 90px;
+      top: -2px;
+      left: -48px;
+    }
+  }
+}
 .column2 {
   height: 812px;
   justify-content: space-around;

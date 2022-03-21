@@ -59,4 +59,12 @@ export default {
     font-weight: 700;
   }
 }
+@media (max-width: 1060px) {
+  .players {
+    &__list {
+      justify-content: center;
+      padding: 0px;
+    }
+  }
+}
 </style>

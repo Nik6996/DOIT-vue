@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -18,7 +20,18 @@ export default {};
   width: 100%;
   height: 100vh;
   position: fixed;
-  background-color: #0f1215da;
+  background-color: #0a0b0cfa;
   z-index: 10000;
+  img {
+    animation: spin 1s ease-in-out infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 </style>
