@@ -14,12 +14,6 @@
         >
           <button>Edit Tournamnet</button>
         </div>
-        <div
-          @click="this.$router.push('/tournament-bracket')"
-          class="admin__btn"
-        >
-          <button>Edit Tournamnet bracket</button>
-        </div>
       </div>
     </div>
   </div>

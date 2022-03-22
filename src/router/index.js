@@ -30,6 +30,7 @@ import SelectTournament from '@/components/tournament/tournament-admin/SelectTou
 import ListTournament from '@/components/tournament/tournament-user/ListTournament'
 import CardTournament from '@/components/tournament/tournament-user/main-tournament/CardTournament'
 import EditBracket from '@/components/tournament/tournament-admin/EditBracket'
+import Top from '@/components/top/Top'
 
 
 
@@ -96,6 +97,10 @@ const routes = [{
 		{
 			path: '/comming-soon',
 			component: CommingSoon
+		},
+		{
+			path: '/top',
+			component: Top
 		},
 		{
 			path: '/user',

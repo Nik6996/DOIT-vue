@@ -9,7 +9,10 @@ export const tournament = {
 	state: () => ({
 		tournaments: '',
 		concreteGame: '',
-		concreteTournament: ''
+		concreteTournament: '',
+		tournamentLength: '',
+		totalPrize: 0,
+
 	}),
 	getters: {
 		getTournaments(state) {
@@ -20,6 +23,12 @@ export const tournament = {
 		},
 		getСoncreteTournament(state) {
 			return state.concreteTournament
+		},
+		getTournamentLength(state) {
+			return state.tournamentLength
+		},
+		getTotalPrize(state) {
+			return state.totalPrize
 		}
 	},
 	actions: {
@@ -72,7 +81,13 @@ export const tournament = {
 		},
 
 		async load({ commit }) {
-
+			function totalPrize(items) {
+				let prize = 10
+				items.forEach(item => {
+					prize += item.prizePool.prizeSum
+				})
+				commit('setTotalPrize', prize)
+			}
 			try {
 
 				const itemsRef = ref(database, `tournament`);
@@ -85,7 +100,10 @@ export const tournament = {
 							tournaments.push(item.val())
 						})
 					});
-					commit('setTournaments', tournaments)
+					commit('setTournaments', tournaments);
+					const tournamentLength = tournaments.length
+					commit('setTournamentLength', tournamentLength)
+					totalPrize(tournaments)
 				}
 			} catch (e) {
 				console.log(e);
@@ -172,6 +190,12 @@ export const tournament = {
 		},
 		setСoncreteTournaments(state, tournament) {
 			state.concreteTournament = tournament
+		},
+		setTournamentLength(state, tournamentLength) {
+			state.tournamentLength = tournamentLength
+		},
+		setTotalPrize(state, prize) {
+			state.totalPrize = prize
 		}
 	}
 }
