@@ -15,6 +15,7 @@ import { changePassword } from './modules/user/changePassword'
 import { subscribe } from './modules/user/subscribe'
 import { news } from './modules/news/news'
 import { tournament } from './modules/tournament/tournament'
+import { leagues } from './modules/leagues/leagues'
 
 export default createStore({
 	modules: {
@@ -32,7 +33,8 @@ export default createStore({
 		changePassword: changePassword,
 		subscribe: subscribe,
 		news: news,
-		tournament: tournament
+		tournament: tournament,
+		leagues: leagues
 	}
 
 })

@@ -4,12 +4,10 @@
       <div class="players__item center">{{ rank + 1 }}</div>
       <div class="players__item name">
         <country-flag :country="flag" size="small" />
-        {{ nickName }}
+        {{ country }}
       </div>
-      <div v-if="!name" class="players__item">Player</div>
-      <div v-else class="players__item">{{ name }}</div>
-      <div class="players__item">200$</div>
-      <div class="players__item">{{ balance }}$</div>
+
+      <div class="players__item">{{ users }}</div>
     </div>
   </div>
 </template>
@@ -20,10 +18,9 @@ import CountryFlag from "vue-country-flag-next";
 export default {
   data() {
     return {
-      balance: this.$attrs.modelValue.balance,
-      name: this.$attrs.modelValue.realName,
-      nickName: this.$attrs.modelValue.name,
-      flag: iso3311a2.getCode(this.$attrs.modelValue.country),
+      country: this.$attrs.modelValue.key,
+      users: this.$attrs.modelValue.item,
+      flag: iso3311a2.getCode(this.$attrs.modelValue.key),
     };
   },
   components: {
@@ -40,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 .players {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 
   &__item {
     display: flex;
@@ -53,13 +50,10 @@ export default {
 }
 @media (max-width: 1060px) {
   .players {
-    grid-template-columns: 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     &__item {
       font-weight: 400;
       font-size: 12px;
-    }
-    &__item:nth-child(4) {
-      display: none;
     }
   }
 }

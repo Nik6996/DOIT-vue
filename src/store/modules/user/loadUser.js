@@ -9,7 +9,8 @@ export const loadUser = {
 	state: () => ({
 		user: '',
 		userLength: '',
-		users: ''
+		users: '',
+		countries: ''
 	}),
 	getters: {
 		getUser(state) {
@@ -20,6 +21,9 @@ export const loadUser = {
 		},
 		getUsers(state) {
 			return state.users
+		},
+		getCountries(state) {
+			return state.countries
 		},
 	},
 	actions: {
@@ -53,6 +57,22 @@ export const loadUser = {
 
 		},
 		async loadUsers({ commit }) {
+
+			function countries(users) {
+				const countByCountry = new Map();
+				users.forEach(user => {
+					const country = user.country
+
+					if (!countByCountry.has(country)) {
+						countByCountry.set(country, 1);
+					} else {
+						countByCountry.set(country, countByCountry.get(country) + 1);
+					}
+
+				})
+				commit('setCountries', countByCountry)
+			}
+
 			try {
 
 				const userRef = ref(database, `users`)
@@ -62,6 +82,7 @@ export const loadUser = {
 					userRecord.forEach(itemRecord => {
 						users.push(itemRecord.val())
 					});
+					countries(users)
 					const userLength = users.length
 					commit('setUsersLength', userLength);
 					commit('setUsers', users)
@@ -84,5 +105,8 @@ export const loadUser = {
 		setUsers(state, users) {
 			state.users = users
 		},
+		setCountries(state, countries) {
+			state.countries = countries
+		}
 	}
 }

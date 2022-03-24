@@ -3,10 +3,10 @@
     <div class="players">
       <div class="players__top">
         <div class="players__item center">Rank</div>
-        <div class="players__item">Country & Nickname</div>
+        <div class="players__item">Nickname</div>
         <div class="players__item">Name</div>
         <div class="players__item">Total (year)</div>
-        <div class="players__item">Total (OVERAl)</div>
+        <div class="players__item">Total</div>
       </div>
       <div
         class="players__content"
@@ -102,7 +102,7 @@ export default {
   }
   &__item {
     display: flex;
-
+    text-transform: uppercase;
     padding: 30px 15px 24px 15px;
     font-weight: 700;
     font-size: 16px;
@@ -143,6 +143,25 @@ export default {
     margin: 0px 20px;
     background-image: url("../../assets/icon/arrow-top.svg");
     background-repeat: no-repeat;
+  }
+}
+@media (max-width: 1060px) {
+  .players {
+    &__item {
+      padding: 25px 15px 0px 15px;
+      font-weight: 500;
+      font-size: 10px;
+      padding: 30px 15px 16px 15px;
+    }
+    &__top {
+      border-bottom: 0;
+      margin-bottom: 30px;
+      grid-template-columns: 1fr 2fr 1fr 1fr;
+      margin-bottom: 10px;
+    }
+    &__item:nth-child(4) {
+      display: none;
+    }
   }
 }
 .center {

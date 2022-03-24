@@ -1,5 +1,6 @@
 import Home from '@/pages/Home'
 import Games from '@/pages/Games'
+import Leagues from '@/pages/Leagues'
 import HomeContent from '@/components/HomeContent'
 import SignUpMain from '@/components/login/SignUpMain'
 import LoginUser from '@/components/login/LoginUser'
@@ -31,6 +32,11 @@ import ListTournament from '@/components/tournament/tournament-user/ListTourname
 import CardTournament from '@/components/tournament/tournament-user/main-tournament/CardTournament'
 import EditBracket from '@/components/tournament/tournament-admin/EditBracket'
 import Top from '@/components/top/Top'
+import ListLeagues from '@/components/leagues/leagues-user/ListLeagues'
+import LeaguesAdmin from '@/components/leagues/LeaguesAdmin'
+import MainLeagues from '@/components/leagues/leagues-admin/MainLeagues'
+import SelectLeagues from '@/components/leagues/leagues-admin/SelectLeagues'
+
 
 
 
@@ -47,6 +53,18 @@ const routes = [{
 		{
 			path: '/games',
 			component: Games,
+		},
+		{
+			path: '/leagues',
+			component: Leagues,
+		},
+		{
+			path: '/leagues-create',
+			component: MainLeagues
+		},
+		{
+			path: '/leagues-select',
+			component: SelectLeagues
 		},
 		{
 			path: '/new-edit-games',
@@ -69,6 +87,10 @@ const routes = [{
 			component: ListTournament,
 		},
 		{
+			path: '/leagues/:game',
+			component: ListLeagues,
+		},
+		{
 			path: '/tournament/:game/:id',
 			component: CardTournament,
 		},
@@ -77,6 +99,10 @@ const routes = [{
 		{
 			path: '/tournament-admin',
 			component: TournamentAdmin
+		},
+		{
+			path: '/leagues-admin',
+			component: LeaguesAdmin
 		},
 		{
 			path: '/tournament-create',
@@ -93,6 +119,10 @@ const routes = [{
 		{
 			path: '/tournament:id',
 			component: MainTournament
+		},
+		{
+			path: '/leagues:id',
+			component: MainLeagues
 		},
 		{
 			path: '/comming-soon',

@@ -60,19 +60,22 @@ export const games = {
 			}
 		},
 		async load({ commit }) {
-			const gamesRef = ref(database, 'games')
-			const gamesRecord = await get(gamesRef)
-			if (gamesRecord.exists()) {
-				const games = []
 
-				gamesRecord.forEach(game => {
-					const item = game.val()
-					games.push(item)
-				})
-				commit('setGames', games)
-			}
-			// const url = await getDownloadURL(refStorage(storage, `games/Valorant.png`))
-			// console.log(url)
+			try {
+				const gamesRef = ref(database, 'games')
+				const gamesRecord = await get(gamesRef)
+				if (gamesRecord.exists()) {
+					const games = []
+
+					gamesRecord.forEach(game => {
+						const item = game.val()
+						games.push(item)
+					})
+					commit('setGames', games)
+				}
+			} catch (e) { console.log(e); }
+
+
 		},
 		async remove({ dispatch }, id) {
 			console.log(id)

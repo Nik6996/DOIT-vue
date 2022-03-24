@@ -102,6 +102,8 @@ export default {
         img: "",
         imgUrl: "",
         id: "",
+        totalPrize: 0,
+        totalPrizeYear: 0,
       },
       imgLocalUrl: "",
       isError: false,

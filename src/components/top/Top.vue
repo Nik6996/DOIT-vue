@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-show="isLoading"><loading /></div>
     <div class="top">
       <div class="top__title">Top</div>
       <div class="top__header">
@@ -44,7 +45,7 @@
         </div>
       </div>
       <div class="top__content">
-        <counters v-if="isActive === 'Countries'" />
+        <countries v-if="isActive === 'Countries'" />
         <players v-if="isActive === 'Players'" />
         <games v-if="isActive === 'Games'" />
         <teams v-if="isActive === 'Teams'" />
@@ -54,22 +55,26 @@
 </template>
 
 <script>
-import Counters from "@/components/top/Counters";
+import Countries from "@/components/top/Countries";
 import Players from "@/components/top/Players";
 import Games from "@/components/top/Games";
 import Teams from "@/components/top/Teams";
 import { mapGetters } from "vuex";
+import loading from "@/components/other/Loading";
+
 export default {
   data() {
     return {
       isActive: "Countries",
+      isLoading: false,
     };
   },
   components: {
-    Counters,
+    Countries,
     Players,
     Games,
     Teams,
+    loading,
   },
   computed: {
     ...mapGetters({
@@ -79,10 +84,13 @@ export default {
     }),
   },
   async mounted() {
+    this.isLoading = true;
     if (!this.getTournamentLength) {
       await this.$store.dispatch("tournament/load");
     }
     await this.$store.dispatch("loadUser/loadUsers");
+    await this.$store.dispatch("team/loadAll");
+    this.isLoading = false;
   },
 };
 </script>
@@ -139,10 +147,36 @@ export default {
     border-left: 2px solid #242b33;
     cursor: pointer;
   }
+}
 
-  &__content {
+@media (max-width: 1420px) {
+  .top {
+    margin-left: 110px;
   }
 }
+
+@media (max-width: 1060px) {
+  .top {
+    margin-left: 0px;
+    &__header {
+      display: block;
+      margin: 35px 0px;
+    }
+    &__block {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    &__btn {
+      height: 40px;
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+}
+
 .active {
   background: #d8dfeb;
   color: #0f1215;

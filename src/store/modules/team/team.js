@@ -7,11 +7,15 @@ export const team = {
 	namespaced: true,
 
 	state: () => ({
-		teams: ''
+		teams: '',
+		teamsArr: ''
 	}),
 	getters: {
 		getTeams(state) {
 			return state.teams
+		},
+		getTeamsArr(state) {
+			return state.teamsArr
 		}
 
 	},
@@ -68,7 +72,7 @@ export const team = {
 						itemsRecord.forEach(itemRecord => {
 							teams.push(itemRecord.val())
 						});
-						commit('setTeams', teams)
+						commit('setTeam', teams)
 					}
 				}
 
@@ -78,8 +82,33 @@ export const team = {
 
 
 		},
-		async remove({ }, id) {
 
+
+
+		async loadAll({ commit }) {
+			try {
+				const itemsRef = ref(database, `team`);
+				const itemsRecord = await get(itemsRef);
+				if (itemsRecord.exists()) {
+					const teams = []
+					itemsRecord.forEach(itemRecord => {
+						itemRecord.forEach(item => {
+							teams.push(item.val())
+						})
+					});
+
+					commit('setTeams', teams)
+				}
+
+
+			} catch (e) {
+				console.log(e);
+			}
+		},
+
+
+
+		async remove({ }, id) {
 			try {
 				const auth = getAuth();
 				onAuthStateChanged(auth, (userSystem) => {
@@ -101,8 +130,11 @@ export const team = {
 
 	},
 	mutations: {
-		setTeams(state, teams) {
+		setTeam(state, teams) {
 			state.teams = teams
+		},
+		setTeams(state, teams) {
+			state.teamsArr = teams
 		}
 	}
 }

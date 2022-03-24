@@ -6,7 +6,9 @@
           <li @click="this.$router.push('/games')">
             <img src="@/assets/img/item-01.svg" alt="" />
           </li>
-          <li><img src="@/assets/img/item-02.svg" alt="" /></li>
+          <li @click="this.$router.push('/leagues')">
+            <img src="@/assets/img/item-02.svg" alt="" />
+          </li>
           <li @click="this.$router.push('/top')">
             <img src="@/assets/img/item-03.svg" alt="" />
           </li>

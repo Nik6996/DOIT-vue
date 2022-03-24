@@ -3,14 +3,14 @@
     <div
       v-if="isAdmin"
       class="admin-btn"
-      @click="this.$router.push('/tournament-admin')"
+      @click="this.$router.push('/leagues-admin')"
     >
       <button>Admin panel</button>
     </div>
     <div class="game">
       <div class="game__content">
         <div class="game__header">
-          <div class="game__title">Tournament</div>
+          <div class="game__title">Leagues</div>
           <div class="game__search">
             <input
               v-model="search"
@@ -23,7 +23,7 @@
         </div>
         <div class="game__list">
           <div v-for="(game, index) in returnSearchGame" :key="game.id">
-            <preview-games v-model="returnSearchGame[index]" />
+            <preview-game v-model="returnSearchGame[index]" />
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PreviewGames from "@/components/tournament/tournament-user/PreviewGames.vue";
+import PreviewGame from "@/components/leagues/leagues-user/PreviewGame.vue";
 export default {
   data() {
     return {
@@ -42,11 +42,10 @@ export default {
     };
   },
   components: {
-    PreviewGames,
+    PreviewGame,
   },
   async mounted() {
     await this.$store.dispatch("games/load");
-    await this.$store.dispatch("loadUser/load");
     if (this.getUser) {
       this.isAdmin = this.getUser.isAdmin;
     }
