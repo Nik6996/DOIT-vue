@@ -38,7 +38,7 @@ import MainLeagues from '@/components/leagues/leagues-admin/MainLeagues'
 import SelectLeagues from '@/components/leagues/leagues-admin/SelectLeagues'
 import CardLeagues from '@/components/leagues/leagues-user/main-leagues/CardLeagues'
 import Shop from '@/pages/Shop'
-
+import NewProduct from '@/components/shop/NewProduct'
 
 import { createRouter, createWebHashHistory } from "vue-router";
 
@@ -73,6 +73,10 @@ const routes = [{
 		{
 			path: '/new-edit-games',
 			component: NewEditGame
+		},
+		{
+			path: '/new-product',
+			component: NewProduct
 		},
 		{
 			path: '/news',

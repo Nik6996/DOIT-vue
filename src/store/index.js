@@ -16,6 +16,7 @@ import { subscribe } from './modules/user/subscribe'
 import { news } from './modules/news/news'
 import { tournament } from './modules/tournament/tournament'
 import { leagues } from './modules/leagues/leagues'
+import { shop } from './modules/shop/shop'
 
 export default createStore({
 	modules: {
@@ -34,7 +35,8 @@ export default createStore({
 		subscribe: subscribe,
 		news: news,
 		tournament: tournament,
-		leagues: leagues
+		leagues: leagues,
+		shop: shop
 	}
 
 })
