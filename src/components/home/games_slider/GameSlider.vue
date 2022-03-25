@@ -45,7 +45,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper";
 import { mapGetters } from "vuex";
 SwiperCore.use([Pagination, Navigation, Autoplay]);
-//import "swiper/swiper-bundle.min.css";
+
 import "swiper/swiper.scss";
 import "swiper/components/pagination/pagination.scss";
 
@@ -84,9 +84,6 @@ export default {
     margin-bottom: 40px;
   }
 
-  &__slider {
-    //display: flex;
-  }
   .swiper {
     padding-bottom: 40px;
   }

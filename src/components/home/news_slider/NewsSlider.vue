@@ -39,7 +39,7 @@
         <div class="news__slider">
           <swiper
             :autoplay="{
-              delay: 5000,
+              delay: 511000,
               disableOnInteraction: false,
             }"
             :loop="true"

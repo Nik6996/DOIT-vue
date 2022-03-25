@@ -36,8 +36,8 @@ import ListLeagues from '@/components/leagues/leagues-user/ListLeagues'
 import LeaguesAdmin from '@/components/leagues/LeaguesAdmin'
 import MainLeagues from '@/components/leagues/leagues-admin/MainLeagues'
 import SelectLeagues from '@/components/leagues/leagues-admin/SelectLeagues'
-
-
+import CardLeagues from '@/components/leagues/leagues-user/main-leagues/CardLeagues'
+import Shop from '@/pages/Shop'
 
 
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -53,6 +53,10 @@ const routes = [{
 		{
 			path: '/games',
 			component: Games,
+		},
+		{
+			path: '/shop',
+			component: Shop,
 		},
 		{
 			path: '/leagues',
@@ -93,6 +97,10 @@ const routes = [{
 		{
 			path: '/tournament/:game/:id',
 			component: CardTournament,
+		},
+		{
+			path: '/leagues/:game/:id',
+			component: CardLeagues,
 		},
 
 

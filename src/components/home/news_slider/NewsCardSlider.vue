@@ -27,13 +27,11 @@ export default {
   margin: 5px 5px 15px 5px;
   display: flex;
   justify-content: center;
-
   overflow: hidden;
   &__content {
     background: #e1e6eb;
     height: 424px;
     width: 370px;
-    height: 424px;
   }
 
   &__img {
@@ -58,12 +56,11 @@ export default {
 
 @media (max-width: 430px) {
   .card {
-    max-width: 317px;
     &__content {
     }
     &__img {
       img {
-        width: 317px;
+        width: 100%;
       }
     }
   }

@@ -18,7 +18,7 @@
               <li @click="this.$router.push('/tournament')">Play</li>
               <li @click="this.$router.push('/news')">News</li>
               <li @click="this.$router.push('/games')">Games</li>
-              <li>Shop</li>
+              <li @click="this.$router.push('/shop')">Shop</li>
               <li @click="this.$router.push('/comming-soon')">Sponsorship</li>
             </ul>
 

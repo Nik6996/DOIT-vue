@@ -8,7 +8,8 @@ export const team = {
 
 	state: () => ({
 		teams: '',
-		teamsArr: ''
+		teamsArr: '',
+		concrateGame: ''
 	}),
 	getters: {
 		getTeams(state) {
@@ -16,6 +17,9 @@ export const team = {
 		},
 		getTeamsArr(state) {
 			return state.teamsArr
+		},
+		getTeamsGame(state) {
+			return state.concrateGame
 		}
 
 	},
@@ -105,7 +109,29 @@ export const team = {
 				console.log(e);
 			}
 		},
+		async LoadConcrateGame({ commit }, game) {
+			try {
+				const itemsRef = ref(database, `team`);
+				const itemsRecord = await get(itemsRef);
+				if (itemsRecord.exists()) {
+					const teams = []
+					itemsRecord.forEach(itemRecord => {
+						itemRecord.forEach(item => {
 
+							if (item.val().game === game) {
+								teams.push(item.val())
+							}
+						})
+					});
+
+					commit('setTeamsGame', teams)
+				}
+
+
+			} catch (e) {
+				console.log(e);
+			}
+		},
 
 
 		async remove({ }, id) {
@@ -135,6 +161,9 @@ export const team = {
 		},
 		setTeams(state, teams) {
 			state.teamsArr = teams
+		},
+		setTeamsGame(state, teams) {
+			state.concrateGame = teams
 		}
 	}
 }

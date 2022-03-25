@@ -109,11 +109,9 @@ export default {
 
 @media (max-width: 430px) {
   .card {
-    max-width: 317px;
-
     &__img {
       img {
-        width: 317px;
+        width: 100%;
       }
     }
   }
